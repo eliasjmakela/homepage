@@ -6,19 +6,160 @@ html, body {
   height: 100%
 }
 
-#main-container {
+
+header {
+  display:flex;
+  flex-direction:row;
+  background-color: transparent;
+  align-items:flex-start;
+}
+
+.row {
+  display:flex;
+  flex-direction:row;
+}
+
+#hero {
+  min-height:200px;
+  align-self:stretch;
+
+}
+
+.main-container {
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  background: linear-gradient(180deg,rgba(223, 251, 255, 1) 0%,rgba(132, 235, 255, 1) 40%,rgba(132, 235, 255, 1) 60%, rgba(223, 251, 255, 1) 100%);
+
+}
+
+#language-selector {
+  margin-left: auto;
+  display:flex;
+  flex-direction:column;
+}
+
+
+#headline {
+  width: 25vw;
+  border-bottom:none;
+  border-right:none;
+  display:flex;
+  align-items:center;
+}
+
+#projects-list {
+  border: black 1px solid;
+  margin:1rem;
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  background: linear-gradient(165deg,#00d4ff 0%,#ffffff 115%);
+
+}
+ol {
+  margin:0px;
+  padding:0;
+}
+
+li {
+  list-style:none;
+}
+
+#language-selector>ol {
+  display:flex;
+  flex-direction:column;
+}
+#language-selector>ol>li {
+  border:2px red solid;
+  padding:1em;
+}
+
+#projects {
+  background-color: rgba(223,251,255,1);
+  padding: 1rem;
+  width: 75vw;
+  height:30vw;
+  max-height:900px;
+}
+
+footer {
+  align-self: flex-end;
+  padding:1em;
+  display:flex;
+  flex-direction:row;
+  align-items:space-around;
+  width:100%;
+}
+
+a {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 2vh;
+  text-decoration:none;
+}
+
+.project-card {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 2vh;
+  background-color:#84EBFF;
+  padding:1rem;
+  margin: 1rem;
+  border:black 1px solid;
+  text-align:center;
+}
+
+#main-container-mobile {
   background: #84EBFF;
-  background: linear-gradient(180deg,rgba(132, 235, 255, 1) 0%, rgba(223, 251, 255, 1) 100%);
   height: 100%;
   margin: 0px;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 1rem;
 }
 
+nav  {
+  display:flex;
+  flex-direction:column;
+  align-self:stretch;
+}
+.subpage-link {
+  padding:1em;
+  border: black 1px solid;
+  height:33%;
+
+}
+
+#row1{
+  border-color:red;
+  border-width:4px;
+  border-style:solid;
+}
+
+
+#main-container-desktop {
+  height: 100%;
+  margin: 0px;
+}
+
+p {
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: regular;
+} 
+
+
+
+
+
 body {
 
-  font-family: sans-serif;
+  font-family: "EB Garamond", serif;
   font-size: 16px;
   color: #333;
   margin: 0;
@@ -40,11 +181,15 @@ body {
 }
 
 img {
-  max-width: 300px;
+  width:100%;
+}
+#catimg {
+  max-width:150px;
+  min-width:100px;
 }
 
 h1 {
-  font-size: 4em;
+  font-size: clamp(52px, 6.4vw, 4em);
   text-align: center;
   margin: 0em;
   font-family: "Asset", serif;
@@ -53,39 +198,59 @@ h1 {
   color: #010e24
 }
 
-h2, .subpage-link {
-    font-size: 1em;
+h2 {
+  font-size: clamp(25px, 3vw, 36px); /*max 36px*/
   text-align: center;
   margin: 0em;
-  font-family: "Asset", serif;
+  font-family: "EB Garamond", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.subpage-link, #language-selector>ol>li{
+  font-size: 25px;
+  text-align: center;
+  margin: 0em;
+  font-family: "EB Garamond", serif;
   font-weight: 600;
   font-style: normal;
 
 }
 
-.laatikko {
-  width: 100px;
-  height: 100px;
-  background-color: #ff0000;
-  rotate: 45deg;
+
+
+#loremipsum {
+  font-family: "EB Garamond", serif;
+  font-weight: normal;
+  font-style: normal;
+  width:50%;
+  max-height:10%;
 }
 
-.pallo {
-  width: 100px;
-  height: 100px;
-  background-color: #0000ff;
-  border-radius: 50%;
-}
-
-.kolmio {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  /* magic 🪄 */
-  border-width: 0 66px 100px 66px;
-  border-color: transparent transparent #00ff00 transparent;
-}
 
 #blackbox {
   background-color: black;
+}
+
+#main-content {
+  display:flex;
+  direction:row;
+}
+
+#column1, #column2 {
+  display:flex;
+  flex-direction:column;
+}
+#column2 {
+  max-width: 70%;
+}
+
+
+@media (max-width: 700px) {
+  #main-container-desktop {
+    display: none;
+  }
+  #main-container-mobile {
+    display: grid;
+  }
 }

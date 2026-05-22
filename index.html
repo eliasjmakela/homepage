@@ -14,53 +14,82 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Asset&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
-  <div id="main-container">
-    <header>
-      <div class="block-main">
-      <h1>Elias Mäkelä</h1>
-      </div>
-      <img></img>
-          <nav>
-      <a class="subpage-link">Projektit</a>
-      <a class="subpage-link">Blogi</a>
-      <a class="subpage-link">Ota yhteyttä</a>
-    </nav>
-    </header>
 
-    <section id="intro">
-      <div>
-        Lorem ipsum, lorem ipsum
-      </div>
-      <p> Vesiliskon sisko vesihiisi sihisi hississä. Vesiliskon sisko vesihiisi sihisi hississä. Vesiliskon sisko
-        vesihiisi sihisi hississä. </p>
-    </section>
-
-    <section id="projects">
-      <h2> Projektit</h2>
-      <ol>
-        <div class="project-card">
-          Projekti 1
-        </div>
-          <div class="project-card">
-          Projekti 2
-        </div>
-          <div class="project-card">
-          Projekti 3
-        </div>
-      </ol>
-    </section>
-
-    <footer>
-      <a>LinkedIn</a>
-      <a>Github</a>
-      <a>Email</a>
-      <a>Puhelinnumero</a>
-
-      <footer>
+  <div id="main-container-mobile" class="main-container">
+    nyt onkin mobiili versio :DD
   </div>
+  <div id="main-container-desktop" class="main-container">
+
+    <header>
+      <div class="block-main" id="hero">
+        <h1>Elias <br /> Mäkelä</h1>
+      </div>
+      <nav>
+        <a class="subpage-link" href="/projects.html">Projektit</a>
+        <a class="subpage-link">Blogi</a>
+        <a class="subpage-link" href="mailto:hello@eliasmakela.fi">Ota yhteyttä</a>
+      </nav>
+      <div id="language-selector">
+        <ol>
+          <li>Fin</li>
+          <li>Eng</li>
+          <ol>
+      </div>
+    </header>
+    <div id="main-content">
+      <div id="column1">
+        <div class="row">
+          <section id="headline" class="block-main">
+            <h2>
+              Yrittäjä, freelancer-ohjelmistokehittäjä
+            </h2>
+          </section>
+          <div class="block-main" id="catimg">
+            <img src="images/lechat.png"></img>
+          </div>
+        </div>
+        <div class="row">
+          <section id="loremipsum" class="block-main">
+
+            <p> Vesiliskon sisko vesihiisi sihisi hississä. Vesiliskon sisko vesihiisi sihisi hississä. Vesiliskon sisko
+              vesihiisi sihisi hississä. </p>
+          </section>
+
+          <section id="projects" class="block-main">
+            <h2> Projektit</h2>
+            <ol id="projects-list">
+              <li class="project-card">
+                <a href="projects.html">Projekti 1</a>
+              </li>
+              <li class="project-card">
+                Projekti 2
+              </li>
+              <li class="project-card">
+                Projekti 3
+              </li>
+            </ol>
+          </section>
+          <div>
+          </div>
+          <div id="column2">
+
+          </div>
+        </div>
+          <footer>
+            <a>LinkedIn</a>
+            <a>Github</a>
+            <a>Email</a>
+            <a>Puhelinnumero</a>
+
+          </footer>
 </body>
 
 </html>
