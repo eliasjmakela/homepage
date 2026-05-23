@@ -19,6 +19,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
     rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_right" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard_arrow_right" />
 </head>
 
 <body>
@@ -33,23 +36,28 @@
         <h1>Elias <br /> Mäkelä</h1>
       </div>
       <nav>
-        <a class="subpage-link" href="/projects.html">Projektit</a>
-        <a class="subpage-link">Blogi</a>
-        <a class="subpage-link" href="mailto:hello@eliasmakela.fi">Ota yhteyttä</a>
+        <a class="subpage-link" href="/projects.html">Projektit </a>
+        <a class="subpage-link">Blogi <span class="material-symbols-outlined">
+            arrow_right
+          </span></a>
+        <a class="subpage-link red" href="mailto:hello@eliasmakela.fi">Ota yhteyttä <span
+            class="material-symbols-outlined">
+            keyboard_arrow_right
+          </span></a>
       </nav>
-      <div id="language-selector">
+      <!--       <div id="language-selector">
         <ol>
           <li>Fin</li>
           <li>Eng</li>
           <ol>
-      </div>
+      </div> -->
     </header>
     <div id="main-content">
-      <div id="column1">
+      <div class="column" id="column1">
         <div class="row">
           <section id="headline" class="block-main">
             <h2>
-              Yrittäjä, freelancer-ohjelmistokehittäjä
+              Yrittäjä ja ohjelmistokehittäjä
             </h2>
           </section>
           <div class="block-main" id="catimg">
@@ -59,37 +67,47 @@
         <div class="row">
           <section id="loremipsum" class="block-main">
 
-            <p> Vesiliskon sisko vesihiisi sihisi hississä. Vesiliskon sisko vesihiisi sihisi hississä. Vesiliskon sisko
-              vesihiisi sihisi hississä. </p>
+            <p> Olen Aalto-yliopiston opiskelija ja ohjelmistokehittäjä monen vuoden kokemuksella.
+              Olen Aalto-yliopiston opiskelija ja ohjelmistokehittäjä monen vuoden kokemuksella.
+              Olen Aalto-yliopiston opiskelija ja ohjelmistokehittäjä monen vuoden kokemuksella.
+              Olen Aalto-yliopiston opiskelija ja ohjelmistokehittäjä monen vuoden kokemuksella.
+            </p>
           </section>
 
           <section id="projects" class="block-main">
             <h2> Projektit</h2>
             <ol id="projects-list">
               <li class="project-card">
-                <a href="projects.html">Projekti 1</a>
+                <button>
+                  <a href="/projects/chip.html">Chip26</a>
+                </button>
               </li>
               <li class="project-card">
-                Projekti 2
+                <button>
+                  <a href="/projects/chat.html">Chat26</a>
+                </button>
               </li>
               <li class="project-card">
-                Projekti 3
+                <button>
+                  <a href="/projects/intel.html">Intel26</a>
+                </button>
               </li>
             </ol>
+            <button id="all-projects">                  <a href="/projects.html">Katso kaikki projektit</a>
+</button>
           </section>
           <div>
           </div>
-          <div id="column2">
+          <div class="column" id="column2">
 
           </div>
         </div>
-          <footer>
-            <a>LinkedIn</a>
-            <a>Github</a>
-            <a>Email</a>
-            <a>Puhelinnumero</a>
+        <footer>
+          <a href="https://linkedin.com/in/eliasjmakela">LinkedIn</a>
+          <a href="https://github.com/eliasjmakela">Github</a>
+          <a href="mailto:hello@eliasmakela.fi">Email</a>
 
-          </footer>
+        </footer>
 </body>
 
 </html>
