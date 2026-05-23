@@ -35,7 +35,6 @@ header {
   height:100vh;
   display:flex;
   flex-direction:column;
-  background: linear-gradient(180deg,rgba(223, 251, 255, 1) 0%,rgba(132, 235, 255, 1) 40%,rgba(132, 235, 255, 1) 60%, rgba(223, 251, 255, 1) 100%);
 }
 
 
@@ -106,7 +105,7 @@ li {
 
 #all-projects {
   max-width:50%;
-  min-width:200px;
+  min-width:270px;
   min-height:80px;
   display:flex;
   flex-direction:column;
@@ -115,16 +114,38 @@ li {
 
 footer {
   background-color: rgba(223,251,255,1);
-  align-self: flex-end;
   padding:4em;
   display:flex;
   flex-direction:row;
   justify-content:space-around;
   border:black 1px solid;
   width:70%;
-  margin-top:4em;
-  
+  position:relative;
+  top:5em;
+  margin-left:auto;
 }
+
+#projects-page-backbutton {
+  width:10vw;
+  position:absolute;
+  height:auto
+}
+
+.project-card>button {
+  min-height:70px;
+  min-width:140px;
+}
+
+#projects-page-backbutton::after {
+  content: "◀";
+  font-size:0.5em;
+}
+
+.project-image {
+  border: black 1px solid;
+}
+
+
 
 a {
   font-family: "EB Garamond", serif;
@@ -167,7 +188,7 @@ nav  {
   flex-direction:column;
   align-self:stretch;
 }
-.subpage-link {
+.page-link {
   padding:1em;
   border: black 1px solid;
   height:33%;
@@ -186,12 +207,16 @@ nav  {
   margin: 0px;
 }
 
-p {
+p, span, a.attributions {
   font-family: "EB Garamond", serif;
   font-optical-sizing: auto;
-  font-weight: regular;
+  font-weight: normal;
+  font-size:1em;
+  padding:0.25em;
 } 
-
+.big-project-card>.raised-card{
+  min-height:700px;
+}
 
 .big-project-card {
   background: linear-gradient(360deg,rgba(223, 251, 255, 1) 0%,rgba(132, 235, 255, 1) 40%,rgba(132, 235, 255, 1) 60%, rgba(223, 251, 255, 1) 100%);
@@ -199,8 +224,11 @@ p {
   font-size:30px;
   border: black 1px solid;
   position:relative;
-  margin:2em;
+  margin-left:2em;
+  margin-top:2em;
+
   width:40vw;
+  min-height:700px;
 }
 
 .small-project-card {
@@ -210,6 +238,7 @@ p {
   margin:2em;
   flex-basis: 100%;
   position:relative;
+  min-height:500px;
 }
 
 .raised-card {
@@ -255,9 +284,20 @@ body {
 .block-main {
   background-color: #dffbff;
   border-color: #000000;
-  border-width: 0.2em;
+  border-width: 1px;
   border-style: solid;
   padding:1.5em;
+}
+
+#intel26image {
+  max-width:200px;
+  height:auto;
+}
+
+#intel26card {
+  display:flex;
+  flex-direction:column;
+  justify-content:end;
 }
 
 img {
@@ -281,15 +321,15 @@ h1 {
 h2 {
   font-size: clamp(25px, 3vw, 36px); /*max 36px*/
   text-align: center;
-  margin: 0em;
+  margin: 0.5em;
   font-family: "EB Garamond", serif;
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
 }
 
 
 
-.subpage-link, #language-selector>ol>li{
+.page-link, #language-selector>ol>li{
   font-size: 25px;
   text-align: center;
   margin: 0em;
@@ -299,21 +339,33 @@ h2 {
 
 }
 
-.subpage-link::after,button::after  {
+.page-link::after,button::after, footer>a::after {
   content: " ▶";
   font-size:0.5em;
+  position:relative;
+  bottom:0.3em;
+  left:1em;
   
+}
+
+#back-button::after{
+  content: "◀";
+  font-size:0.5em;
 }
 
 #loremipsum {
   font-family: "EB Garamond", serif;
-  font-size:clamp(18px, 2vw, 30px);
+  font-size:clamp(18px, 2vw, 35px);
   font-weight: normal;
   font-style: normal;
   width:30%;
   height:85%;
 }
 
+.project-card-column>h2{
+  margin-left:1em;
+  margin-right:1em;
+}
 
 #blackbox {
   background-color: black;
@@ -333,8 +385,12 @@ h2 {
   height:100%;
 }
 #chip26demoimage {
-width:75%;
-margin:auto;
+width:90%;
+margin-left:auto;
+}
+
+.project-year {
+  text-align:center;
 }
 
 .project-title {
@@ -349,7 +405,7 @@ margin:auto;
 
 #contact-button-container {
   justify-content: center;
-  margin-bottom: 2em;
+  margin-top:5em;
 }
 
 #contact-button {
@@ -358,6 +414,7 @@ margin:auto;
 }
 
 .project-description {
+  font-weight:500;
   height:100%;
   margin-top:0;
   border: black 1px solid;
@@ -367,7 +424,7 @@ margin:auto;
 .project-card-column {
   display:flex;
   flex-direction:column;
-  justify-content:space-around;
+  justify-content:flex-start;
 }
 
 #column2 {

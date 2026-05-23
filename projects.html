@@ -22,10 +22,11 @@
 </head>
 
 <body>
-    <button id="back-button>
-    <a href=" index.html/">
+    <nav>
+    <a class="page-link" id="projects-page-backbutton" href="index.html">
+    </nav>
 
-    </button>
+    </a>
     <h1>Projektit</h1>
     <div class="column" id="project-page-main-container">
         <div class="row" id="projects-listing-main-container">
@@ -35,17 +36,15 @@
                         <div class="row project-card-row">
 
                             <div class="project-card-column">
-                                <div class="project-title">
                                     <h2>Chip26</h2>
-                                </div>
-                                <span>2021</span>
                             </div>
                             <div class="column">
-                                <img id="chip26demoimage"src="images/demoimage.png"></img>
+                                <img class="project-image" id="chip26demoimage" src="images/demoimage.png"></img>
+                                <span class="project-year">2021</span>
 
                                 <p class="project-description">
                                     Emulaattori CHIP-8:lle, joka on 1970-luvulla julkaistu virtuaalinen tietokone.
-                                    Toteutettu C#:lla, .NETilla ja MonoGamella.
+                                    Toteutettu C#:lla, .NETilla ja MonoGamella. Lukee CHIP-8:lle käännettyä ohjelmakoodia ja toteuttaa sen reaaliajassa, mahdollistaen vanhojen CHIP-8:lle käännettyjen ohjelmien suorittamisen.
                                 </p>
 
                             </div>
@@ -62,14 +61,14 @@
 
                                 <div class="column">
                                     <h2>Chat26</h2>
-                                    <img src="images/lechat.png"></img>
-                                    <span>2025</span>
+                                    <img class="project-image" src="images/lechat.png"></img>
+                                    <span class="project-year">2025</span>
                                 </div>
                                 <div class="column">
                                     <p class="project-description">
-                                        Vesiliskon sisko vesihiisiVesiliskon sisko vesihiisiVesiliskon sisko
-                                        vesihiisiVesiliskon
-                                        sisko vesihiisi </p>
+                                        Yksinkertainen chat-sovellus, teknologioina frontissa Next, TypeScript ja backendin
+                                        puolella Rust. Maskottina toimii maailmankuulu ja koko kansan rakastama
+                                        patonkiapureksiva kissaeläin Le Chat.</p>
                                 </div>
 
                             </div>
@@ -77,30 +76,44 @@
                     </div>
                 </div>
                 <div class="row" id="projects-row2">
-                    <div class="small-project-card">
+                    <div class="small-project-card" id="intel26card">
                         <div class="raised-card">
                             <div class="row">
 
                                 <div class="column">
                                     <h2>Intel26</h2>
-                                    <img src="images/lechat.png"></img>
-                                    <span>2021</span>
+                                    <img class="project-image" id="intel26image" src="images/Intel_8080_open-closed.jpg"></img>
+                                    <span class="project-year">2021</span>
                                 </div>
                                 <div class="column">
                                     <p class="project-description">
-                                        Vesiliskon sisko vesihiisiVesiliskon sisko vesihiisiVesiliskon sisko
-                                        vesihiisiVesiliskon
-                                        sisko vesihiisi </p>
+                                        Vuonna 2021 aloitettu, tosin sittemmin töiden takia sivummalle jäänyt projekti,
+                                        jossa tavoitteena on toteuttaa emulaattori Intel 8080 -mikroprosessorille.
+                                        Toteutettu C#:lla ja .NETilla. Lopullinen tavoite on toteuttaa prosessori ja
+                                        kaikki tarvittavat oheiskomponentit alkuperäisen Space Invaders-kabinetin
+                                        pyörittämiseen.
+                                    </p>
                                 </div>
 
                             </div>
                         </div>
+                        <span>Kuva: Two Intel 8080 microprocessor chips
+
+                            By The Science Museum UK - <a class="attributions" rel="nofollow" class="external autonumber"
+                                href="https://collection.sciencemuseumgroup.org.uk/objects/co8384574/closed-intel-8080-microprocessor-chip-1974-1977-microprocessor">[1]</a>,
+                            <a class="attributions" href="https://creativecommons.org/licenses/by/4.0"
+                                title="Creative Commons Attribution 4.0">CC BY 4.0</a>, <a class="attributions"
+                                href="https://commons.wikimedia.org/w/index.php?curid=133514392">Link</a>
+                        </span>
+
                     </div>
                 </div>
             </div>
         </div>
         <div id="contact-button-container" class="row">
-            <button id="contact-button">Ota yhteyttä</button>
+        <a class="page-link red" href="mailto:hello@eliasmakela.fi">Ota yhteyttä <span
+            class="material-symbols-outlined">
+          </span></a>
         </div>
     </div>
 </body>
