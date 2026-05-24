@@ -14,21 +14,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Asset&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back" />
+<style>
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+</style>
 </head>
 
 <body>
     <nav>
-    <a class="page-link" id="projects-page-backbutton" href="index.html">    </a>
+        <a class="page-link" id="projects-page-backbutton" href="index.html"> </a>
 
     </nav>
 
-    <h1>Projektit</h1>
     <div class="column" id="project-page-main-container">
+        <h1 id ="project-page-header">Projektit</h1>
+
         <div class="row" id="projects-listing-main-container">
             <div class="column" id="projects-column1">
                 <div class="big-project-card">
@@ -36,15 +47,18 @@
                         <div class="row project-card-row">
 
                             <div class="project-card-column">
-                                    <h2>Chip26</h2>
+                                <h2 class="project-title">Chip26</h2>
+                                <span class="project-year-big">2021</span>
+
                             </div>
                             <div class="column">
                                 <img class="project-image" id="chip26demoimage" src="images/demoimage.png"></img>
-                                <span class="project-year">2021</span>
 
                                 <p class="project-description">
                                     Emulaattori CHIP-8:lle, joka on 1970-luvulla julkaistu virtuaalinen tietokone.
-                                    Toteutettu C#:lla, .NETilla ja MonoGamella. Lukee CHIP-8:lle käännettyä ohjelmakoodia ja toteuttaa sen reaaliajassa, mahdollistaen vanhojen CHIP-8:lle käännettyjen ohjelmien suorittamisen.
+                                    Toteutettu C#:lla ja MonoGamella. Lukee CHIP-8:lle käännettyä
+                                    ohjelmakoodia ja toteuttaa sen reaaliajassa, mahdollistaen vanhojen CHIP-8:lle
+                                    käännettyjen ohjelmien suorittamisen.
                                 </p>
 
                             </div>
@@ -60,14 +74,16 @@
                             <div class="row">
 
                                 <div class="column">
-                                    <h2>Chat26</h2>
+                                    <h2 id="chat26-title" class="project-title">Chat26</h2>
                                     <img class="project-image" src="images/lechat.png"></img>
                                     <span class="project-year">2025</span>
                                 </div>
                                 <div class="column">
                                     <p class="project-description">
-                                        Yksinkertainen chat-sovellus, teknologioina frontissa Next, TypeScript ja backendin
-                                        puolella Rust. Maskottina toimii maailmankuulu ja koko kansan rakastama
+                                        Yksinkertainen chat-sovellus, teknologioina frontissa Next ja TypeScript sekä
+                                        backendin
+                                        puolella Rust ja WebSocket. Maskottina toimii maailmankuulu ja koko kansan
+                                        rakastama
                                         patonkiapureksiva kissaeläin Le Chat.</p>
                                 </div>
 
@@ -81,14 +97,15 @@
                             <div class="row">
 
                                 <div class="column">
-                                    <h2>Intel26</h2>
-                                    <img class="project-image" id="intel26image" src="images/Intel_8080_open-closed.jpg"></img>
+                                    <h2 class="project-title">Intel26</h2>
+                                    <img class="project-image" id="intel26image"
+                                        src="images/Intel_8080_open-closed.jpg"></img>
                                     <span class="project-year">2021</span>
                                 </div>
                                 <div class="column">
                                     <p class="project-description">
-                                        Vuonna 2021 aloitettu, tosin sittemmin töiden takia sivummalle jäänyt projekti,
-                                        jossa tavoitteena on toteuttaa emulaattori Intel 8080 -mikroprosessorille.
+                                        Vuonna 2021 aloitettu, tosin sittemmin töiden takia sivummalle jäänyt
+                                        emulaattori Intel 8080 -mikroprosessorille.
                                         Toteutettu C#:lla ja .NETilla. Lopullinen tavoite on toteuttaa prosessori ja
                                         kaikki tarvittavat oheiskomponentit alkuperäisen Space Invaders-kabinetin
                                         pyörittämiseen.
@@ -99,7 +116,8 @@
                         </div>
                         <span>Kuva: Two Intel 8080 microprocessor chips
 
-                            By The Science Museum UK - <a class="attributions" rel="nofollow" class="external autonumber"
+                            By The Science Museum UK - <a class="attributions" rel="nofollow"
+                                class="external autonumber"
                                 href="https://collection.sciencemuseumgroup.org.uk/objects/co8384574/closed-intel-8080-microprocessor-chip-1974-1977-microprocessor">[1]</a>,
                             <a class="attributions" href="https://creativecommons.org/licenses/by/4.0"
                                 title="Creative Commons Attribution 4.0">CC BY 4.0</a>, <a class="attributions"
@@ -111,9 +129,9 @@
             </div>
         </div>
         <div id="contact-button-container" class="row">
-        <a class="page-link red" href="mailto:hello@eliasmakela.fi">Ota yhteyttä <span
-            class="material-symbols-outlined">
-          </span></a>
+            <a class="page-link red" href="mailto:hello@eliasmakela.fi">Ota yhteyttä <span
+                    class="material-symbols-outlined">
+                </span></a>
         </div>
     </div>
 </body>

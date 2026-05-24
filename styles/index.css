@@ -45,8 +45,6 @@ header {
 }
 
 #headline {
-  border-bottom: none;
-  border-right: none;
   display: flex;
   align-items: center;
   width: clamp(30em, 40vw, 50em);
@@ -85,7 +83,7 @@ li {
 }
 
 .red {
-  background-color: #ff000b;
+  background-color: #0D6B70;
   color: white;
 }
 
@@ -149,7 +147,7 @@ footer {
 }
 
 a {
-  font-family: "EB Garamond", serif;
+  font-family: "DM Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
@@ -159,7 +157,7 @@ a {
 }
 
 button {
-  font-family: "EB Garamond", serif;
+  font-family: "DM Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
@@ -207,7 +205,7 @@ nav {
 p,
 span,
 a.attributions {
-  font-family: "EB Garamond", serif;
+  font-family: "DM Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: normal;
   font-size: 1em;
@@ -284,7 +282,7 @@ body {
     rgba(223, 251, 255, 1) 100%
   );
 
-  font-family: "EB Garamond", serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 16px;
   color: #010e24;
   margin: 0;
@@ -316,6 +314,10 @@ body {
   justify-content: end;
 }
 
+* {
+  gap:0.5em;
+}
+
 img {
   width: 100%;
 }
@@ -328,8 +330,9 @@ h1 {
   font-size: clamp(52px, 6.4vw, 4em);
   text-align: center;
   margin: 0em;
-  font-family: "Asset", serif;
+  font-family: "Fraunces", serif;
   font-weight: 600;
+  font-optical-sizing: auto;
   font-style: normal;
   color: #010e24;
 }
@@ -338,8 +341,8 @@ h2 {
   font-size: clamp(32px, 3vw, 36px);
   text-align: center;
   margin: auto;
-  font-family: "EB Garamond", serif;
-  font-weight: 700;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -348,7 +351,7 @@ h2 {
   font-size: 1.5rem;
   text-align: center;
   margin: 0em;
-  font-family: "EB Garamond", serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 600;
   font-style: normal;
 }
@@ -369,7 +372,7 @@ footer > a::after {
 }
 
 #loremipsum {
-  font-family: "EB Garamond", serif;
+  font-family: "DM Sans", sans-serif;
   font-size: clamp(18px, 2vw, 35px);
   font-weight: normal;
   font-style: normal;
@@ -409,11 +412,10 @@ footer > a::after {
 }
 
 .project-title {
-  background: rgba(132, 235, 255, 1);
-  padding: 0.5em;
-  border: black 1px solid;
-  margin-top: 0;
+  padding:0.5rem;
 }
+
+
 
 #project-page-main-container {
 }
@@ -477,10 +479,120 @@ footer > a::after {
 }
 
 @media (max-width: 700px) {
+
+   * {
+    min-width: 0;
+  }
+
+  #loremipsum,
+  #all-projects,
+  #chip26demoimage,
+  #headline,
+  .project-card>button,
+  #projects,
+  footer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .project-card>button>a{
+    font-size: 1rem;
+  }
+
+  #projects-list {
+    flex-direction: column;
+    height: auto;
+    width:70%;
+    justify-content: center;
+  }
+
+  button {
+    margin:0.5rem;
+  }
+
+  .big-project-card {
+    margin:auto;
+    width: 17em;
+  }
+
+
+  body {
+    overflow-x: clip;
+  }
   #main-container-desktop {
+    display: flex;
+  }
+
+  #main-container-mobile {
     display: none;
   }
-  #main-container-mobile {
-    display: grid;
+
+  #hero {
+    align-items: center;
+  }
+
+  #hero
+  #hero>h1 {
+    font-size: 4rem;
+  }
+  #headline {
+    max-width:23rem;
+  }
+
+  #headline>h2 {
+    font-size: 1.2rem;
+  }
+
+  #catimg {
+    width: 12rem;
+  }
+  .project-image {
+    margin: auto;
+  }
+
+  .row, footer {
+    flex-direction: column;
+  }
+
+  footer {
+    align-items:center;
+    justify-content:space-between;
+    margin-top:0;
+  }
+  footer>a {
+    margin:1rem;
+  }
+
+  .project-description {
+    margin-bottom:0px;
+  }
+  
+  #projects-page-backbutton {
+    position:relative;
+    margin-bottom:1rem;
+  }
+
+  #contact-button-container {
+    margin:auto;
+    margin-bottom:1rem;
+  }
+
+  #project-page-header {
+    margin-bottom:3rem;
+  }
+
+  #headline-row {
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    justify-content:flex-start;
+  }
+
+  header {
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    align-items: flex-start;
   }
 }
