@@ -181,6 +181,8 @@ button {
 nav {
   display: flex;
   flex-direction: column;
+  margin-top:auto;
+  margin-bottom:auto;
 }
 .page-link {
   padding: 1em;
@@ -318,7 +320,7 @@ img {
 }
 
 h1 {
-  font-size: clamp(52px, 6.4vw, 4em);
+  font-size: clamp(2.5rem, 6.4vw, 4em);
   text-align: center;
   margin: 0em;
   font-family: "Fraunces", serif;
@@ -337,9 +339,8 @@ h2 {
   font-style: normal;
 }
 
-.page-link,
-#language-selector > ol > li {
-  font-size: 1.5rem;
+.page-link {
+  font-size: clamp(1rem,1rem,2rem);
   text-align: center;
   margin: 0em;
   font-family: "DM Sans", sans-serif;
@@ -404,9 +405,17 @@ footer > a::after {
 }
 
 
-
-#project-page-main-container {
+#project-page-mail-link{  
+  padding: 1em;
+  border: black 1px solid;
+  margin-top:3rem;
+  margin-bottom:3rem;
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  text-align:center;
 }
+
 
 #contact-button-container {
   justify-content: center;
@@ -586,5 +595,15 @@ footer > a::after {
     flex-direction: row;
     background-color: transparent;
     align-items: flex-start;
+  }
+}
+
+@media (max-width:400px){
+ .big-project-card, .small-project-card {
+      width:auto;
+
+  }
+  .small-project-card {
+    margin:0;
   }
 }
