@@ -73,21 +73,15 @@ li {
   list-style: none;
 }
 
-#language-selector > ol {
-  display: flex;
-  flex-direction: column;
-}
-#language-selector > ol > li {
-  border: 2px red solid;
-  padding: 1em;
-}
 
-.red {
+
+
+.accent {
   background-color: #0D6B70;
   color: white;
 }
 
-.red>a {
+.accent>a {
   color: white;
 }
 
@@ -131,13 +125,13 @@ footer {
   height: auto;
 }
 
-.project-card > button {
+.project-card > article > button {
   min-height: 4.5em;
   min-width: 9.3em;
   background-color: rgba(236, 252, 255, 0.6);
 }
 
-.project-card > button > a{
+.project-card > article > button > a{
   font-size: clamp(20px, 1vw, 30px);
 }
 
@@ -194,11 +188,6 @@ nav {
   height: 33%;
 }
 
-#row1 {
-  border-color: red;
-  border-width: 4px;
-  border-style: solid;
-}
 
 #main-container-desktop {
   height: 100%;
