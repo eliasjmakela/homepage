@@ -127,7 +127,6 @@ footer {
 }
 
 #projects-page-backbutton {
-  width: 10vw;
   position: absolute;
   height: auto;
 }
@@ -138,13 +137,12 @@ footer {
   background-color: rgba(236, 252, 255, 0.6);
 }
 
-.project-card > button > a, footer > a {
+.project-card > button > a{
   font-size: clamp(20px, 1vw, 30px);
 }
 
 #projects-page-backbutton::after {
-  content: "◀";
-  font-size: 0.5em;
+  content: "";
 }
 
 .project-image {
@@ -342,7 +340,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(32px, 3vw, 36px);
+  font-size: clamp(32px, 3vw, 2.25em);
   text-align: center;
   margin: auto;
   font-family: "DM Sans", sans-serif;
@@ -370,14 +368,11 @@ footer > a::after {
   left: 1em;
 }
 
-#back-button::after {
-  content: "◀";
-  font-size: 0.5em;
-}
+
 
 #loremipsum {
   font-family: "DM Sans", sans-serif;
-  font-size: clamp(18px, 2vw, 35px);
+  font-size: clamp(18px, 2vw, 2em);
   font-weight: normal;
   font-style: normal;
   width: 30%;
@@ -480,7 +475,7 @@ footer > a::after {
   height: 50%;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
    * {
     min-width: 0;
@@ -521,7 +516,7 @@ footer > a::after {
   }
 
 
-  body {
+  html, body {
     overflow-x: clip;
   }
   #main-container-desktop {
@@ -563,9 +558,12 @@ footer > a::after {
     align-items:center;
     justify-content:space-between;
     margin-top:0;
+    padding:1rem;
   }
   footer>a {
     margin:1rem;
+      font-size: 1.5rem;
+
   }
 
   .project-description {
