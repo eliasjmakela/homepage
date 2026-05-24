@@ -58,11 +58,11 @@ header {
   justify-content: center;
   align-items: center;
   background: linear-gradient(165deg, rgb(0, 212, 255, 0.6) 0%, #ffffff 115%);
-  min-height: 100px;
   width: 100%;
   max-width: 55rem;
   min-width: 0;
-  height: 10em;
+  padding-top:1rem;
+  padding-bottom:1rem;
 }
 ol {
   margin: 0px;
@@ -505,8 +505,9 @@ footer > a::after {
   #projects-list {
     flex-direction: column;
     height: auto;
-    width:70%;
-    padding-bottom:4rem;
+    width:100%;
+    margin-top:0;
+    margin-bottom:0;
     justify-content: space-around;
   }
 
