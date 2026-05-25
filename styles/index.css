@@ -393,7 +393,9 @@ footer > a::after {
 }
 #chip26demoimage {
   width: 90%;
-  margin-left: auto;
+  margin-left:auto;
+  margin: 0.25em 0.25em 0 auto;
+
 }
 
 .project-year {
@@ -416,6 +418,10 @@ footer > a::after {
   text-align:center;
 }
 
+
+#raised-card> .row > .column {
+  margin-right:0.5em;
+}
 
 #contact-button-container {
   justify-content: center;
@@ -449,7 +455,9 @@ footer > a::after {
   width: 100%;
   height: auto;
   max-width: 40rem;
+  margin-left:0.25em
 }
+
 
 #column2 {
   max-width: 70%;
@@ -606,4 +614,9 @@ footer > a::after {
   .small-project-card {
     margin:0;
   }
+
+  #headline {
+    width:auto;
+  }
+
 }
