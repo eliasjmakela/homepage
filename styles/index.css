@@ -51,18 +51,15 @@ header {
 }
 
 #projects-list {
-  border: black 1px solid;
-  margin: 1rem;
+  margin: auto;
+  width:100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background: linear-gradient(165deg, rgb(0, 212, 255, 0.6) 0%, #ffffff 115%);
-  width: 100%;
-  max-width: 55rem;
   min-width: 0;
-  padding-top:1rem;
-  padding-bottom:1rem;
+  padding-top:4em;
+  padding-bottom:4em;
 }
 ol {
   margin: 0px;
@@ -73,6 +70,11 @@ li {
   list-style: none;
 }
 
+
+.hover-accent:hover {
+  background-color: #0D6B70;
+  color: white;
+}
 
 
 
@@ -90,34 +92,34 @@ li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(223, 251, 255, 1);
-  padding: 1rem;
   width:100%;
   max-width: 60rem;
-  height: 30rem;
 
 }
 
+#projects-title-block {
+  width:100%
+}
+
+
 #all-projects {
-  max-width: 50%;
-  min-width: 270px;
-  min-height: 80px;
+  padding:1.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: 1px solid black;
 }
 
 footer {
   background-color: rgba(223, 251, 255, 1);
-  padding: 4em;
+  padding: 2em;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   border: black 1px solid;
-  width: 70%;
-  position: relative;
-  margin-top: 5em;
+  width: 80%;
   margin-left: auto;
+  margin-top:2rem;
 }
 
 #projects-page-backbutton {
@@ -125,15 +127,8 @@ footer {
   height: auto;
 }
 
-.project-card > article > button {
-  min-height: 4.5em;
-  min-width: 9.3em;
-  background-color: rgba(236, 252, 255, 0.6);
-}
 
-.project-card > article > button > a{
-  font-size: clamp(20px, 1vw, 30px);
-}
+
 
 #projects-page-backbutton::after {
   content: "";
@@ -148,7 +143,7 @@ a {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-size: 1.5rem;
   text-decoration: none;
   color: black;
 }
@@ -202,7 +197,7 @@ a.attributions {
   font-family: "DM Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: normal;
-  font-size: 1em;
+  font-size: 1.5rem;
   padding: 0.25em;
 }
 
@@ -290,11 +285,41 @@ body {
 }
 
 .block-main {
+  width:100%;
   background-color: #dffbff;
   border-color: #000000;
   border-width: 1px;
   border-style: solid;
   padding: 1.5em;
+  box-shadow: 3px 3px 0  rgba(0,0,0,0.3);
+}
+
+button {
+  box-shadow: 3px 3px 0  rgba(0,0,0,0.3);
+
+}
+
+
+#projects-page-backbutton {
+  box-shadow: 3px 3px 0  rgba(0,0,0,0.3);
+
+}
+.block-main:hover {
+  transform:translate(-2px,-2px)
+}
+
+#all-projects {
+  text-align:center;
+}
+
+.project-card{
+  border: 1px solid black;
+  padding:1em;
+}
+
+ #projects-page-backbutton:hover, button:hover {
+
+  transform:translate(-2px,-2px);
 }
 
 #intel26image {
@@ -320,7 +345,7 @@ img {
 }
 
 h1 {
-  font-size: clamp(2.5rem, 6.4vw, 4em);
+  font-size: 2.5rem;
   text-align: center;
   margin: 0em;
   font-family: "Fraunces", serif;
@@ -331,7 +356,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(32px, 3vw, 2.25em);
+  font-size: 2rem;
   text-align: center;
   margin: auto;
   font-family: "DM Sans", sans-serif;
@@ -340,7 +365,7 @@ h2 {
 }
 
 .page-link {
-  font-size: clamp(1rem,1rem,2rem);
+  font-size: 1rem;
   text-align: center;
   margin: 0em;
   font-family: "DM Sans", sans-serif;
@@ -503,7 +528,7 @@ h2 {
     justify-content: space-around;
   }
 
-  button {
+  button, #all-projects {
     margin:0.5rem;
   }
 
