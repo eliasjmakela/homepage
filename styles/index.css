@@ -348,15 +348,6 @@ h2 {
   font-style: normal;
 }
 
-.page-link::after,
-button::after,
-footer > a::after {
-  content: " ▶";
-  font-size: 0.5em;
-  position: relative;
-  bottom: 0.3em;
-  left: 1em;
-}
 
 
 
