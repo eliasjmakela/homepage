@@ -113,16 +113,22 @@ li {
 }
 
 footer {
-  background-color: rgba(223, 251, 255, 1);
   padding: 2em;
-  display: flex;
-  flex-direction: row;
   justify-content: space-around;
-  border: black 1px solid;
   width: 80%;
-  margin-left: auto;
-  margin-top:2rem;
+
 }
+
+.footer-block>a:hover {
+  color:white;
+}
+
+.ph-light {
+  font-size:2em;
+}
+
+
+
 
 #projects-page-backbutton {
   position: absolute;
@@ -141,7 +147,7 @@ footer {
 }
 
 a {
-  font-family: "DM Sans", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
@@ -151,7 +157,7 @@ a {
 }
 
 button {
-  font-family: "DM Sans", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
@@ -196,7 +202,7 @@ nav {
 p,
 span,
 a.attributions {
-  font-family: "DM Sans", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: normal;
   font-size: 1.5rem;
@@ -273,7 +279,7 @@ body {
     rgba(223, 251, 255, 1) 100%
   );
 
-  font-family: "DM Sans", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 16px;
   color: #010e24;
   margin: 0;
@@ -359,7 +365,6 @@ img {
 h1 {
   font-size: 3rem;
   text-align: center;
-  margin: 0em;
   font-family: "Fraunces", serif;
   font-weight: 600;
   font-optical-sizing: auto;
@@ -371,25 +376,32 @@ h2 {
   font-size: 2rem;
   text-align: center;
   margin: auto;
-  font-family: "DM Sans", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
+
+
 .page-link {
-  font-size: 1rem;
   text-align: center;
   margin: 0em;
-  font-family: "DM Sans", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-weight: 600;
   font-style: normal;
 }
+.footer-link {
+    align-items:center;
+
+}
 
 
-
+.project-preview{
+  max-height:15rem;
+}
 
 #loremipsum {
-  font-family: "DM Sans", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   font-weight: normal;
   font-style: normal;
   width: 30%;
@@ -424,6 +436,8 @@ h2 {
   margin: 0.25em 0.25em 0 auto;
 
 }
+
+
 
 .project-year {
   text-align: center;
@@ -552,7 +566,7 @@ h2 {
     flex-grow:2;
   }
 
-  button, #all-projects {
+  button {
     margin:0.5rem;
   }
 
@@ -574,6 +588,7 @@ h2 {
   }
 
   #hero {
+    width:clamp(15em, 25vw, 30em);
     align-items: center;
   }
 
@@ -587,6 +602,10 @@ h2 {
 
   #headline>h2 {
     font-size: 1.2rem;
+  }
+
+  p {
+    font-size:1rem;
   }
 
 
@@ -610,9 +629,6 @@ h2 {
 
   }
 
-  .footer-link {
-    color:red;
-  }
 
 
   .project-description {
@@ -641,6 +657,8 @@ h2 {
     justify-content:flex-start;
   }
 
+
+
   header {
     display: flex;
     flex-direction: row;
@@ -660,6 +678,9 @@ h2 {
 
   #headline {
     width:auto;
+  }
+  .page-link {
+    font-size: 1.5rem;
   }
 
 }
