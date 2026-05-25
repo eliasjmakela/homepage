@@ -13,110 +13,117 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+
+        <!--phosphor iconit-->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/light/style.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
 
     <link
         href="https://fonts.googleapis.com/css2?family=Datatype:wght@100..900&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back,arrow_right" />
 
 </head>
 
 <body>
-    <nav>
-        <a class="page-link" id="projects-page-backbutton" href="index.html">
-            <span class="material-symbols-outlined">
-                arrow_back
-            </span>
-        </a>
 
-    </nav>
 
     <div class="column" id="project-page-main-container">
-        <h1 id="project-page-header">Projektit</h1>
+        <div class="row">
+            <nav>
+                <a class="page-link" id="projects-page-backbutton" href="index.html">
+                    <i class="ph-light ph-arrow-left"></i>
+
+
+                </a>
+
+            </nav>
+            <div class="block-main">
+                <h1 id="project-page-header">Projektit</h1>
+            </div>
+
+        </div>
 
         <div class="row" id="projects-listing-main-container">
-            <div class="column" id="projects-column1">
-                <div class="big-project-card">
-                    <div class="raised-card">
-                        <div class="row project-card-row">
+            <div class="column">
+                <div class="block-main">
+                    <div class="row project-card-row">
 
-                            <div class="project-card-column">
-                                <h2 class="project-title">Chip26</h2>
-                                <span class="project-year">2021</span>
-
-                            </div>
-                            <div class="column">
-                                <img alt="Kuva Chip26-emulaattorista" class="project-image" id="chip26demoimage"
-                                    src="images/chip26.png"></img>
-
-                                <p class="project-description">
-                                    Emulaattori CHIP-8:lle, joka on 1970-luvulla julkaistu virtuaalinen tietokone.
-                                    Toteutettu C#:lla ja MonoGamella. Lukee CHIP-8:lle käännettyä
-                                    ohjelmakoodia ja toteuttaa sen reaaliajassa, mahdollistaen vanhojen CHIP-8:lle
-                                    käännettyjen ohjelmien suorittamisen.
-                                </p>
-
-                            </div>
+                        <div class="project-card-column">
+                            <h2 class="project-title">Chip26</h2>
+                            <span class="project-year">2021</span>
 
                         </div>
+                        <div class="column">
+                            <img alt="Kuva Chip26-emulaattorista" class="project-image" id="chip26demoimage"
+                                src="images/chip26.png"></img>
+
+                            <p class="project-description">
+                                Emulaattori CHIP-8:lle, joka on 1970-luvulla julkaistu virtuaalinen tietokone.
+                                Toteutettu C#:lla ja MonoGamella. Lukee CHIP-8:lle käännettyä
+                                ohjelmakoodia ja toteuttaa sen reaaliajassa, mahdollistaen vanhojen CHIP-8:lle
+                                käännettyjen ohjelmien suorittamisen.
+                            </p>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="column" id="projects-column2">
-                <div class="row" id="projects-row1">
-                    <div class="small-project-card">
-                        <div class="raised-card">
-                            <div class="row">
+            <div class="column">
+                <div class="row">
+                    <div class="block-main">
+                        <div class="row">
 
-                                <div class="column">
-                                    <h2 id="chat26-title" class="project-title">Chat26</h2>
-                                    <img alt="Kuva Chat26-sovelluksesta" class="project-image"
-                                        src="images/chat26.png"></img>
-                                    <span class="project-year">2025</span>
-                                </div>
-                                <div class="column">
-                                    <p class="project-description">
-                                        Yksinkertainen chat-sovellus, teknologioina frontissa Next ja TypeScript sekä
-                                        backendin
-                                        puolella Rust ja WebSocket.</p>
-                                </div>
-
+                            <div class="column">
+                                <h2 id="chat26-title" class="project-title">Chat26</h2>
+                                <img alt="Kuva Chat26-sovelluksesta" class="project-image"
+                                    src="images/chat26.png"></img>
+                                <span class="project-year">2025</span>
                             </div>
+                            <div class="column">
+                                <p class="project-description">
+                                    Yksinkertainen chat-sovellus, teknologioina frontissa Next ja TypeScript sekä
+                                    backendin
+                                    puolella Rust ja WebSocket.</p>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="row" id="projects-row2">
-                    <div class="small-project-card" id="intel26card">
-                        <div class="raised-card">
-                            <div class="row">
+                <div class="row">
+                    <div class="block-main" id="intel26card">
+                        <div class="row">
 
-                                <div class="column">
-                                    <h2 class="project-title">Intel26</h2>
-                                    <img alt="Kuva Intel 8080 -mikroprosessorista" class="project-image"
-                                        id="intel26image" src="images/intel26.png"></img>
-                                    <span class="project-year">2021</span>
-                                </div>
-                                <div class="column">
-                                    <p class="project-description">
-                                        Vuonna 2021 aloitettu, tosin sittemmin töiden takia sivummalle jäänyt
-                                        emulaattori Intel 8080 -mikroprosessorille.
-                                        Toteutettu C#:lla ja .NETilla. Tulevaisuuden tavoite on toteuttaa prosessori ja
-                                        kaikki tarvittavat oheiskomponentit alkuperäisen Space Invaders-kabinetin
-                                        pyörittämiseen.
-                                    </p>
-                                </div>
-
+                            <div class="column">
+                                <h2 class="project-title">Intel26</h2>
+                                <img alt="Kuva Intel 8080 -mikroprosessorista" class="project-image" id="intel26image"
+                                    src="images/intel26.png"></img>
+                                <span class="project-year">2021</span>
                             </div>
+                            <div class="column">
+                                <p class="project-description">
+                                    Vuonna 2021 aloitettu, tosin sittemmin töiden takia sivummalle jäänyt
+                                    emulaattori Intel 8080 -mikroprosessorille.
+                                    Toteutettu C#:lla ja .NETilla. Tulevaisuuden tavoite on toteuttaa prosessori ja
+                                    kaikki tarvittavat oheiskomponentit alkuperäisen Space Invaders-kabinetin
+                                    pyörittämiseen.
+                                </p>
+                            </div>
+
                         </div>
+
 
                     </div>
                 </div>
             </div>
         </div>
         <div id="contact-button-container" class="row">
-            <a id="project-page-mail-link" class="accent" href="mailto:hello@eliasmakela.fi">Ota yhteyttä
+            <a id="project-page-mail-link" class="hover-accent" href="mailto:hello@eliasmakela.fi">Ota yhteyttä
             </a>
         </div>
     </div>
