@@ -77,11 +77,13 @@ ol {
 
 }
 
-.now-item {
+.now-item, i {
   display: inline-flex;
   flex-direction:row;
   align-items:center;
 }
+
+
 
 li {
   list-style: none;
@@ -121,9 +123,10 @@ li {
 #all-projects {
   padding: 1.5em;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   border: 1px solid black;
+  justify-content: center;
+  flex-direction: row;
 }
 
 footer {
@@ -146,9 +149,6 @@ footer {
 
 
 
-.project-image {
-  border: black 1px solid;
-}
 
 a {
   font-family: "IBM Plex Sans", sans-serif;
@@ -252,14 +252,16 @@ button {
   transform: translate(-2px, -2px)
 }
 
-#all-projects {
-  text-align: center;
-}
 
-.project-card {
-  display: block;
+
+.project-button {
+  display: flex;
+  flex-direction:row;
+  justify-content:center;
   border: 1px solid black;
   padding: 1em;
+  align-items:center;
+
 }
 
 #projects-page-backbutton {
@@ -334,7 +336,11 @@ h2 {
 
 
 .project-preview {
-  max-height: 10rem;
+  height: auto;
+  width: 100%;
+  display: block;
+  object-fit: scale-down;
+  max-height: 100px
 }
 
 
@@ -363,18 +369,19 @@ h2 {
 
 .project-title {
   padding: 0.5rem;
-  margin:1rem;
 }
 
-.project-card {
-  align-items:center;
-}
 
 #projects-hero {
   width: 50%;
 }
 
+#project-page-main-container {
+}
+
+
 .project-info {
+  margin-top:auto;
   align-items:center;
   font-size:2.5em;
 }
@@ -418,9 +425,16 @@ h2 {
 
 
 .project-image {
-  width: 100%;
-  height: auto;
-  max-width: 20rem;
+  max-width:300px;
+  border: black 1px solid;
+
+}
+
+.project-block {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 }
 
 
@@ -453,21 +467,13 @@ h2 {
     min-width: 0;
   }
 
-  #loremipsum,
-  #all-projects,
-  #chip26demoimage,
-  #headline,
-  .project-card>button,
-  #projects,
+
   footer {
     width: 100%;
     max-width: 100%;
     min-width: 0;
   }
 
-  .project-card>button>a {
-    font-size: 1rem;
-  }
   #now-list {
     margin:0;
     padding:1rem 0rem 1rem 0rem;
@@ -545,9 +551,7 @@ h2 {
     max-width: 23rem;
   }
 
-  #headline>h2 {
-    font-size: 0.75rem;
-  }
+
 
   p {
     font-size: 1rem;
@@ -557,10 +561,17 @@ h2 {
   .project-image {
     margin: auto;
   }
+  .title-and-year {
+    align-items:center;
+  }
 
   .row,
   footer {
     flex-direction: column;
+  }
+
+  .project-info {
+    flex-direction:row;
   }
 
   footer {
@@ -578,9 +589,6 @@ h2 {
 
 
 
-  .project-description {
-    margin-bottom: 0px;
-  }
 
 
 
@@ -609,24 +617,29 @@ h2 {
     background-color: transparent;
     align-items: flex-start;
   }
+
+  #headline h2 {
+    font-size:1.5rem;
+  }
 }
 
 @media (max-width:400px) {
 
-  .project-card {
+  .project-button {
     width: auto;
 
   }
 
-  .small-project-card {
-    margin: 0;
-  }
+
 
   #headline {
     width: auto;
   }
 
   .page-link {
+    font-size: 1rem;
+  }
+    #headline>h2 {
     font-size: 1rem;
   }
 

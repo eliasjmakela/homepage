@@ -7,7 +7,7 @@
     <!-- width=device-width pakottaa sisällön skaalautumaan mobiililla "oikein" -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- sivuston title. vaihda kuvaavammaksi -->
-    <title>Elias Mäkelä - Projektit</title>
+    <title>Elias Mäkelä - Projektigalleria</title>
     <!-- kutsutaan tyylitiedostoa tässä -->
     <link rel="stylesheet" href="styles/index.css" />
     <!-- Google Fonts -->
@@ -44,90 +44,93 @@
             </div>
         </div>
 
+
         <div class="row">
-            <div class="column block-main project-card">
+            <div class="column block-main project-block">
 
 
                 <img alt="Kuva Chip26-emulaattorista" class="project-image" id="chip26demoimage"
                     src="images/chip26.png"></img>
 
-                <h2 class="project-title">Chip26</h2>
-
-
+                <div class="row title-and-year">
+                    <h2 class="project-title">Chip26</h2>
+                    <i>2021</i>
+                </div>
                 <p class="project-description">
-                    Emulaattori CHIP-8:lle, joka on 1970-luvulla julkaistu virtuaalinen tietokone.
-                    Toteutettu C#:lla ja MonoGamella. Lukee CHIP-8:lle käännettyä
-                    ohjelmakoodia ja toteuttaa sen reaaliajassa, mahdollistaen vanhojen CHIP-8:lle
-                    käännettyjen ohjelmien suorittamisen.
+                    Emulaattori CHIP-8:lle, joka on 1970-luvulla julkaistu virtuaalinen tietokone. Toteutettu C#:lla ja
+                    MonoGamella. Lukee CHIP-8:lle käännettyä ohjelmakoodia ja toteuttaa sen reaaliajassa, mahdollistaen
+                    vanhojen CHIP-8:lle käännettyjen ohjelmien suorittamisen.
                 </p>
 
-
-
-
                 <div class="row project-info">
-                    <span class="project-year project-info-row"><i>2021</i></span>
                     <i class="ph-light ph-file-c-sharp"></i>
-                    <a class="gh-link hover-accent">
-                        <i class="ph-light ph-github-logo"></i>
-                        <i class="ph-light ph-arrow-right"></i>
-                    </a>
                 </div>
+                <a class="gh-link hover-accent" href="https://github.com/eliasjmakela/chip26">
+                    <span>GitHub</span>
+                    <i class="ph-light ph-github-logo"></i>
+                    <i class="ph-light ph-arrow-right"></i>
+                </a>
+
 
 
             </div>
-            <div class="column block-main project-card">
 
-                <img alt=" Kuva Chat26-sovelluksesta" class="project-image" src="images/chat26.png"></img>
-                <h2 id="chat26-title" class="project-title">Chat26</h2>
+        </div>
+        <div class="row">
 
-                <p class="project-description">
-                    Yksinkertainen chat-sovellus, teknologioina frontissa Next ja TypeScript sekä
-                    backendin
-                    puolella Rust ja WebSocket.</p>
+
+            <div class="column block-main project-block">
+                <img alt="Kuva Intel 8080 -mikroprosessorista" class="project-image" id="intel26image"
+                    src="images/intel26.png"></img>
+
+
+                <div class="row title-and-year">
+                    <h2 class="project-title">Intel26</h2>
+                    <i>2021</i>
+                </div>
 
                 <div class="row project-info">
-                    <span class="project-year"><i>2024</i></span>
+                    <i class="ph-light ph-file-c-sharp"></i>
+                </div>
+                <a href="https://github.com/eliasjmakela/intel26" class="gh-link hover-accent">
+                    <span>GitHub</span>
+
+                    <i class="ph-light ph-github-logo"></i>
+                    <i class="ph-light ph-arrow-right"></i>
+                </a>
+            </div>
+            <div class="column block-main project-block">
+
+                <img alt=" Kuva Chat26-sovelluksesta" class="project-image" src="images/chat26.png"></img>
+                <div class="row  title-and-year">
+                    <h2 id="chat26-title" class="project-title">Chat26</h2>
+
+                    <i>2024</i>
+                </div>
+
+                <div class="row project-info">
                     <i class="ph-light ph-atom"></i>
                     <i class="ph-light ph-file-tsx"></i>
                     <i class="ph-light ph-file-rs"></i>
-                    <a class="gh-link hover-accent">
-                        <i class="ph-light ph-github-logo"></i>
-                        <i class="ph-light ph-arrow-right"></i>
-                    </a>
                 </div>
+                <a class="gh-link hover-accent" href="https://github.com/eliasjmakela/chat26">
+                    <span>GitHub</span>
+
+                    <i class="ph-light ph-github-logo"></i>
+                    <i class="ph-light ph-arrow-right"></i>
+                </a>
+
 
             </div>
         </div>
-
-    </div>
-    <div class="column block-main project-card">
-        <img alt="Kuva Intel 8080 -mikroprosessorista" class="project-image" id="intel26image"
-            src="images/intel26.png"></img>
-        <h2 class="project-title">Intel26</h2>
-
-        <p class="project-description">
-            Vuonna 2021 aloitettu, tosin sittemmin töiden takia sivummalle jäänyt
-            emulaattori Intel 8080 -mikroprosessorille.
-            Toteutettu C#:lla ja .NETilla. Tulevaisuuden tavoite on toteuttaa prosessori ja
-            kaikki tarvittavat oheiskomponentit alkuperäisen Space Invaders-kabinetin
-            pyörittämiseen.
-        </p>
-
-        <div class="row project-info">
-            <span class="project-year"><i>2021</i></span>
-            <i class="ph-light ph-file-c-sharp"></i>
-            <a class="gh-link hover-accent">
-                <i class="ph-light ph-github-logo"></i>
-                <i class="ph-light ph-arrow-right"></i>
-            </a>
-        </div>
-    </div>
     </div>
     <div id="contact-button-container" class="row">
         <a id="project-page-mail-link" class="hover-accent" href="mailto:hello@eliasmakela.fi">Ota yhteyttä
         </a>
     </div>
     </div>
+    </div>
+
 </body>
 
 </html>
