@@ -186,7 +186,7 @@ nav {
 
 p,
 span,
-a.attributions {
+li {
   font-family: "IBM Plex Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: normal;
@@ -333,6 +333,10 @@ img {
   width: 10rem;
 }
 
+/*#now {
+  flex-grow: 1;
+}*/
+
 h1 {
   font-size: 4rem;
   text-align: center;
@@ -376,8 +380,6 @@ h2 {
   font-family: "IBM Plex Sans", sans-serif;
   font-weight: normal;
   font-style: normal;
-  width: 30%;
-  min-height: 30vh
 }
 
 .project-card-column>h2 {
@@ -496,6 +498,7 @@ h2 {
 
 @media (max-width: 800px) {
 
+
   * {
     min-width: 0;
   }
@@ -537,6 +540,10 @@ h2 {
     flex-grow: 2;
   }
 
+  h1 {
+    font-size:3rem;
+  }
+  
   button {
     margin: 0.5rem;
   }
