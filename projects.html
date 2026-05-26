@@ -33,93 +33,100 @@
 
 
     <div class="column" id="project-page-main-container">
-        <nav class="row">
-            <a class="block-main hover-accent" id="projects-page-backbutton" href="index.html">
-                <i class="ph-light ph-arrow-left"></i>
-            </a>
+        <div class="row">
+            <nav>
+                <a class="block-main hover-accent" id="projects-page-backbutton" href="index.html">
+                    <i class="ph-light ph-arrow-left"></i>
+                </a>
+            </nav>
             <div class="block-main" id="projects-hero">
                 <h1 id="project-page-header">Projektit</h1>
             </div>
-        </nav>
+        </div>
 
-        <div class="row" id="projects-listing-main-container">
-            <div class="column">
-                <div class="block-main">
-                    <div class="row project-card-row">
+        <div class="row">
+            <div class="column block-main project-card">
 
-                        <div class="project-card-column">
-                            <h2 class="project-title">Chip26</h2>
-                            <span class="project-year"><i>2021</i></span>
 
-                        </div>
-                        <div class="column">
-                            <img alt="Kuva Chip26-emulaattorista" class="project-image" id="chip26demoimage"
-                                src="images/chip26.png"></img>
+                <img alt="Kuva Chip26-emulaattorista" class="project-image" id="chip26demoimage"
+                    src="images/chip26.png"></img>
 
-                            <p class="project-description">
-                                Emulaattori CHIP-8:lle, joka on 1970-luvulla julkaistu virtuaalinen tietokone.
-                                Toteutettu C#:lla ja MonoGamella. Lukee CHIP-8:lle käännettyä
-                                ohjelmakoodia ja toteuttaa sen reaaliajassa, mahdollistaen vanhojen CHIP-8:lle
-                                käännettyjen ohjelmien suorittamisen.
-                            </p>
+                <h2 class="project-title">Chip26</h2>
 
-                        </div>
 
-                    </div>
+                <p class="project-description">
+                    Emulaattori CHIP-8:lle, joka on 1970-luvulla julkaistu virtuaalinen tietokone.
+                    Toteutettu C#:lla ja MonoGamella. Lukee CHIP-8:lle käännettyä
+                    ohjelmakoodia ja toteuttaa sen reaaliajassa, mahdollistaen vanhojen CHIP-8:lle
+                    käännettyjen ohjelmien suorittamisen.
+                </p>
+
+
+
+
+                <div class="row project-info">
+                    <span class="project-year project-info-row"><i>2021</i></span>
+                    <i class="ph-light ph-file-c-sharp"></i>
+                    <a class="gh-link hover-accent">
+                        <i class="ph-light ph-github-logo"></i>
+                        <i class="ph-light ph-arrow-right"></i>
+                    </a>
                 </div>
+
+
             </div>
-            <div class="column">
-                <div class="row">
-                    <div class="block-main">
-                        <div class="row">
+            <div class="column block-main project-card">
 
-                            <div class="column">
-                                <h2 id="chat26-title" class="project-title">Chat26</h2>
-                                <img alt="Kuva Chat26-sovelluksesta" class="project-image"
-                                    src="images/chat26.png"></img>
-                                <span class="project-year"><i>2025</i></span>
-                            </div>
-                            <div class="column">
-                                <p class="project-description">
-                                    Yksinkertainen chat-sovellus, teknologioina frontissa Next ja TypeScript sekä
-                                    backendin
-                                    puolella Rust ja WebSocket.</p>
-                            </div>
+                <img alt=" Kuva Chat26-sovelluksesta" class="project-image" src="images/chat26.png"></img>
+                <h2 id="chat26-title" class="project-title">Chat26</h2>
 
-                        </div>
-                    </div>
+                <p class="project-description">
+                    Yksinkertainen chat-sovellus, teknologioina frontissa Next ja TypeScript sekä
+                    backendin
+                    puolella Rust ja WebSocket.</p>
+
+                <div class="row project-info">
+                    <span class="project-year"><i>2024</i></span>
+                    <i class="ph-light ph-atom"></i>
+                    <i class="ph-light ph-file-tsx"></i>
+                    <i class="ph-light ph-file-rs"></i>
+                    <a class="gh-link hover-accent">
+                        <i class="ph-light ph-github-logo"></i>
+                        <i class="ph-light ph-arrow-right"></i>
+                    </a>
                 </div>
-                <div class="row">
-                    <div class="block-main" id="intel26card">
-                        <div class="row">
 
-                            <div class="column">
-                                <h2 class="project-title">Intel26</h2>
-                                <img alt="Kuva Intel 8080 -mikroprosessorista" class="project-image" id="intel26image"
-                                    src="images/intel26.png"></img>
-                                <span class="project-year"><i>2021</i></span>
-                            </div>
-                            <div class="column">
-                                <p class="project-description">
-                                    Vuonna 2021 aloitettu, tosin sittemmin töiden takia sivummalle jäänyt
-                                    emulaattori Intel 8080 -mikroprosessorille.
-                                    Toteutettu C#:lla ja .NETilla. Tulevaisuuden tavoite on toteuttaa prosessori ja
-                                    kaikki tarvittavat oheiskomponentit alkuperäisen Space Invaders-kabinetin
-                                    pyörittämiseen.
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                </div>
             </div>
         </div>
-        <div id="contact-button-container" class="row">
-            <a id="project-page-mail-link" class="hover-accent" href="mailto:hello@eliasmakela.fi">Ota yhteyttä
+
+    </div>
+    <div class="column block-main project-card">
+        <img alt="Kuva Intel 8080 -mikroprosessorista" class="project-image" id="intel26image"
+            src="images/intel26.png"></img>
+        <h2 class="project-title">Intel26</h2>
+
+        <p class="project-description">
+            Vuonna 2021 aloitettu, tosin sittemmin töiden takia sivummalle jäänyt
+            emulaattori Intel 8080 -mikroprosessorille.
+            Toteutettu C#:lla ja .NETilla. Tulevaisuuden tavoite on toteuttaa prosessori ja
+            kaikki tarvittavat oheiskomponentit alkuperäisen Space Invaders-kabinetin
+            pyörittämiseen.
+        </p>
+
+        <div class="row project-info">
+            <span class="project-year"><i>2021</i></span>
+            <i class="ph-light ph-file-c-sharp"></i>
+            <a class="gh-link hover-accent">
+                <i class="ph-light ph-github-logo"></i>
+                <i class="ph-light ph-arrow-right"></i>
             </a>
         </div>
+    </div>
+    </div>
+    <div id="contact-button-container" class="row">
+        <a id="project-page-mail-link" class="hover-accent" href="mailto:hello@eliasmakela.fi">Ota yhteyttä
+        </a>
+    </div>
     </div>
 </body>
 
