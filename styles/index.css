@@ -131,10 +131,6 @@ footer {
 
 
 
-#projects-page-backbutton {
-  height: auto;
-}
-
 
 
 .project-image {
@@ -171,14 +167,15 @@ button {
 nav {
   display: flex;
   flex-direction: column;
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
 .page-link {
   padding: 1em;
   border: black 1px solid;
   height: 33%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 
@@ -280,10 +277,7 @@ button {
 }
 
 
-#projects-page-backbutton {
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
 
-}
 
 .block-main:hover {
   transform: translate(-2px, -2px)
@@ -297,6 +291,11 @@ button {
   display: block;
   border: 1px solid black;
   padding: 1em;
+}
+
+#projects-page-backbutton {
+  width: auto;
+  align-self: start;
 }
 
 #projects-page-backbutton:hover,
@@ -335,7 +334,7 @@ img {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   text-align: center;
   font-family: "Fraunces", serif;
   font-weight: 600;
@@ -421,6 +420,10 @@ h2 {
   padding: 0.5rem;
 }
 
+
+#projects-hero {
+  width: 50%;
+}
 
 #project-page-mail-link {
   padding: 1em;
@@ -543,6 +546,11 @@ h2 {
     width: 17em;
   }
 
+  #projects-hero {
+    width: 100%;
+  }
+
+
 
   html,
   body {
@@ -650,7 +658,7 @@ h2 {
   }
 
   .page-link {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
 }
