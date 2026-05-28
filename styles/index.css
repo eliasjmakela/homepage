@@ -50,6 +50,10 @@ header {
   width:45%;
 }
 
+#headline h2 {
+  font-size:2.2rem;
+}
+
 #projects-list {
   margin: auto;
   width: 100%;
@@ -112,7 +116,7 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 50%;
+  /*min-width: 50%;*/
   margin-bottom: auto;
 
 }
@@ -161,6 +165,7 @@ a {
   text-decoration: none;
   color: black;
 }
+
 
 
 
@@ -304,7 +309,7 @@ img {
 
 #now {
   flex-grow: 1;
-  justify-content:space-around
+  justify-content:stretch
 }
 
 #now h2 {
@@ -444,7 +449,6 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 70%;
 }
 
 .small {
@@ -632,7 +636,7 @@ h2 {
   }
 
   #headline h2 {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
 }
 
@@ -653,8 +657,8 @@ h2 {
     font-size: 1rem;
   }
 
-  #headline>h2 {
-    font-size: 1rem;
+  #headline h2 {
+    font-size: 1.2rem;
   }
 
 }
