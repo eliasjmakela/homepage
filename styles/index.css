@@ -79,8 +79,12 @@ ol {
   justify-content: center;
   margin: 2rem;
   margin-left:0;
-
 }
+
+  #now-block {
+    flex: 1;
+    justify-content: space-around;
+  }
 
 .now-item,
 i {
@@ -393,7 +397,6 @@ h2 {
   width: 50%;
 }
 
-#project-page-main-container {}
 
 
 .project-info {
@@ -435,13 +438,21 @@ h2 {
 
 .project-description {
   margin-top: 0;
+  font-size:1rem;
+}
+
+#hero-project-description{
+  margin: auto 0.5rem;
+  margin-top:0;
+  font-size:1.5rem
 }
 
 
-.project-image {
-  max-width: 300px;
-  border: black 1px solid;
 
+#chip26demoimage {
+  width:55rem;
+  max-width:50vw;
+  object-fit:contain;
 }
 
 .project-block {
@@ -483,6 +494,7 @@ h2 {
     margin: 0;
     padding: 1rem 0rem 1rem 0rem;
   }
+
 
   .now-item {
     font-size: 1rem;
@@ -582,6 +594,11 @@ h2 {
     align-items: center;
   }
 
+  #chip26demoimage {
+    width:100%;
+    max-width:none;
+  }
+
   .row,
   footer {
     flex-direction: column;
@@ -589,6 +606,9 @@ h2 {
 
   .project-info {
     flex-direction: row;
+  }
+  #hero-project-description {
+    font-size:1rem;
   }
 
   footer {
