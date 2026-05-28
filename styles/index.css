@@ -374,7 +374,7 @@ h2 {
 
 #main-content {
   display: flex;
-  direction: row;
+  flex-direction: row;
 }
 
 .column {
