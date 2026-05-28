@@ -55,6 +55,10 @@ header {
   font-size:2.2rem;
 }
 
+#projects {
+  min-width:50%;
+}
+
 #projects-list {
   margin: auto;
   width: 100%;
@@ -145,6 +149,22 @@ footer {
   justify-content: space-around;
   width: 80%;
   margin-top:auto;
+}
+
+
+/*tabletti landscape view responsiivisuus*/
+@media (max-width: 1200px) {
+  footer {
+    width:100%;
+    padding:2em 0;
+  }
+  #projects-list {
+    flex-direction: column;
+  }
+  #now-block {
+    justify-content:flex-start;
+    flex-grow: 0;
+  }
 }
 
 .footer-block>a:hover {
@@ -479,7 +499,7 @@ h2 {
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
 
 
   * {
@@ -490,11 +510,6 @@ h2 {
     font-size: 1rem;
   }
 
-  footer {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-  }
 
   #now-list {
     margin: 0;
