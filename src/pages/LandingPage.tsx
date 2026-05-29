@@ -47,10 +47,9 @@ export default function LandingPage() {
           <div className="column">
             <section id="loremipsum" className="block-main">
               <p>
-                PREVIEW ENV!! Hei vain! Olen Aalto-yliopiston opiskelija ja
-                ammattidevaaja jo lukiovuosilta lähtien. Tältä sivulta löytyy
-                tietoa siitä kuka olen, mitä osaan ja mitä puuhailen tällä
-                hetkellä.
+                Hei vain! Olen Aalto-yliopiston opiskelija ja ammattidevaaja jo
+                lukiovuosilta lähtien. Tältä sivulta löytyy tietoa siitä kuka
+                olen, mitä osaan ja mitä puuhailen tällä hetkellä.
               </p>
             </section>
 
