@@ -89,6 +89,10 @@ i {
   align-items: center;
 }
 
+.now-item svg {
+  flex-shrink: 0;
+}
+
 li {
   list-style: none;
 }
