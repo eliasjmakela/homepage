@@ -60,7 +60,7 @@ export default function LandingPage() {
               <div id="now-block" className="block-main column">
                 <ul id="now-list">
                   <li className="now-item">
-                    <AsteriskIcon weight="light" className="ph-light" />{" "}
+                    <AsteriskIcon weight="light" className="ph-light" />
                     Valmistaudun Ignite-sprinttiin
                   </li>
                   <li className="now-item">
@@ -153,7 +153,7 @@ export default function LandingPage() {
             </div>
           </section>
           <div></div>
-          <div className="column" id="column2"></div>
+          <div className="column"></div>
         </div>
       </div>
       <Footer />

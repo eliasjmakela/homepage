@@ -1,11 +1,7 @@
-/* Hei näin kommentoit css:sää */
-/* Laita tänne omat tyylittelyt :D */
-.material-symbols-outlined {
-  font-variation-settings:
-    "FILL" 0,
-    "wght" 400,
-    "GRAD" 0,
-    "opsz" 24;
+:root {
+  --accent: #0d6b70;
+  --font-family: "IBM Plex Sans", sans-serif;
+  --font-family-h: "Fraunces", serif;
 }
 
 * {
@@ -55,8 +51,6 @@ header {
   font-size: 2.2rem;
 }
 
-
-
 #projects-list {
   margin: auto;
   width: 100%;
@@ -68,7 +62,6 @@ header {
   padding-top: 4em;
   padding-bottom: 4em;
   text-align: center;
-
 }
 
 ol {
@@ -96,22 +89,17 @@ i {
   align-items: center;
 }
 
-
-
 li {
   list-style: none;
 }
 
-
 .hover-accent:hover {
-  background-color: #0D6B70;
+  background-color: var(--accent);
   color: white;
 }
 
-
-
 .accent {
-  background-color: #0D6B70;
+  background-color: var(--accent);
   color: white;
 }
 
@@ -125,14 +113,11 @@ li {
   align-items: center;
   margin-bottom: auto;
   min-width: 50%;
-
-
 }
 
 #projects-title-block {
   width: 100%;
 }
-
 
 #all-projects {
   padding: 1.5em;
@@ -149,7 +134,6 @@ footer {
   width: 80%;
   margin-top: auto;
 }
-
 
 /*tabletti landscape view responsiivisuus*/
 @media (max-width: 1200px) {
@@ -168,20 +152,12 @@ footer {
   }
 }
 
-
-
 .ph-light {
   font-size: 1em;
 }
 
-
-
-
-
-
-
 a {
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: var(--font-family);
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
@@ -189,10 +165,6 @@ a {
   text-decoration: none;
   color: black;
 }
-
-
-
-
 
 nav {
   display: flex;
@@ -205,10 +177,7 @@ a.block-main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 }
-
-
 
 #main-container-desktop {
   height: 100%;
@@ -218,16 +187,12 @@ a.block-main {
 p,
 span,
 li {
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: var(--font-family);
   font-optical-sizing: auto;
   font-weight: normal;
   font-size: 1.5rem;
   padding: 0.25em;
 }
-
-
-
-
 
 html,
 body {
@@ -235,13 +200,15 @@ body {
 }
 
 body {
-  background: linear-gradient(180deg,
-      rgba(223, 251, 255, 1) 0%,
-      rgba(132, 235, 255, 0.5) 40%,
-      rgba(132, 235, 255, 0.5) 60%,
-      rgba(223, 251, 255, 1) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(223, 251, 255, 1) 0%,
+    rgba(132, 235, 255, 0.5) 40%,
+    rgba(132, 235, 255, 0.5) 60%,
+    rgba(223, 251, 255, 1) 100%
+  );
 
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: var(--font-family);
   font-size: 16px;
   color: #010e24;
   margin: 0;
@@ -256,10 +223,12 @@ body {
 
 #cat-container-desktop {
   width: auto;
-  background: linear-gradient(130deg,
-      rgb(246, 230, 193) 0%,
-      rgb(227, 193, 114) 50%,
-      rgb(246, 230, 193) 100%);
+  background: linear-gradient(
+    130deg,
+    rgb(246, 230, 193) 0%,
+    rgb(227, 193, 114) 50%,
+    rgb(246, 230, 193) 100%
+  );
 }
 
 .block-main {
@@ -274,17 +243,11 @@ body {
 
 button {
   box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
-
 }
-
-
-
 
 .block-main:hover {
-  transform: translate(-2px, -2px)
+  transform: translate(-2px, -2px);
 }
-
-
 
 .project-button {
   display: flex;
@@ -293,7 +256,6 @@ button {
   border: 1px solid black;
   padding: 1em;
   align-items: center;
-
 }
 
 #projects-page-backbutton {
@@ -306,10 +268,8 @@ button {
 
 #projects-page-backbutton:hover,
 button:hover {
-
   transform: translate(-2px, -2px);
 }
-
 
 * {
   gap: 0.5em;
@@ -331,10 +291,9 @@ img {
   width: 10rem;
 }
 
-
 #now {
   flex-grow: 1;
-  justify-content: stretch
+  justify-content: stretch;
 }
 
 #now h2 {
@@ -345,7 +304,7 @@ img {
 h1 {
   font-size: 4rem;
   text-align: center;
-  font-family: "Fraunces", serif;
+  font-family: var(--font-family-h);
   font-weight: 600;
   font-optical-sizing: auto;
   font-style: normal;
@@ -356,54 +315,38 @@ h2 {
   font-size: 2rem;
   text-align: center;
   margin: auto;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: var(--font-family);
   font-weight: 700;
   font-style: normal;
 }
 
-
-
 .page-link {
   text-align: center;
   margin: 0em;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: var(--font-family);
   font-weight: 600;
   font-style: normal;
 }
 
 .footer-link {
   align-items: center;
-
 }
-
 
 .project-preview {
   height: auto;
   width: 100%;
   display: block;
-  object-fit: scale-down;
-  max-height: 140px
+  max-height: 140px;
 }
-
-
 
 #blackbox {
   background-color: black;
-}
-
-#main-content {
-  display: flex;
-  flex-direction: row;
 }
 
 .column {
   display: flex;
   flex-direction: column;
 }
-
-
-
-
 
 .project-year {
   text-align: center;
@@ -413,12 +356,9 @@ h2 {
   padding: 0.5rem;
 }
 
-
 #projects-hero {
   width: 50%;
 }
-
-
 
 .project-info {
   margin-top: auto;
@@ -430,24 +370,12 @@ h2 {
   height: 100%;
 }
 
-#project-page-mail-link {
-  padding: 1em;
-  border: black 1px solid;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center;
-}
-
 .gh-link {
   padding: 1em;
   border: black 1px solid;
-
 }
 
-#raised-card>.row>.column {
+#raised-card .row .column {
   margin-right: 0.5em;
 }
 
@@ -466,20 +394,6 @@ h2 {
   font-size: 1rem;
 }
 
-#hero-project-description {
-  margin: auto 0.5rem;
-  margin-top: 0;
-  font-size: 1.5rem
-}
-
-
-
-#chip26demoimage {
-  width: 55rem;
-  max-width: 50vw;
-  object-fit: contain;
-}
-
 .project-block {
   display: flex;
   flex-direction: column;
@@ -492,15 +406,11 @@ h2 {
   margin: 0;
 }
 
-
 #small-project-row {
   justify-content: flex-start;
 }
 
-
 @media (max-width: 700px) {
-
-
   * {
     min-width: 0;
   }
@@ -509,12 +419,10 @@ h2 {
     font-size: 1rem;
   }
 
-
   #now-list {
     margin: 0;
     padding: 1rem 0rem 1rem 0rem;
   }
-
 
   .now-item {
     font-size: 1rem;
@@ -526,12 +434,13 @@ h2 {
 
   #cat-container-mobile {
     display: block;
-    background: linear-gradient(130deg,
-        rgb(246, 230, 193) 0%,
-        rgb(227, 193, 114) 50%,
-        rgb(246, 230, 193) 100%);
+    background: linear-gradient(
+      130deg,
+      rgb(246, 230, 193) 0%,
+      rgb(227, 193, 114) 50%,
+      rgb(246, 230, 193) 100%
+    );
   }
-
 
   #catimg-mobile {
     display: block;
@@ -544,7 +453,6 @@ h2 {
   .project-block {
     max-width: 100%;
   }
-
 
   #projects-list {
     flex-direction: column;
@@ -567,13 +475,9 @@ h2 {
     margin: 0.5rem;
   }
 
-
-
   #projects-hero {
     width: 100%;
   }
-
-
 
   html,
   body {
@@ -584,13 +488,12 @@ h2 {
     display: flex;
   }
 
-
   #hero {
     width: clamp(15em, 25vw, 30em);
     align-items: center;
   }
 
-  #hero #hero>h1 {
+  #hero #hero > h1 {
     font-size: 4rem;
   }
 
@@ -599,12 +502,9 @@ h2 {
     width: auto;
   }
 
-
-
   p {
     font-size: 1rem;
   }
-
 
   .project-image {
     margin: auto;
@@ -614,11 +514,11 @@ h2 {
     align-items: center;
   }
 
-  #chip26demoimage {
+  /*  #chip26demoimage {
     width: 100%;
     max-width: none;
   }
-
+*/
   .row,
   footer {
     flex-direction: column;
@@ -628,10 +528,6 @@ h2 {
     flex-direction: row;
   }
 
-  #hero-project-description {
-    font-size: 1rem;
-  }
-
   footer {
     align-items: center;
     justify-content: space-between;
@@ -639,16 +535,10 @@ h2 {
     padding: 1rem;
   }
 
-  footer>a {
+  footer > a {
     margin: 0.5rem;
     font-size: 1.5rem;
-
   }
-
-
-
-
-
 
   #contact-button-container {
     margin: auto;
@@ -667,8 +557,6 @@ h2 {
     justify-content: flex-start;
   }
 
-
-
   header {
     display: flex;
     flex-direction: row;
@@ -681,14 +569,10 @@ h2 {
   }
 }
 
-@media (max-width:400px) {
-
+@media (max-width: 400px) {
   .project-button {
     width: auto;
-
   }
-
-
 
   #headline {
     width: auto;
@@ -702,5 +586,4 @@ h2 {
   #headline h2 {
     font-size: 1.2rem;
   }
-
 }
