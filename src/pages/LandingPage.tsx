@@ -66,14 +66,14 @@ export default function LandingPage() {
                     </li>
                     <li className="now-item">
                       <AsteriskIcon weight="light" className="ph-light" />
-                      Luen Aku Ankkaa paljon
+                      Opiskelen koneoppimisen perusteita
                     </li>
                     <li className="now-item">
-                      <AsteriskIcon weight="light" className="ph-light" /> Teen
-                      tätä tehtävää neljältä aamuyöllä
+                      <AsteriskIcon weight="light" className="ph-light" />
+                      Koodailen näitä sivuja
                     </li>
                   </ul>
-                  <i>Viimeksi päivitetty: 26.5.2026</i>
+                  <i>Viimeksi päivitetty: 30.5.2026</i>
                 </div>
               </section>
             </div>
