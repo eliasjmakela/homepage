@@ -1,6 +1,4 @@
-import { createBrowserRouter, Outlet, ScrollRestoration } from "react-router";
-import LandingPage from "./pages/LandingPage";
-import ProjectsPage from "./pages/ProjectsPage";
+import { Outlet, ScrollRestoration } from "react-router";
 
 export function Root() {
   return (
