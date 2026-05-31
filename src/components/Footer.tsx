@@ -10,14 +10,6 @@ export default function Footer() {
     <footer className="row">
       <a
         className="block-main hover-accent footer-link column"
-        href="https://linkedin.com/in/eliasjmakela"
-      >
-        LinkedIn
-        <BriefcaseIcon size={32} weight="light" />
-      </a>
-
-      <a
-        className="block-main hover-accent footer-link column"
         href="https://github.com/eliasjmakela"
       >
         Github
@@ -38,6 +30,14 @@ export default function Footer() {
       >
         Email
         <MailboxIcon size={32} weight="light" />
+      </a>
+
+      <a
+        className="block-main hover-accent footer-link column"
+        href="https://linkedin.com/in/eliasjmakela"
+      >
+        LinkedIn
+        <BriefcaseIcon size={32} weight="light" />
       </a>
     </footer>
   );
