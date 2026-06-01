@@ -4,6 +4,7 @@ import { Root } from "./Root";
 import LandingPage from "./pages/LandingPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ErrorPage from "./pages/ErrorPage";
+import BlogOverview from "./pages/BlogOverview";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "projects",
         Component: ProjectsPage,
+      },
+      {
+        path: "blog",
+        Component: BlogOverview,
       },
     ],
   },
