@@ -249,9 +249,6 @@ button {
   box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
 }
 
-.block-main:hover {
-  transform: translate(-2px, -2px);
-}
 
 .project-button {
   display: flex;
