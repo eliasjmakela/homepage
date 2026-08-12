@@ -62,18 +62,18 @@ export default function LandingPage() {
                   <ul id="now-list">
                     <li className="now-item">
                       <AsteriskIcon weight="light" className="ph-light" />
-                      Valmistaudun Ignite-sprinttiin
+                      Valmistaudun Igniten Demo Dayhin
                     </li>
                     <li className="now-item">
                       <AsteriskIcon weight="light" className="ph-light" />
-                      Opiskelen koneoppimisen perusteita
+                      Rakennan personal assistant -bottia Telegramiin
                     </li>
                     <li className="now-item">
                       <AsteriskIcon weight="light" className="ph-light" />
-                      Koodailen näitä sivuja
+                      Opiskelen lineaarialgebraa
                     </li>
                   </ul>
-                  <i>Viimeksi päivitetty: 30.5.2026</i>
+                  <i>Viimeksi päivitetty: 12.8.2026</i>
                 </div>
               </section>
             </div>
