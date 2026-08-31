@@ -26,11 +26,11 @@ export default function ProjectsPage() {
               to="/"
             >
               <ArrowLeftIcon weight="light" className="ph-light" />
-              Takaisin
+              Back
             </NavLink>
           </nav>
           <div className="block-main" id="projects-hero">
-            <h1 id="project-page-header">Projektit</h1>
+            <h1 id="project-page-header">Projects</h1>
           </div>
         </div>
 
@@ -40,12 +40,12 @@ export default function ProjectsPage() {
           timerange="2021"
           img={chip26}
           variant="large"
-          img_alt="Kuva Chip26-emulaattorista"
+          img_alt="Image of the Chip26 emulator"
           project_link="https://github.com/eliasjmakela/chip26"
-          desc="Emulaattori CHIP-8:lle, joka on 1970-luvulla julkaistu virtuaalinen tietokone.
-        Toteutettu C#:lla ja MonoGamella. Lukee CHIP-8:lle käännettyä ohjelmakoodia ja
-        toteuttaa sen reaaliajassa, mahdollistaen vanhojen CHIP-8:lle käännettyjen ohjelmien
-        suorittamisen. "
+          desc="An emulator for CHIP-8, a virtual computer released in the 1970s.
+        Built with C# and MonoGame. Reads program code compiled for CHIP-8 and
+        executes it in real time, making it possible to run old programs
+        compiled for CHIP-8. "
         />
 
         <div className="row" id="small-project-row">
@@ -55,13 +55,12 @@ export default function ProjectsPage() {
             timerange="2021"
             img={intel26}
             variant="default"
-            img_alt="Kuva Intel 8080 -mikroprosessorista"
+            img_alt="Image of the Intel 8080 microprocessor"
             project_link="https://github.com/eliasjmakela/intel26"
-            desc="Vuonna 2021 aloitettu, tosin sittemmin töiden takia sivummalle
-            jäänyt emulaattori Intel 8080 -mikroprosessorille. Toteutettu C#:lla
-            ja .NETilla. Tulevaisuuden tavoite on toteuttaa prosessori ja kaikki
-            tarvittavat oheiskomponentit alkuperäisen Space Invaders-kabinetin
-            pyörittämiseen."
+            desc="An emulator for the Intel 8080 microprocessor, started in
+            2021 but since set aside due to work. Built with C# and .NET. The
+            future goal is to implement the processor and all the peripheral
+            components needed to run an original Space Invaders cabinet."
           />
           {/*         <div className="column block-main project-block small">
           <img
@@ -96,7 +95,7 @@ export default function ProjectsPage() {
         </div> */}
           <div className="column block-main project-block small">
             <img
-              alt="Kuva Chat26-sovelluksesta"
+              alt="Image of the Chat26 application"
               className="project-image"
               src={chat26}
             />
@@ -106,8 +105,8 @@ export default function ProjectsPage() {
               <i>2024</i>
             </div>
             <p className="project-description">
-              Yksinkertainen chat-sovellus, teknologioina frontissa Next ja
-              TypeScript sekä backendin puolella Rust ja WebSocket.
+              A simple chat app, built with Next and TypeScript on the
+              frontend and Rust and WebSocket on the backend.
             </p>
 
             <div className="row project-info">

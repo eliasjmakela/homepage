@@ -18,11 +18,11 @@ export default function LandingPage() {
           </div>
           <nav>
             <NavLink className="block-main hover-accent" to="/projects">
-              Projektit
+              Projects
               <ArrowRightIcon weight="light" className="ph-light" />
             </NavLink>
             <NavLink className="block-main hover-accent" to="/blog">
-              Blogi
+              Blog
               <ArrowRightIcon weight="light" className="ph-light" />
             </NavLink>
             <NavLink className="block-main hover-accent" to="/cv">
@@ -34,12 +34,12 @@ export default function LandingPage() {
         <div className="column">
           <div id="headline-row" className="row">
             <section id="headline" className="block-main">
-              <h2>Opiskelija ja ohjelmistokehittäjä</h2>
+              <h2>Student and software developer</h2>
             </section>
             <div className="block-main" id="cat-container-mobile">
               <img
                 id="catimg-mobile"
-                alt="Kissa, jolla on baretti päässä ja patonki tassussa"
+                alt="A cat wearing a beret with a baguette in its paw"
                 src={lechat}
               />
             </div>
@@ -48,32 +48,33 @@ export default function LandingPage() {
             <div className="column">
               <section id="loremipsum" className="block-main">
                 <p>
-                  Hei vain! Olen Aalto-yliopiston opiskelija ja ammattidevaaja
-                  jo lukiovuosilta lähtien. Tältä sivulta löytyy tietoa siitä
-                  kuka olen, mitä osaan ja mitä puuhailen tällä hetkellä.
+                  Hi there! I'm a student at Aalto University and a
+                  professional developer since my high school years. This
+                  page has info about who I am, what I know, and what I'm up
+                  to right now.
                 </p>
               </section>
 
               <section id="now" className="column">
                 <div className="block-main">
-                  <h2>Juuri nyt</h2>
+                  <h2>Right now</h2>
                 </div>
                 <div id="now-block" className="block-main column">
                   <ul id="now-list">
                     <li className="now-item">
                       <AsteriskIcon weight="light" className="ph-light" />
-                      Valmistaudun Igniten Demo Dayhin
+                      Preparing for Ignite's Demo Day
                     </li>
                     <li className="now-item">
                       <AsteriskIcon weight="light" className="ph-light" />
-                      Rakennan personal assistant -bottia Telegramiin
+                      Building a personal assistant bot for Telegram
                     </li>
                     <li className="now-item">
                       <AsteriskIcon weight="light" className="ph-light" />
-                      Opiskelen lineaarialgebraa
+                      Studying linear algebra
                     </li>
                   </ul>
-                  <i>Viimeksi päivitetty: 12.8.2026</i>
+                  <i>Last updated: 12.8.2026</i>
                 </div>
               </section>
             </div>
@@ -83,12 +84,12 @@ export default function LandingPage() {
                 <div className="block-main" id="cat-container-desktop">
                   <img
                     id="catimg-desktop"
-                    alt="Kissa, jolla on baretti päässä ja patonki tassussa"
+                    alt="A cat wearing a beret with a baguette in its paw"
                     src={lechat}
                   />
                 </div>
                 <div className="block-main column">
-                  <h2> Projektit</h2>
+                  <h2> Projects</h2>
                 </div>
               </div>
               <div id="projects-content-block" className="block-main">
@@ -96,7 +97,7 @@ export default function LandingPage() {
                   <li>
                     <article>
                       <img
-                        alt="Kuva Chip26-emulaattorista"
+                        alt="Image of the Chip26 emulator"
                         className="project-preview"
                         src={chip26}
                       />
@@ -113,7 +114,7 @@ export default function LandingPage() {
                   <li>
                     <article>
                       <img
-                        alt="Kuva Chat26-sovelluksesta"
+                        alt="Image of the Chat26 application"
                         className="project-preview"
                         src={chat26}
                       />
@@ -129,7 +130,7 @@ export default function LandingPage() {
                   <li>
                     <article>
                       <img
-                        alt="Kuva Intel 8080 -mikroprosessorista"
+                        alt="Image of the Intel 8080 microprocessor"
                         className="project-preview"
                         src={intel26}
                       />
@@ -148,7 +149,7 @@ export default function LandingPage() {
                   id="all-projects"
                   to="/projects"
                 >
-                  Projektisivulle
+                  To the projects page
                   <ArrowRightIcon weight="light" className="ph-light" />
                 </NavLink>
               </div>
