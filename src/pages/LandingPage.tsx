@@ -5,6 +5,12 @@ import chip26 from "../assets/chip26.png";
 import lechat from "../assets/lechat.png";
 import { NavLink } from "react-router";
 import Footer from "../components/Footer";
+import now from "../content/now.json";
+
+function formatNowDate(isoDate: string): string {
+  const [year, month, day] = isoDate.split("-").map(Number);
+  return `${day}.${month}.${year}`;
+}
 
 export default function LandingPage() {
   return (
@@ -61,20 +67,14 @@ export default function LandingPage() {
                 </div>
                 <div id="now-block" className="block-main column">
                   <ul id="now-list">
-                    <li className="now-item">
-                      <AsteriskIcon weight="light" className="ph-light" />
-                      Preparing for Ignite's Demo Day
-                    </li>
-                    <li className="now-item">
-                      <AsteriskIcon weight="light" className="ph-light" />
-                      Building a personal assistant bot for Telegram
-                    </li>
-                    <li className="now-item">
-                      <AsteriskIcon weight="light" className="ph-light" />
-                      Studying linear algebra
-                    </li>
+                    {now.items.map((item) => (
+                      <li key={item} className="now-item">
+                        <AsteriskIcon weight="light" className="ph-light" />
+                        {item}
+                      </li>
+                    ))}
                   </ul>
-                  <i>Last updated: 12.8.2026</i>
+                  <i>Last updated: {formatNowDate(now.updatedAt)}</i>
                 </div>
               </section>
             </div>
