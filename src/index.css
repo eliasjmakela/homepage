@@ -97,6 +97,11 @@ li {
   list-style: none;
 }
 
+:focus-visible {
+  outline: 3px solid #010e24;
+  outline-offset: 2px;
+}
+
 .hover-accent:hover {
   background-color: var(--accent);
   color: white;
@@ -259,15 +264,6 @@ button {
   align-items: center;
 }
 
-#projects-page-backbutton {
-  height: 100%;
-  width: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-}
-
-#projects-page-backbutton:hover,
 button:hover {
   transform: translate(-2px, -2px);
 }
@@ -357,27 +353,8 @@ h2 {
   padding: 0.5rem;
 }
 
-#projects-hero {
-  width: 50%;
-}
-
-.project-info {
-  margin-top: auto;
-  align-items: center;
-  font-size: 2.5em;
-}
-
 #project-page-main-container {
   height: 100%;
-}
-
-.gh-link {
-  padding: 1em;
-  border: black 1px solid;
-}
-
-#raised-card .row .column {
-  margin-right: 0.5em;
 }
 
 #contact-button-container {
@@ -393,22 +370,6 @@ h2 {
 .project-description {
   margin-top: 0;
   font-size: 1rem;
-}
-
-.project-block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.small {
-  max-width: 50%;
-  margin: 0;
-}
-
-#small-project-row {
-  justify-content: flex-start;
 }
 
 @media (max-width: 700px) {
@@ -447,14 +408,6 @@ h2 {
     display: block;
   }
 
-  .small {
-    max-width: 100%;
-  }
-
-  .project-block {
-    max-width: 100%;
-  }
-
   #projects-list {
     flex-direction: column;
     height: auto;
@@ -474,10 +427,6 @@ h2 {
 
   button {
     margin: 0.5rem;
-  }
-
-  #projects-hero {
-    width: 100%;
   }
 
   html,
@@ -507,10 +456,6 @@ h2 {
     font-size: 1rem;
   }
 
-  .project-image {
-    margin: auto;
-  }
-
   .title-and-year {
     align-items: center;
   }
@@ -523,10 +468,6 @@ h2 {
   .row,
   footer {
     flex-direction: column;
-  }
-
-  .project-info {
-    flex-direction: row;
   }
 
   footer {
@@ -545,10 +486,6 @@ h2 {
     margin: auto;
     margin-bottom: 1rem;
     margin-top: 5rem;
-  }
-
-  #project-page-header {
-    margin-bottom: 3rem;
   }
 
   #headline-row {
@@ -587,4 +524,113 @@ h2 {
   #headline h2 {
     font-size: 1.2rem;
   }
+}
+
+.blog-tags {
+  flex-wrap: wrap;
+  margin: 0.5em 0;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-family);
+  font-size: 1.1rem;
+  padding: 0.35em 0.9em;
+  border: 1px solid black;
+}
+
+.tag svg {
+  font-size: 1.2em;
+}
+
+.blog-list-item {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.blog-read-more {
+  align-items: center;
+  margin-top: auto;
+}
+
+#blog-list {
+  gap: 1.5em;
+}
+
+/* Fill the window; a short post floats in the middle, with even space above
+   and below, and the footer stays at the bottom */
+#blog-post-main-container {
+  min-height: 100dvh;
+}
+
+#blog-post-main-container > nav {
+  align-self: flex-start;
+}
+
+#blog-post-main-container > footer {
+  margin-top: 0;
+}
+
+#blog-post {
+  max-width: 45rem;
+  margin: auto;
+  align-self: center;
+}
+
+#blog-post-header {
+  align-items: flex-start;
+}
+
+#blog-post-header h1 {
+  text-align: left;
+}
+
+#blog-post-meta {
+  align-items: center;
+}
+
+.blog-content {
+  line-height: 1.6;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3 {
+  text-align: left;
+  margin-top: 1.5em;
+}
+
+.blog-content p,
+.blog-content li {
+  font-size: 1rem;
+}
+
+.blog-content ul,
+.blog-content ol {
+  padding-left: 1.5em;
+}
+
+.blog-content li {
+  list-style: disc;
+}
+
+.blog-content ol li {
+  list-style: decimal;
+}
+
+.blog-content pre {
+  background-color: #010e24;
+  color: #dffbff;
+  padding: 1em;
+  overflow-x: auto;
+}
+
+.blog-content code {
+  font-family: monospace;
+}
+
+.blog-content a {
+  font-size: 1rem;
 }

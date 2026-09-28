@@ -1,0 +1,157 @@
+/* ---------- Index: one tile per project ---------- */
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.tile {
+  flex: 1 1 18rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75em;
+  font-size: 1rem;
+}
+
+/* No screenshot: only as wide as its text needs */
+.tile.noImage {
+  flex: 0 1 16rem;
+}
+
+.tile img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border: 1px solid black;
+}
+
+.tileName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.tileSummary {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0;
+}
+
+/* Years sit at the bottom, level across a row of tiles */
+.tile .meta {
+  margin-top: auto;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.meta i,
+.meta span {
+  font-size: 1rem;
+  padding: 0;
+}
+
+/* Ongoing: a double right edge, because it hasn't ended */
+.ongoing {
+  border-right: 3px double black;
+}
+
+/* ---------- One project ---------- */
+
+.top {
+  align-items: stretch;
+}
+
+.shot {
+  flex: 3 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  max-width: none;
+}
+
+.facts {
+  flex: 2 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75em;
+}
+
+.facts p {
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.facts ul {
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-top: auto;
+}
+
+.links a {
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.6em 1em;
+  border: 1px solid black;
+}
+
+.writeUp {
+  max-width: 45rem;
+  width: 100%;
+  align-self: center;
+}
+
+.writeUp h2 {
+  font-size: 1.5rem;
+  text-align: left;
+  margin: 1.25em 0 0.25em;
+}
+
+.writeUp h2:first-child {
+  margin-top: 0;
+}
+
+@media (max-width: 700px) {
+  .tile,
+  .tile.noImage {
+    flex-basis: 100%;
+  }
+
+  .facts p {
+    font-size: 1rem;
+  }
+
+  /* index.css turns every .row into a column here; keep these as rows */
+  .facts ul {
+    flex-direction: row;
+  }
+}

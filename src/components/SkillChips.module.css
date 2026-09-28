@@ -1,0 +1,36 @@
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.skills p {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0.5em 0 0;
+}
+
+/* Outlined like a tag: it sits on a tile, so no shadow and no lift */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font: 400 1rem/1.2 var(--font-family);
+  color: #010e24;
+  background-color: #dffbff;
+  border: 1px solid black;
+  padding: 0.5em 0.9em;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.chip:hover {
+  transform: none;
+}
+
+.chip:hover,
+.chip[aria-pressed="true"] {
+  background-color: var(--accent);
+  color: white;
+}

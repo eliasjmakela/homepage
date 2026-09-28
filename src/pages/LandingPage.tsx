@@ -6,11 +6,7 @@ import lechat from "../assets/lechat.png";
 import { NavLink } from "react-router";
 import Footer from "../components/Footer";
 import now from "../content/now.json";
-
-function formatNowDate(isoDate: string): string {
-  const [year, month, day] = isoDate.split("-").map(Number);
-  return `${day}.${month}.${year}`;
-}
+import { formatIsoDate } from "../lib/date";
 
 export default function LandingPage() {
   return (
@@ -74,7 +70,7 @@ export default function LandingPage() {
                       </li>
                     ))}
                   </ul>
-                  <i>Last updated: {formatNowDate(now.updatedAt)}</i>
+                  <i>Last updated: {formatIsoDate(now.updatedAt)}</i>
                 </div>
               </section>
             </div>
@@ -104,7 +100,7 @@ export default function LandingPage() {
 
                       <NavLink
                         className="project-button hover-accent light-gradient"
-                        to="projects/chip"
+                        to="/projects/chip26"
                       >
                         Chip26
                         <ArrowRightIcon weight="light" className="ph-light" />
@@ -120,7 +116,7 @@ export default function LandingPage() {
                       />
                       <NavLink
                         className="project-button hover-accent"
-                        to="projects/chat"
+                        to="/projects/chat26"
                       >
                         Chat26
                         <ArrowRightIcon weight="light" className="ph-light" />
@@ -136,7 +132,7 @@ export default function LandingPage() {
                       />
                       <NavLink
                         className="project-button hover-accent project-preview"
-                        to="projects/intel"
+                        to="/projects/intel26"
                       >
                         Intel26
                         <ArrowRightIcon weight="light" className="ph-light" />

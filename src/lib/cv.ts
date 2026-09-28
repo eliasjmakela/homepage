@@ -1,0 +1,129 @@
+import cv from "../content/cv.json";
+import { projects } from "./projects";
+
+export type Kind = "work" | "study" | "project";
+
+export const KIND_LABEL: Record<Kind, string> = {
+  work: "Work",
+  study: "Study",
+  project: "Project",
+};
+
+type RawEntry = {
+  kind: Kind;
+  project?: string;
+  title?: string;
+  org?: string;
+  start?: string;
+  end?: string | null;
+  planned?: boolean;
+  tech?: string[];
+  desc?: string;
+};
+
+export type CvEntry = {
+  id: string;
+  kind: Kind;
+  title: string;
+  org: string;
+  /** Fractional years, e.g. 2021.5 is July 2021. */
+  start: number;
+  /** null means ongoing. */
+  end: number | null;
+  planned: boolean;
+  tech: string[];
+  desc: string;
+  link?: string;
+  /** This entry's page under /projects */
+  projectSlug?: string;
+};
+
+/** "2021-09" -> 2021.667 */
+function toYear(s: string): number {
+  const [y, m = "1"] = s.split("-");
+  return Number(y) + (Number(m) - 1) / 12;
+}
+
+function slug(s: string): string {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+}
+
+
+function resolve(raw: RawEntry): CvEntry {
+  if (raw.project) {
+    const p = projects.find((p) => p.name === raw.project);
+    if (!p) throw new Error(`cv.json: unknown project "${raw.project}"`);
+    const end = raw.end === undefined ? p.end : raw.end;
+    return {
+      id: p.slug,
+      kind: "project",
+      title: raw.title ?? p.name,
+      org: raw.org ?? "Personal project",
+      start: toYear(raw.start ?? p.start),
+      end: end === null ? null : toYear(end),
+      planned: raw.planned ?? false,
+      tech: raw.tech ?? p.tech,
+      desc: raw.desc ?? p.summary,
+      link: p.repo,
+      projectSlug: p.slug,
+    };
+  }
+  if (!raw.title || !raw.start) {
+    throw new Error("cv.json: entries need a title and a start");
+  }
+  return {
+    id: slug(`${raw.title}-${raw.start}`),
+    kind: raw.kind,
+    title: raw.title,
+    org: raw.org ?? "",
+    start: toYear(raw.start),
+    end: raw.end ? toYear(raw.end) : null,
+    planned: raw.planned ?? false,
+    tech: raw.tech ?? [],
+    desc: raw.desc ?? "",
+  };
+}
+
+export const entries: CvEntry[] = (cv.entries as RawEntry[])
+  .map(resolve)
+  .sort((a, b) => a.start - b.start);
+
+export const skills: string[] = [...new Set(entries.flatMap((e) => e.tech))];
+
+/** Today as a fractional year. */
+export function yearNow(d = new Date()): number {
+  const y = d.getFullYear();
+  const start = new Date(y, 0, 1).getTime();
+  const end = new Date(y + 1, 0, 1).getTime();
+  return y + (d.getTime() - start) / (end - start);
+}
+
+/** Finnish order, no leading zeros: 27.9.2026 */
+export function formatDate(d: Date): string {
+  return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
+}
+
+type Span = Pick<CvEntry, "start" | "end" | "planned">;
+
+/** A project's span, from the "YYYY-MM" dates in its frontmatter */
+export function projectSpan(p: { start: string; end: string | null }): Span {
+  return {
+    start: toYear(p.start),
+    end: p.end === null ? null : toYear(p.end),
+    planned: false,
+  };
+}
+
+export function formatSpan(e: Span): string {
+  const from = Math.floor(e.start);
+  if (e.planned) return `from ${from}`;
+  if (e.end === null) return `${from}–`;
+  const to = Math.floor(e.end);
+  return from === to ? `${from}` : `${from}–${to}`;
+}
+
+export function status(e: CvEntry): string | null {
+  if (e.planned) return "Planned";
+  if (e.end === null) return "Ongoing";
+  return null;
+}

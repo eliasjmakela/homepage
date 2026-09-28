@@ -1,0 +1,84 @@
+{
+  "entries": [
+    {
+      "kind": "work",
+      "title": "Junior software developer",
+      "org": "Trineria Oy",
+      "start": "2021-06",
+      "end": "2021-07",
+      "tech": ["typescript", "react"],
+      "desc": "Summer trainee, moving from self-taught development to professional Agile workflows."
+    },
+    {
+      "kind": "work",
+      "title": "Software developer trainee",
+      "org": "Trineria Oy",
+      "start": "2021-09",
+      "end": "2024-01",
+      "tech": ["docker", "typescript", "react", "f#", "scala"],
+      "desc": "Designed and built an internal web app for planning and prioritising development. Containerised and deployed a full-stack app with Docker, and built features for customer projects with the team."
+    },
+    {
+      "kind": "study",
+      "title": "Hyvinkään Lukio",
+      "org": "Finnish Matriculation Examination, General Studies",
+      "start": "2021-08",
+      "end": "2024-06",
+      "tech": [],
+      "desc": "Grade: 4x Laudatur, 3x Eximia (ranked 3rd out of 242 in my class)."
+    },
+    {
+      "kind": "study",
+      "title": "International Philosophy Olympiad",
+      "org": "Represented Finland, Honorary Mention",
+      "start": "2024-05",
+      "end": "2024-05",
+      "tech": [],
+      "desc": "Represented Finland at the International Philosophy Olympiad and received an Honorary Mention for my essay analyzing the intersections of social philosophy, aesthetics and AI."
+    },
+    {
+      "kind": "work",
+      "title": "Military service",
+      "org": "Finnish Defence Forces",
+      "start": "2024-07",
+      "end": "2025-03",
+      "tech": ["docker", "typescript", "python"],
+      "desc": "Nine months of military service."
+    },
+    {
+      "kind": "study",
+      "title": "Aalto University",
+      "org": "BSc, Information Networks",
+      "start": "2025-08",
+      "end": "2028-06",
+      "tech": ["scala", "react", "machine-learning"],
+      "desc": "Bachelor's studies in Information Networks."
+    },
+    {
+      "kind": "work",
+      "title": "Ignite accelerator",
+      "org": "Flou Health, co-founder",
+      "start": "2026-06",
+      "end": "2026-08",
+      "tech": ["machine-learning"],
+      "desc": "One of the 6% of 200+ teams accepted. Led development of the health insights pipeline for Flou's smart nasal wearable: tested sensor arrays, turned raw signals into physiology-informed features, and evaluated feature sets with machine learning to steer the hardware."
+    },
+    {
+      "kind": "project",
+      "project": "Chip26"
+    },
+    {
+      "kind": "project",
+      "project": "Intel26"
+    },
+    {
+      "kind": "project",
+      "project": "Chat26"
+    },
+    {
+      "kind": "project",
+      "project": "Rust database",
+      "org": "Learning project"
+    }
+  ]
+}
