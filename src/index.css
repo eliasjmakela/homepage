@@ -531,6 +531,10 @@ h2 {
   margin: 0.5em 0;
 }
 
+ul.blog-tags {
+  padding-left:0;
+}
+
 .tag {
   display: inline-flex;
   align-items: center;
