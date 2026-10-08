@@ -65,7 +65,9 @@
     },
     {
       "kind": "project",
-      "project": "Chip26"
+      "project": "Chip26",
+      "start": "2021-05",
+      "end": "2021-06"
     },
     {
       "kind": "project",
