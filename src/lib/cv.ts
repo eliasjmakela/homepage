@@ -28,7 +28,7 @@ export type CvEntry = {
   org: string;
   /** Fractional years, e.g. 2021.5 is July 2021. */
   start: number;
-  /** null means ongoing. */
+  /** Exclusive: the start of the month after the last one. null means ongoing. */
   end: number | null;
   planned: boolean;
   tech: string[];
@@ -42,6 +42,11 @@ export type CvEntry = {
 function toYear(s: string): number {
   const [y, m = "1"] = s.split("-");
   return Number(y) + (Number(m) - 1) / 12;
+}
+
+/** An end month counts in full: "2026-08" -> 2026.667, the start of September */
+function toEnd(s: string): number {
+  return toYear(s) + 1 / 12;
 }
 
 function slug(s: string): string {
@@ -60,7 +65,7 @@ function resolve(raw: RawEntry): CvEntry {
       title: raw.title ?? p.name,
       org: raw.org ?? "Personal project",
       start: toYear(raw.start ?? p.start),
-      end: end === null ? null : toYear(end),
+      end: end === null ? null : toEnd(end),
       planned: raw.planned ?? false,
       tech: raw.tech ?? p.tech,
       desc: raw.desc ?? p.summary,
@@ -77,7 +82,7 @@ function resolve(raw: RawEntry): CvEntry {
     title: raw.title,
     org: raw.org ?? "",
     start: toYear(raw.start),
-    end: raw.end ? toYear(raw.end) : null,
+    end: raw.end ? toEnd(raw.end) : null,
     planned: raw.planned ?? false,
     tech: raw.tech ?? [],
     desc: raw.desc ?? "",
@@ -109,17 +114,39 @@ type Span = Pick<CvEntry, "start" | "end" | "planned">;
 export function projectSpan(p: { start: string; end: string | null }): Span {
   return {
     start: toYear(p.start),
-    end: p.end === null ? null : toYear(p.end),
+    end: p.end === null ? null : toEnd(p.end),
     planned: false,
   };
 }
 
+const MONTHS = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+];
+
+/** Entries this short show their months, not just years */
+const SHORT = 0.5;
+
+/** A fractional year as whole months since year 0, immune to float drift */
+function months(t: number): number {
+  return Math.round(t * 12);
+}
+
 export function formatSpan(e: Span): string {
-  const from = Math.floor(e.start);
-  if (e.planned) return `from ${from}`;
-  if (e.end === null) return `${from}–`;
-  const to = Math.floor(e.end);
-  return from === to ? `${from}` : `${from}–${to}`;
+  const from = months(e.start);
+  const firstYear = Math.floor(from / 12);
+  if (e.planned) return `from ${firstYear}`;
+  if (e.end === null) return `${firstYear}–`;
+  const to = months(e.end) - 1; // the last month, end being exclusive
+  const lastYear = Math.floor(to / 12);
+  if (to - from + 1 > SHORT * 12) {
+    return firstYear === lastYear ? `${firstYear}` : `${firstYear}–${lastYear}`;
+  }
+  const fromMonth = MONTHS[from % 12];
+  const toMonth = MONTHS[to % 12];
+  if (from === to) return `${fromMonth} ${firstYear}`;
+  if (firstYear === lastYear) return `${fromMonth}–${toMonth} ${firstYear}`;
+  return `${fromMonth} ${firstYear}–${toMonth} ${lastYear}`;
 }
 
 export function status(e: CvEntry): string | null {

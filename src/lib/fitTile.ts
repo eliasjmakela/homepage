@@ -10,7 +10,7 @@ const STRETCH = 1.1;
 const MIN_SCALE = 0.8;
 const WRAP_SCALE = 0.9;
 
-// Must match .laneEntry in Cv.module.css
+// Must match .laneEntry and .card in Cv.module.css
 const TITLE_PX = 16;
 const SPAN_PX = 14.4;
 const LINE = 1.3;
@@ -46,13 +46,12 @@ export function fitTile(
   title: string,
   span: string,
   baseWidth: number,
-  extraBorder = 0,
 ): TileFit {
   const f = family();
   const titleW = (s: number, t = title) =>
     measure(t, `700 ${TITLE_PX * s}px ${f}`);
   const spanW = (s: number) => measure(span, `italic 400 ${SPAN_PX * s}px ${f}`);
-  const chrome = PAD_X + extraBorder + SAFETY;
+  const chrome = PAD_X + SAFETY;
   const need = (s: number, tw: number) =>
     Math.ceil(Math.max(tw, spanW(s)) + chrome);
   const height = (s: number, lines: number) =>

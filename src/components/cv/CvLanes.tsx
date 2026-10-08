@@ -13,7 +13,7 @@ import {
 import { formatDate, formatSpan, type CvEntry, type Kind } from "../../lib/cv";
 import { fitTile, type TileFit } from "../../lib/fitTile";
 import { legPath, routeThread, type Rect } from "../../lib/routeThread";
-import EntryTile from "./EntryTile";
+import EntryTile, { type Rail } from "./EntryTile";
 import styles from "./Cv.module.css";
 
 const UNIT = 190; // px per year
@@ -25,6 +25,9 @@ const LABEL = 92;
 const RULER = 34;
 const FLAG_STRIP = 30; // below the lanes, for the Now label
 const NODE = 12;
+const RAIL = 6; // height of the rail under each tile
+const RAIL_GAP = 5; // between a tile and its rail
+const RAIL_STUB = 16; // the open end of an ongoing entry's rail
 
 const LANES: { kind: Kind; label: string }[] = [
   { kind: "work", label: "Work" },
@@ -36,7 +39,13 @@ type Placed = {
   entry: CvEntry;
   left: number;
   top: number; // within the lane
-  fit: TileFit;
+  /** The tile holding the text */
+  card: TileFit;
+  /** The entry's true length, under the tile */
+  rail: Rail;
+  /** The whole drawn box: the tile and its rail */
+  width: number;
+  height: number;
 };
 type Lane = {
   kind: Kind;
@@ -57,22 +66,25 @@ function layoutLanes(entries: CvEntry[], min: number, now: number) {
       .map((entry) => {
         const left = x(entry.start);
         const duration = x(entry.end ?? now) - left;
-        const ongoing = !entry.planned && entry.end === null;
-        const fit = fitTile(
+        // The tile is at least as long as the entry, and longer if its text
+        // needs it. The rail shows the true length either way.
+        const card = fitTile(
           entry.title,
           formatSpan(entry),
           Math.max(duration, TILE_MIN),
-          ongoing ? 2 : 0,
         );
+        const rail = railFor(entry, duration, x(now) - left);
+        const width = Math.max(card.width, rail.past + rail.future);
+        const height = card.height + RAIL_GAP + RAIL;
         let row = rowEnds.findIndex((end) => end + TILE_GAP <= left);
         if (row < 0) {
           row = rowEnds.length;
           rowEnds.push(0);
           rowHeights.push(0);
         }
-        rowEnds[row] = left + fit.width;
-        rowHeights[row] = Math.max(rowHeights[row], fit.height);
-        return { entry, left, row, fit };
+        rowEnds[row] = left + width;
+        rowHeights[row] = Math.max(rowHeights[row], height);
+        return { entry, left, row, card, rail, width, height };
       });
     const rowTops = rowHeights.map(
       (_, r) =>
@@ -84,11 +96,9 @@ function layoutLanes(entries: CvEntry[], min: number, now: number) {
       rowHeights.reduce((a, b) => a + b, 0) +
       Math.max(rowHeights.length - 1, 0) * ROW_GAP;
     const height = Math.max(rowsHeight, 40) + 2 * LANE_PAD;
-    const placed = items.map(({ entry, left, row, fit }) => ({
-      entry,
-      left,
+    const placed = items.map(({ row, ...item }) => ({
+      ...item,
       top: rowTops[row],
-      fit,
     }));
     const lane = { kind, label, top, height, placed };
     top += height;
@@ -98,18 +108,31 @@ function layoutLanes(entries: CvEntry[], min: number, now: number) {
 }
 
 /**
- * Where the now line cuts a drawn box, from its left edge, or null if it
- * doesn't. Goes by the box, not the dates: a box stretched to fit its text
- * or to TILE_MIN can reach past now even when the entry itself doesn't.
+ * Splits an entry's length at the now line: solid for what has passed,
+ * hollow for what is to come. `nowX` is the now line's offset from the
+ * entry's start, and a few px is the least that stays visible.
  */
-function nowSplit(
-  entry: CvEntry,
-  left: number,
-  width: number,
-  nowX: number,
-): number | null {
-  if (entry.planned) return null; // already dashed all over
-  return left < nowX && nowX < left + width ? nowX - left : null;
+function railFor(entry: CvEntry, duration: number, nowX: number): Rail {
+  if (entry.planned) {
+    return entry.end === null
+      ? { past: 0, future: RAIL_STUB, open: true }
+      : { past: 0, future: Math.max(duration, 3), open: false };
+  }
+  if (entry.end === null) {
+    return { past: Math.max(duration, 3), future: RAIL_STUB, open: true };
+  }
+  const length = Math.max(duration, 3);
+  const past = Math.min(Math.max(nowX, 0), length);
+  return { past, future: length - past, open: false };
+}
+
+/**
+ * How far into an entry the now line falls, in years, or null if the entry
+ * doesn't span it.
+ */
+function nowSplit(entry: CvEntry, now: number): number | null {
+  if (entry.planned || entry.end === null) return null;
+  return entry.start < now && now < entry.end ? now - entry.start : null;
 }
 
 /** Re-measure once web fonts finish loading. */
@@ -163,8 +186,8 @@ export default function CvLanes({
             rect: {
               x: LABEL + p.left,
               y: lane.top + p.top,
-              w: p.fit.width,
-              h: p.fit.height,
+              w: p.width,
+              h: p.height,
             },
           })),
       )
@@ -180,8 +203,8 @@ export default function CvLanes({
         lane.placed.map((p) => ({
           x: LABEL + p.left,
           y: lane.top + p.top,
-          w: p.fit.width,
-          h: p.fit.height,
+          w: p.width,
+          h: p.height,
         })),
       ),
     ];
@@ -295,7 +318,9 @@ export default function CvLanes({
               pct(entry.end ?? now) - pct(entry.start),
               1.2,
             );
-            const split = nowSplit(entry, pct(entry.start), barWidth, pct(now));
+            const years = nowSplit(entry, now);
+            const split =
+              years === null ? null : (years / (max - min)) * 100;
             const classes = [
               styles.miniBar,
               entry.planned && styles.planned,
@@ -383,31 +408,32 @@ export default function CvLanes({
                 {years.map((y) => (
                   <div key={y} className={styles.tick} style={{ left: x(y) }} />
                 ))}
-                {lane.placed.map(({ entry, left, top, fit }) => {
-                  const split = nowSplit(entry, left, fit.width, x(now));
-                  return (
+                {lane.placed.map(
+                  ({ entry, left, top, card, rail, width, height }) => (
                     <EntryTile
                       key={entry.id}
                       entry={entry}
-                      titleLines={fit.titleLines}
-                      className={`${styles.laneEntry} ${split !== null ? styles.crossesNow : ""}`}
+                      titleLines={card.titleLines}
+                      rail={rail}
+                      className={styles.laneEntry}
                       style={
                         {
-                          // the now line's offset inside the tile
-                          "--split": split === null ? undefined : `${split}px`,
                           left,
                           top,
-                          width: fit.width,
-                          height: fit.height,
-                          "--fit": fit.scale,
+                          width,
+                          height,
+                          "--fit": card.scale,
+                          "--card-width": `${card.width}px`,
+                          "--card-height": `${card.height}px`,
+                          "--rail-gap": `${RAIL_GAP}px`,
                         } as CSSProperties
                       }
                       selected={entry.id === selectedId}
                       dimmed={skill !== null && !entry.tech.includes(skill)}
                       onSelect={onSelect}
                     />
-                  );
-                })}
+                  ),
+                )}
               </div>
             </div>
           ))}

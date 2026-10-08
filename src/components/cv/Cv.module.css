@@ -123,71 +123,6 @@
   opacity: 0.32;
 }
 
-/* Crosses now: solid up to the now line, planned-style after it. The tile's
-   own border is hidden and redrawn in two halves. --split is the now line's
-   offset from the tile's left edge. */
-.entry.crossesNow {
-  border-color: transparent;
-  box-shadow: none;
-  background: linear-gradient(
-    90deg,
-    #dffbff calc(var(--split) - 1px),
-    #e4eff1 calc(var(--split) - 1px) /* the tile fill, desaturated */
-  );
-}
-
-.entry.crossesNow::before,
-.entry.crossesNow::after {
-  content: "";
-  position: absolute;
-  top: -1px;
-  bottom: -1px;
-  pointer-events: none;
-}
-
-/* Past half: the normal edge, with the shadow along its bottom only */
-.entry.crossesNow::before {
-  left: -1px;
-  width: var(--split);
-  border: 1px solid black;
-  border-right: none;
-  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.3);
-}
-
-/* Future half: dashed, with a wash of its own fill that greys out the text */
-.entry.crossesNow::after {
-  left: calc(var(--split) - 1px);
-  right: -1px;
-  z-index: 1; /* above the sticky title spans */
-  border: 1px dashed black;
-  border-left: none;
-  background-color: rgba(228, 239, 241, 0.55);
-}
-
-/* Ongoing keeps its double right edge, now on the future half. The
-   tile's own right border is 3px wide there, hence the -3px. */
-.entry.crossesNow.ongoing::after {
-  right: -3px;
-  border-right: 3px double black;
-}
-
-.entry.crossesNow:hover {
-  background: var(--accent);
-}
-
-.entry.crossesNow:hover::after {
-  background-color: transparent;
-}
-
-.entry.crossesNow.dim::before,
-.entry.crossesNow.dim::after {
-  border-color: rgba(0, 0, 0, 0.3);
-}
-
-.entry.crossesNow.dim::before {
-  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
-}
-
 /* ---------- Lanes (desktop) ---------- */
 
 .minimap {
@@ -300,14 +235,25 @@
   padding: 0.45em 0.4em;
 }
 
+/* A lane entry is a frame holding its tile (the card) and, under it, a rail
+   drawn to the entry's true length. The card may be wider than the entry,
+   to fit its text; the rail never is. Time states live on the rail, so the
+   card is always a plain tile. */
 .laneEntry {
   position: absolute;
   z-index: 1;
-  /* Fixed px padding and gap so fitTile.ts can predict the size exactly */
-  padding: 8px 11px;
-  gap: 2px;
+  align-items: flex-start;
+  padding: 0;
+  gap: var(--rail-gap);
+  background: none;
+  border: none;
+  box-shadow: none;
   font-size: calc(0.9rem * var(--fit, 1));
   line-height: 1.3;
+}
+
+.laneEntry:hover {
+  background: none;
 }
 
 .laneEntry .entryTitle {
@@ -315,9 +261,88 @@
 }
 
 /* Keep a long entry's title in view while its start is scrolled off */
-.laneEntry > span {
+.card > span {
   position: sticky;
   left: calc(var(--label-width) + 10px);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: var(--card-width);
+  height: var(--card-height);
+  /* Fixed px padding and gap so fitTile.ts can predict the size exactly */
+  padding: 8px 11px !important;
+  background-color: #dffbff;
+  border: 1px solid black;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.laneEntry:hover .card {
+  background-color: var(--accent);
+}
+
+.laneEntry.selected {
+  outline: none;
+}
+
+.laneEntry.selected .card {
+  outline: 3px solid #010e24;
+  outline-offset: 2px;
+}
+
+.laneEntry.dim .card {
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Fade the card's text, not the card, so its fill stays opaque */
+.laneEntry.dim > .card {
+  opacity: 1;
+}
+
+.laneEntry.dim .card > * {
+  opacity: 0.32;
+}
+
+/* Solid ink for time that has passed, hollow and dashed for time to come */
+.rail {
+  display: flex;
+  height: 6px;
+  color: #010e24;
+}
+
+.laneEntry:hover .rail {
+  color: var(--accent);
+}
+
+.railPast {
+  background-color: currentColor;
+}
+
+.rail > span {
+  height: 100%;
+}
+
+.railFuture {
+  background-color: #c2f5ff; /* the surface, so lines behind it stay hidden */
+  border: 1px dashed currentColor;
+}
+
+/* Past then future: the dashed part continues the solid one */
+.railPast + .rail > span {
+  height: 100%;
+}
+
+.railFuture {
+  border-left: none;
+}
+
+/* Ongoing: the stub after now has no end, because the entry hasn't one */
+.railOpen {
+  border-right: none;
 }
 
 .nowLine {
