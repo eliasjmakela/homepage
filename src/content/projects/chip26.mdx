@@ -17,9 +17,8 @@ and programs can be played again.
 
 ## Why I built it
 
-To learn how emulators actually work, one instruction at a time. CHIP-8 is a
-good place to start: a handful of opcodes, a tiny memory model, and a display
-you can get pixels onto within an afternoon.
+To learn how emulators actually work, one instruction at a time. I've always been fascinated with how computers work under the hood,
+and this seemed like a pretty decent place to start. It was the first hobby project that I did that ended up getting me attention from companies, and eventually my very first job!
 
 ## How it's built
 
@@ -28,7 +27,6 @@ memory and runs it, while MonoGame handles the window, the display and input.
 
 ## What was hard
 
-- Getting instruction timing right so games don't run absurdly fast.
-- Sound and delay timers ticking independently from the CPU loop.
-- Keeping the fetch-decode-execute loop readable instead of one giant
-  `switch` statement.
+- Getting instruction timing right so games don't run too fast.
+- Learning a completely new way of thinking about a system from scratch
+- Debugging all the individual instructions
