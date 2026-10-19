@@ -104,6 +104,25 @@ components:
     textColor: "{colors.pale-sky}"
     rounded: "{rounded.none}"
     padding: "1em"
+  project-lead:
+    backgroundColor: "{colors.pale-sky}"
+    textColor: "{colors.hairline-black}"
+    rounded: "{rounded.none}"
+    padding: "1.25em"
+  project-row:
+    backgroundColor: "{colors.pale-sky}"
+    textColor: "{colors.hairline-black}"
+    typography: "{typography.body}"
+    rounded: "{rounded.none}"
+    padding: "0.9em 1em"
+  say-hi:
+    textColor: "{colors.hairline-black}"
+    typography: "{typography.title}"
+    rounded: "{rounded.none}"
+    padding: "1.5em"
+  say-hi-hover:
+    backgroundColor: "{colors.deep-lagoon}"
+    textColor: "{colors.paper-white}"
 ---
 
 # Design System: Elias Mäkelä
@@ -174,13 +193,13 @@ A cool, airy palette of pale cyans and navy ink, with one deep teal for interact
 
 ## Layout
 
-The page is a flex mosaic: tiles stacked in rows and columns, with a universal `0.5em` gap that becomes the visible "grout" between tiles. There is no grid system. Pages are full-height columns (`100vh`/`100dvh`) with the footer pushed to the bottom.
+The page is a flex mosaic: tiles stacked in rows and columns, with a universal `0.5em` gap that becomes the visible "grout" between tiles. There is no page-wide grid. Two local grids exist only so edges meet: the landing body's two equal halves, and the footer's six columns that put "Say hi" on the same split. Pages are full-height columns (`100vh`/`100dvh`) with the footer pushed to the bottom.
 
 - **Landing:** a square name tile (`clamp(20em, 25vw, 30em)`, `aspect-ratio: 1`) beside a stacked nav column whose three tiles share its height exactly, with sky to its right. Under it, the tagline tile stops short (55%) beside the 12rem cat square, and the two share a height. Then two equal halves: intro and "Right now" on the left, projects on the right. Each half keeps its own height, so sky shows under the shorter one. The footer's six columns put the "Say hi" edge on that same split.
 - **Reading pages (blog, project write-ups):** a single 45rem column, centred.
 - **CV:** a full-width board holding horizontal lanes (desktop) or a vertical path of squares (phones), with a sticky lane-label column and a minimap above.
 
-**Breakpoints:** at 700px every `.row` becomes a column, type steps down (h1 3rem, body 1rem), the cat square shrinks to 10rem and the footer becomes "Say hi" over three link tiles. At 400px the tagline and page links shrink again.
+**Breakpoints:** at 700px every `.row` becomes a column, type steps down (h1 3rem, body 1rem), the cat square shrinks to 10rem, section labels and card names step down to Title Small (1.25rem), and the footer becomes "Say hi" over three link tiles. At 400px the tagline and page links shrink again.
 
 ## Elevation & Depth
 
@@ -202,7 +221,7 @@ Every form is a rectangle with square corners. Borders are a 1px solid black hai
 
 - **Dashed** border or rail: planned / future.
 - **3px double right edge:** ongoing, with no end yet.
-- **3px solid Ink Navy outline, 2px offset:** focus and selection.
+- **3px solid Ink Navy outline:** focus and selection. It sits 2px outside most elements, and 7px inside the border on tiles, which touch the window edge.
 
 The CV adds two signature forms: a 6px **rail** under each tile, drawn to the entry's true length (solid for the past, dashed and hollow for the future), and a small 14px **pawn** square on the selected path entry.
 
@@ -226,7 +245,7 @@ Every component is quiet and precise: an outlined rectangle that answers the poi
 - **State:** hover and `aria-pressed="true"` both fill with Deep Lagoon and Paper White text.
 
 ### Tags
-- **Style:** an inline outline with no fill, Plex 1.1rem, padding 0.35em 0.9em, with an optional light Phosphor icon at 1.2em. Used for tech and blog tags, in wrapping rows.
+- **Style:** an inline outline with no fill, Plex 1.1rem, padding 0.35em 0.9em, with an optional light Phosphor icon at 1.2em. Used for tech and blog tags, in wrapping rows, but never inside a clickable card, where an outlined box would read as its own button.
 
 ### Outline Links
 - **Style:** inline-flex, 1px black border, padding 0.6em 1em, Plex 1rem, with a trailing light arrow. Used for project and readout links (demo, source, write-up).
@@ -236,7 +255,7 @@ Every component is quiet and precise: an outlined rectangle that answers the poi
 
 ### Landing projects
 - **Lead:** the one project with a picture, chosen by `featured: true` in its frontmatter. Its screenshot sits beside the text, whole and uncropped on black, so it reads as a screen.
-- **Rows:** every other project is a text row, newest first: name and arrow, summary, tech tags, then the span and its status ("2021–2022 · Set aside", "2026– · Ongoing"). Ongoing rows take the double right edge.
+- **Rows:** every other project is a text row, newest first: name and arrow, summary, then one plain metadata line with the tech, the span in italic and, unless it's finished, its status ("C# · *2021–2022* · Set aside", "Rust · *2026* · Ongoing"). An ongoing span drops its trailing dash, since the status says it. Ongoing rows take the double right edge.
 - Both are flat, outlined cards on the Projects tile, and the whole card is the link.
 
 ### Focus
@@ -259,6 +278,8 @@ Every component is quiet and precise: an outlined rectangle that answers the poi
 - **Do** encode time with line style: solid for the past, dashed for the future, a double right edge for ongoing.
 - **Do** fade a tile's contents, not its fill, when dimming it, so it stays opaque over the lines behind it.
 - **Do** use light-weight Phosphor icons, sized 1em inline or 32px in the footer.
+- **Do** keep a link card's metadata as one plain line, so the card is the only thing in it that looks clickable.
+- **Do** let edges meet exactly where tiles pair (name and nav, tagline and cat, the body split and "Say hi"), and leave sky where they don't.
 - **Do** respect `prefers-reduced-motion` for any transition you add.
 
 ### Don't:
