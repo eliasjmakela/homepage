@@ -255,7 +255,7 @@ Every component is quiet and precise: an outlined rectangle that answers the poi
 
 ### Landing projects
 - **Lead:** the one project with a picture, chosen by `featured: true` in its frontmatter. Its screenshot sits beside the text, whole and uncropped on black, so it reads as a screen.
-- **Rows:** every other project is a text row, newest first: name and arrow, summary, then one plain metadata line with the tech, the span in italic and, unless it's finished, its status ("C# · *2021–2022* · Set aside", "Rust · *2026* · Ongoing"). An ongoing span drops its trailing dash, since the status says it. Ongoing rows take the double right edge.
+- **Rows:** every other project is a text row, newest first: name and arrow, summary, then one plain metadata line with the tech, the span in italic and, unless it's finished, its status ("C# · *2021–2022* · Set aside", "Rust · *2026* · Ongoing"). An ongoing span drops its trailing dash, since the status says it. Rows keep a single hairline; their status is already in words.
 - Both are flat, outlined cards on the Projects tile, and the whole card is the link.
 
 ### Focus

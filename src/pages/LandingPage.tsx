@@ -113,14 +113,7 @@ export default function LandingPage() {
               {others.map((p) => (
                 <li key={p.slug}>
                   <NavLink
-                    className={[
-                      "hover-accent",
-                      styles.card,
-                      styles.row,
-                      p.status === "Ongoing" && styles.ongoing,
-                    ]
-                      .filter(Boolean)
-                      .join(" ")}
+                    className={`hover-accent ${styles.card} ${styles.row}`}
                     to={`/projects/${p.slug}`}
                   >
                     <span className={styles.cardName}>
