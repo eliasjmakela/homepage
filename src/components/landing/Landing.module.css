@@ -1,0 +1,116 @@
+/* Project cards on the landing page's Projects tile. They sit on a tile,
+   so they're outlined and flat: no shadow, no lift (the One Layer Rule). */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+  border: 1px solid black;
+  background-color: #dffbff;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.card span:not(.cardText) {
+  padding: 0;
+}
+
+.cardName {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.cardSummary {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Tech, span and status as one quiet line; nothing in a card looks clickable
+   except the card itself */
+.cardMeta {
+  font-size: 1rem;
+}
+
+.cardMeta i {
+  display: inline;
+  font-size: inherit;
+  padding: 0;
+}
+
+/* The lead is the one project with a picture: its screenshot beside its
+   text, whole and uncropped on black, so it reads as a screen */
+.lead {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.lead img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  background-color: black;
+  border-right: 1px solid black;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.5em;
+  padding: 1.25em;
+}
+
+.lead .cardName {
+  font-size: 2rem;
+}
+
+/* The rest are text rows: name, summary, and when */
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin: 0;
+  padding: 0;
+}
+
+/* The global li padding would inset the rows from the lead and the link below */
+.rows > li {
+  padding: 0;
+}
+
+.row {
+  padding: 0.9em 1em;
+  gap: 0.35em;
+}
+
+/* Ongoing: a double right edge, because it hasn't ended */
+.ongoing {
+  border-right: 3px double black;
+}
+
+@media (max-width: 700px) {
+  .lead {
+    grid-template-columns: 1fr;
+  }
+
+  .lead img {
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-right: none;
+    border-bottom: 1px solid black;
+  }
+
+  /* Card names sit level with the 1.25rem section labels, never above them */
+  .cardName,
+  .lead .cardName {
+    font-size: 1.25rem;
+  }
+}

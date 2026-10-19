@@ -2,17 +2,26 @@ import {
   BriefcaseIcon,
   FoldersIcon,
   CodeIcon,
-  MailboxIcon,
 } from "@phosphor-icons/react";
 
 export default function Footer() {
   return (
-    <footer className="row">
+    <footer>
+      <a
+        className="block-main hover-accent footer-link footer-contact"
+        href="mailto:hello@eliasmakela.fi"
+      >
+        <span className="footer-contact-text">
+          <span>Say hi</span>
+          hello@eliasmakela.fi
+        </span>
+      </a>
+
       <a
         className="block-main hover-accent footer-link column"
         href="https://github.com/eliasjmakela"
       >
-        Github
+        GitHub
         <FoldersIcon size={32} weight="light" />
       </a>
 
@@ -24,13 +33,6 @@ export default function Footer() {
         <CodeIcon size={32} weight="light" />
       </a>
 
-      <a
-        className="block-main hover-accent footer-link column"
-        href="mailto:hello@eliasmakela.fi"
-      >
-        Email
-        <MailboxIcon size={32} weight="light" />
-      </a>
 
       <a
         className="block-main hover-accent footer-link column"

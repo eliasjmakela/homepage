@@ -24,44 +24,35 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-self: stretch;
+  align-self: flex-start; /* stretching to the nav's height would break the square */
   width: clamp(20em, 25vw, 30em);
+  aspect-ratio: 1;
 }
 
 .main-container {
-  height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-#language-selector {
-  margin-left: auto;
-  display: flex;
-  flex-direction: column;
-}
-
 #headline {
   display: flex;
   align-items: center;
+  width: auto;
   max-width: 55%;
+  min-height: 12rem; /* the cat square's height, so the two pair up */
 }
 
+/* Bigger than the section labels but lighter, so it reads as a statement,
+   not another heading; left-set like everything else under the name */
 #headline h2 {
-  font-size: 2.2rem;
-}
-
-#projects-list {
-  margin: auto;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  min-width: 0;
-  padding-top: 4em;
-  padding-bottom: 4em;
-  text-align: center;
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+  text-wrap: balance;
 }
 
 ol {
@@ -72,25 +63,33 @@ ol {
 #now-list {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 2rem;
-  margin-left: 0;
+  margin: 1rem 0;
+  padding: 0;
 }
 
+/* "Right now" is ongoing, so it gets the double right edge */
 #now-block {
-  flex: 1;
-  justify-content: space-around;
+  justify-content: flex-start;
+  border-right: 3px double black;
 }
 
-.now-item,
 i {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
 }
 
+/* The asterisk sits on an item's first line, even when the item wraps */
+.now-item {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding-left: 0;
+}
+
 .now-item svg {
   flex-shrink: 0;
+  margin-top: 0.15em;
 }
 
 li {
@@ -100,6 +99,11 @@ li {
 :focus-visible {
   outline: 3px solid #010e24;
   outline-offset: 2px;
+}
+
+/* Tiles touch the window edge, so their ring goes inside the border */
+a.block-main:focus-visible {
+  outline-offset: -7px;
 }
 
 .hover-accent:hover {
@@ -117,48 +121,105 @@ li {
 }
 
 #projects {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin-bottom: auto;
-  min-width: 50%;
 }
 
-#projects-title-block {
-  width: 100%;
+/* Intro and Right now on the left, projects on the right, in equal halves
+   so the split lines up with the footer's "Say hi" tile below */
+@media (min-width: 701px) {
+  #body-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start; /* the shorter side leaves sky below it */
+  }
+}
+
+#intro p {
+  padding-inline: 0; /* level with the tile labels */
+}
+
+/* A section's title sits inside its tile, top left */
+.tile-label {
+  margin: 0;
+  text-align: left;
+}
+
+/* The cat greets you, right beside the headline */
+#cat-greeter {
+  flex: none;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12rem;
+  aspect-ratio: 1;
+  background: linear-gradient(
+    130deg,
+    rgb(246, 230, 193) 0%,
+    rgb(227, 193, 114) 50%,
+    rgb(246, 230, 193) 100%
+  );
+}
+
+#cat-greeter img {
+  display: block;
 }
 
 #all-projects {
+  margin-top: auto;
   padding: 1.5em;
   display: flex;
   justify-content: center;
   border: 1px solid black;
-  justify-content: center;
   flex-direction: row;
 }
 
+/* Six columns: "Say hi" spans the left half, so its edge lines up with the
+   split between the intro column and the projects above it */
 footer {
-  padding: 2em;
-  justify-content: space-around;
-  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.5em;
+  width: 100%;
+  padding-top: 2em;
   margin-top: auto;
 }
 
-/*tabletti landscape view responsiivisuus*/
-@media (max-width: 1200px) {
-  footer {
-    width: 100%;
-    padding: 2em 0;
-  }
+footer > a {
+  justify-content: center;
+}
 
-  #projects-list {
-    flex-direction: column;
-  }
+/* Contact is the warm close: Toasted Butter, with the address as the main
+   line, as bold as the link titles beside it */
+.footer-contact {
+  grid-column: span 3;
+  flex-direction: row;
+  justify-content: flex-start;
+  background: linear-gradient(
+    130deg,
+    rgb(246, 230, 193) 0%,
+    rgb(227, 193, 114) 50%,
+    rgb(246, 230, 193) 100%
+  );
+}
 
-  #now-block {
-    justify-content: flex-start;
-    flex-grow: 0;
-  }
+.footer-contact:hover {
+  background: var(--accent);
+}
+
+.footer-contact-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25em;
+  padding: 0;
+  font-weight: 700;
+}
+
+.footer-contact-text span {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0;
 }
 
 .ph-light {
@@ -180,6 +241,12 @@ nav {
   align-self: stretch;
   flex-direction: column;
   justify-content: space-between;
+}
+
+/* Beside the name square, the three tiles share its height exactly */
+header > nav > a.block-main {
+  flex: 1 1 0;
+  padding-block: 1em;
 }
 
 a.block-main {
@@ -230,16 +297,6 @@ body {
   align-items: center;
 }
 
-#cat-container-desktop {
-  width: auto;
-  background: linear-gradient(
-    130deg,
-    rgb(246, 230, 193) 0%,
-    rgb(227, 193, 114) 50%,
-    rgb(246, 230, 193) 100%
-  );
-}
-
 .block-main {
   width: 100%;
   background-color: #dffbff;
@@ -255,15 +312,6 @@ button {
 }
 
 
-.project-button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  border: 1px solid black;
-  padding: 1em;
-  align-items: center;
-}
-
 button:hover {
   transform: translate(-2px, -2px);
 }
@@ -275,27 +323,6 @@ button:hover {
 img {
   width: 100%;
   max-width: 800px;
-}
-
-#catimg-desktop {
-  display: block;
-  max-width: 150px;
-  min-width: 100px;
-}
-
-#cat-container-mobile {
-  display: none;
-  width: 10rem;
-}
-
-#now {
-  flex-grow: 1;
-  justify-content: stretch;
-}
-
-#now h2 {
-  margin-bottom: 0;
-  margin-top: 0;
 }
 
 h1 {
@@ -317,36 +344,13 @@ h2 {
   font-style: normal;
 }
 
-.page-link {
-  text-align: center;
-  margin: 0em;
-  font-family: var(--font-family);
-  font-weight: 600;
-  font-style: normal;
-}
-
 .footer-link {
   align-items: center;
-}
-
-.project-preview {
-  height: auto;
-  width: 100%;
-  display: block;
-  max-height: 140px;
-}
-
-#blackbox {
-  background-color: black;
 }
 
 .column {
   display: flex;
   flex-direction: column;
-}
-
-.project-year {
-  text-align: center;
 }
 
 .project-title {
@@ -355,16 +359,6 @@ h2 {
 
 #project-page-main-container {
   height: 100%;
-}
-
-#contact-button-container {
-  justify-content: center;
-  margin-top: 5em;
-}
-
-#contact-button {
-  min-width: 40vw;
-  min-height: 3em;
 }
 
 .project-description {
@@ -390,37 +384,6 @@ h2 {
     font-size: 1rem;
   }
 
-  #cat-container-desktop {
-    display: none;
-  }
-
-  #cat-container-mobile {
-    display: block;
-    background: linear-gradient(
-      130deg,
-      rgb(246, 230, 193) 0%,
-      rgb(227, 193, 114) 50%,
-      rgb(246, 230, 193) 100%
-    );
-  }
-
-  #catimg-mobile {
-    display: block;
-  }
-
-  #projects-list {
-    flex-direction: column;
-    height: auto;
-    width: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
-    justify-content: space-around;
-  }
-
-  #projects-content-block {
-    flex-grow: 2;
-  }
-
   h1 {
     font-size: 3rem;
   }
@@ -443,13 +406,14 @@ h2 {
     align-items: center;
   }
 
-  #hero #hero > h1 {
-    font-size: 4rem;
-  }
-
   #headline {
     max-width: 23rem;
     width: auto;
+    min-height: 10rem;
+  }
+
+  #cat-greeter {
+    width: 10rem;
   }
 
   p {
@@ -465,27 +429,17 @@ h2 {
     max-width: none;
   }
 */
-  .row,
-  footer {
+  .row {
     flex-direction: column;
   }
 
   footer {
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 0;
-    padding: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding-top: 1rem;
   }
 
   footer > a {
-    margin: 0.5rem;
-    font-size: 1.5rem;
-  }
-
-  #contact-button-container {
-    margin: auto;
-    margin-bottom: 1rem;
-    margin-top: 5rem;
+    font-size: 1rem;
   }
 
   #headline-row {
@@ -502,27 +456,30 @@ h2 {
     align-items: flex-start;
   }
 
+  /* On phones too the tagline stays above the labels, and the labels above
+     the 1rem text */
   #headline h2 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+  }
+
+  .tile-label {
+    font-size: 1.25rem;
+  }
+
+  #all-projects {
+    font-size: 1rem;
+    padding: 1em;
   }
 }
 
 @media (max-width: 400px) {
-  .project-button {
-    width: auto;
-  }
-
   #headline {
     width: auto;
     padding: 1em;
   }
 
-  .page-link {
-    font-size: 1rem;
-  }
-
   #headline h2 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 }
 
