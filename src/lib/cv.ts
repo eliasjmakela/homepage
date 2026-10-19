@@ -1,4 +1,5 @@
 import cv from "../content/cv.json";
+import { MONTHS } from "./date";
 import { projects } from "./projects";
 
 export type Kind = "work" | "study" | "project";
@@ -118,11 +119,6 @@ export function projectSpan(p: { start: string; end: string | null }): Span {
     planned: false,
   };
 }
-
-const MONTHS = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-];
 
 /** Entries this short show their months, not just years */
 const SHORT = 0.5;
