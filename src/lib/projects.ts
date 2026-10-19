@@ -10,6 +10,8 @@ interface ProjectFrontmatter {
   end: string | null;
   /** Stopped before it was finished */
   paused?: boolean;
+  /** Leads the landing page's project cards */
+  featured?: boolean;
   /** Screenshot filename in src/assets/ */
   img?: string;
   img_alt?: string;
