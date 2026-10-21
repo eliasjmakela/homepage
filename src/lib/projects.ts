@@ -30,9 +30,11 @@ export interface Project extends Omit<ProjectFrontmatter, "img"> {
   status: "Ongoing" | "Set aside" | "Finished";
 }
 
+// "?frontmatter" loads only the YAML block (see vite.config.ts), so the
+// write-ups stay out of the main bundle until their page opens
 const frontmatters = import.meta.glob<ProjectFrontmatter>(
   "../content/projects/*.mdx",
-  { eager: true, import: "frontmatter" },
+  { eager: true, query: "?frontmatter", import: "default" },
 );
 const bodies = import.meta.glob<{ default: WriteUp }>(
   "../content/projects/*.mdx",
@@ -42,8 +44,15 @@ const images = import.meta.glob<string>("../assets/*.png", {
   import: "default",
 });
 
+/** Every screenshot is 1920×1080; given up front, the page doesn't jump when
+ *  one loads */
+export const SHOT_WIDTH = 1920;
+export const SHOT_HEIGHT = 1080;
+
 function slugFromPath(path: string): string {
-  return path.replace("../content/projects/", "").replace(/\.mdx$/, "");
+  return path
+    .replace("../content/projects/", "")
+    .replace(/\.mdx(\?frontmatter)?$/, "");
 }
 
 /** Newest first */
