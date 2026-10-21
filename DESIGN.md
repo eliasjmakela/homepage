@@ -220,7 +220,7 @@ Depth is a single flat step. A standalone tile casts a hard offset shadow with n
 Every form is a rectangle with square corners. Borders are a 1px solid black hairline. Line style carries state:
 
 - **Dashed** border or rail: planned / future.
-- **3px double right edge:** ongoing, with no end yet.
+- **3px double right edge:** ongoing, with no end yet. CV entries only; project tiles and rows keep a single hairline and say "Ongoing" in words.
 - **3px solid Ink Navy outline:** focus and selection. It sits 2px outside most elements, and 7px inside the border on tiles, which touch the window edge.
 
 The CV adds two signature forms: a 6px **rail** under each tile, drawn to the entry's true length (solid for the past, dashed and hollow for the future), and a small 14px **pawn** square on the selected path entry.

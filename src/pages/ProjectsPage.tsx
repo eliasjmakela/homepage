@@ -2,19 +2,18 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import { NavLink } from "react-router";
 
 import Footer from "../components/Footer";
+import ProjectWhen from "../components/ProjectWhen";
 import styles from "../components/projects/Projects.module.css";
-import { formatSpan, projectSpan } from "../lib/cv";
-import { projects } from "../lib/projects";
+import { projects, SHOT_HEIGHT, SHOT_WIDTH } from "../lib/projects";
+import { usePageTitle } from "../lib/usePageTitle";
 
 export default function ProjectsPage() {
+  usePageTitle("Projects");
   return (
     <div className="column" id="project-page-main-container">
       <div className="row">
         <nav>
-          <NavLink
-            className="block-main hover-accent"
-            to="/"
-          >
+          <NavLink className={`block-main hover-accent ${styles.back}`} to="/">
             <ArrowLeftIcon weight="light" className="ph-light" />
             Back
           </NavLink>
@@ -24,8 +23,8 @@ export default function ProjectsPage() {
         </div>
       </div>
 
-      <div className={styles.grid}>
-        {projects.map((p) => (
+      <main className={styles.grid}>
+        {projects.map((p, i) => (
           <NavLink
             key={p.slug}
             to={`/projects/${p.slug}`}
@@ -33,24 +32,31 @@ export default function ProjectsPage() {
               "block-main hover-accent",
               styles.tile,
               !p.img && styles.noImage,
-              p.status === "Ongoing" && styles.ongoing,
             ]
               .filter(Boolean)
               .join(" ")}
           >
-            {p.img && <img src={p.img} alt={p.img_alt ?? ""} />}
+            {p.img && (
+              <img
+                src={p.img}
+                alt={p.img_alt ?? ""}
+                width={SHOT_WIDTH}
+                height={SHOT_HEIGHT}
+                // the first is on screen straight away, even on a phone
+                loading={i === 0 ? undefined : "lazy"}
+              />
+            )}
             <span className={styles.tileName}>
               {p.name}
               <ArrowRightIcon weight="light" className="ph-light" />
             </span>
             <span className={styles.tileSummary}>{p.summary}</span>
             <span className={styles.meta}>
-              <i>{formatSpan(projectSpan(p))}</i>
-              {p.status !== "Finished" && <span>· {p.status}</span>}
+              <ProjectWhen project={p} />
             </span>
           </NavLink>
         ))}
-      </div>
+      </main>
       <Footer />
     </div>
   );

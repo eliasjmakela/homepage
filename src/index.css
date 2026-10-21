@@ -318,8 +318,10 @@ button:hover {
   gap: 0.5em;
 }
 
+/* height: auto, so width/height attributes only set the shape to keep free */
 img {
   width: 100%;
+  height: auto;
   max-width: 800px;
 }
 

@@ -49,24 +49,18 @@
   margin-top: auto;
 }
 
-.meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5em;
+/* One plain line, as on the landing page: "2026 · Ongoing" */
+.meta,
+.facts .meta {
+  margin: 0;
+  padding: 0;
   font-size: 1rem;
   font-weight: 400;
 }
 
-.meta i,
-.meta span {
-  font-size: 1rem;
-  padding: 0;
-}
-
-/* Ongoing: a double right edge, because it hasn't ended */
-.ongoing {
-  border-right: 3px double black;
+.meta i {
+  display: inline;
+  font-size: inherit;
 }
 
 /* ---------- One project ---------- */
@@ -115,19 +109,25 @@
   margin-top: auto;
 }
 
+/* At least 44px tall, to tap */
 .links a {
   font-size: 1rem;
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
-  padding: 0.6em 1em;
+  padding: 0.75em 1em;
   border: 1px solid black;
 }
 
+/* About 75 characters a line, and the text level with its headings */
 .writeUp {
-  max-width: 45rem;
+  max-width: 38rem;
   width: 100%;
   align-self: center;
+}
+
+.writeUp p {
+  padding-inline: 0;
 }
 
 .writeUp h2 {
@@ -148,6 +148,11 @@
 
   .facts p {
     font-size: 1rem;
+  }
+
+  /* The back tile goes full width here; keep the arrow by its word */
+  nav > a.back {
+    justify-content: flex-start;
   }
 
   /* index.css turns every .row into a column here; keep these as rows */

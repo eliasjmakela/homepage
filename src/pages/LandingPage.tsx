@@ -2,11 +2,16 @@ import { ArrowRightIcon, AsteriskIcon } from "@phosphor-icons/react";
 import lechat from "../assets/lechat.png";
 import { NavLink } from "react-router";
 import Footer from "../components/Footer";
+import ProjectWhen from "../components/ProjectWhen";
 import styles from "../components/landing/Landing.module.css";
 import now from "../content/now.json";
-import { formatSpan, projectSpan } from "../lib/cv";
 import { formatIsoDate } from "../lib/date";
-import { projects, type Project } from "../lib/projects";
+import {
+  projects,
+  SHOT_HEIGHT,
+  SHOT_WIDTH,
+  type Project,
+} from "../lib/projects";
 import { techLabel } from "../lib/tech";
 
 /** The featured project leads with its screenshot; the rest, newest first, are text rows */
@@ -16,13 +21,10 @@ const others = projects.filter((p) => p !== lead);
 
 /** One plain line: the tech, when it ran and, unless it's finished, where it's at */
 function ProjectMeta({ project }: { project: Project }) {
-  const finished = project.status === "Finished";
-  // "2026–" already means ongoing; with the status beside it, drop the dash
-  const span = formatSpan(projectSpan(project)).replace(/–$/, "");
   return (
     <span className={styles.cardMeta}>
-      {project.tech.map(techLabel).join(", ")} · <i>{span}</i>
-      {!finished && ` · ${project.status}`}
+      {project.tech.map(techLabel).join(", ")} ·{" "}
+      <ProjectWhen project={project} />
     </span>
   );
 }
@@ -98,7 +100,12 @@ export default function LandingPage() {
                 className={`hover-accent ${styles.card} ${styles.lead}`}
                 to={`/projects/${lead.slug}`}
               >
-                <img alt={lead.img_alt ?? ""} src={lead.img} />
+                <img
+                  alt={lead.img_alt ?? ""}
+                  src={lead.img}
+                  width={SHOT_WIDTH}
+                  height={SHOT_HEIGHT}
+                />
                 <span className={styles.cardText}>
                   <span className={styles.cardName}>
                     {lead.name}
