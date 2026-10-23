@@ -28,15 +28,9 @@ export default function ProjectsPage() {
           <NavLink
             key={p.slug}
             to={`/projects/${p.slug}`}
-            className={[
-              "block-main hover-accent",
-              styles.tile,
-              !p.img && styles.noImage,
-            ]
-              .filter(Boolean)
-              .join(" ")}
+            className={`block-main hover-accent ${styles.tile}`}
           >
-            {p.img && (
+            {p.img ? (
               <img
                 src={p.img}
                 alt={p.img_alt ?? ""}
@@ -45,6 +39,8 @@ export default function ProjectsPage() {
                 // the first is on screen straight away, even on a phone
                 loading={i === 0 ? undefined : "lazy"}
               />
+            ) : (
+              <span className={styles.noShot} aria-hidden="true" />
             )}
             <span className={styles.tileName}>
               {p.name}

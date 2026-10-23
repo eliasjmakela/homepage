@@ -1,13 +1,12 @@
 /* ---------- Index: one tile per project ---------- */
 
 .grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   gap: 0.5em;
 }
 
 .tile {
-  flex: 1 1 18rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -15,18 +14,20 @@
   font-size: 1rem;
 }
 
-/* No screenshot: only as wide as its text needs */
-.tile.noImage {
-  flex: 0 1 16rem;
-}
-
-.tile img {
+.tile img,
+.noShot {
   display: block;
   width: 100%;
   max-width: none;
   aspect-ratio: 16 / 10;
   object-fit: cover;
   border: 1px solid black;
+}
+
+/* No screenshot yet: an empty dashed frame, dashed for what's still to come */
+.noShot {
+  padding: 0;
+  border-style: dashed;
 }
 
 .tileName {
@@ -141,9 +142,8 @@
 }
 
 @media (max-width: 700px) {
-  .tile,
-  .tile.noImage {
-    flex-basis: 100%;
+  .grid {
+    grid-template-columns: 1fr;
   }
 
   .facts p {
