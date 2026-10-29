@@ -149,6 +149,8 @@ Density is generous on content pages and tight on the CV timeline, where tiles a
 
 A cool, airy palette of pale cyans and navy ink, with one deep teal for interaction and one warm butter-gold for the personal touch.
 
+Every colour is a custom property on `:root` in `src/index.css`: `--accent` (Deep Lagoon), `--ink`, `--hairline`, `--sky` (Pale Sky), `--board` (Board Cyan), `--sky-haze`, `--paper` and `--butter` (the whole Toasted Butter gradient), plus `--shadow-tile` and `--shadow-dim`. Faded lines mix a token with `color-mix()` rather than using a new literal.
+
 ### Primary
 - **Deep Lagoon** (`deep-lagoon`): the only accent. It fills a tile, chip, control or nav link on hover, marks a pressed skill chip, and tints a CV rail on hover. Text on it is always Paper White.
 
@@ -199,7 +201,7 @@ The page is a flex mosaic: tiles stacked in rows and columns, with a universal `
 - **Reading pages (blog, project write-ups):** a single 45rem column, centred.
 - **CV:** a full-width board holding horizontal lanes (desktop) or a vertical path of squares (phones), with a sticky lane-label column and a minimap above.
 
-**Breakpoints:** at 700px every `.row` becomes a column, type steps down (h1 3rem, body 1rem), the cat square shrinks to 10rem, section labels and card names step down to Title Small (1.25rem), and the footer becomes "Say hi" over three link tiles. At 400px the tagline and page links shrink again.
+**Breakpoints:** at 700px every `.row` becomes a column, type steps down (h1 3rem, body 1rem), the cat square shrinks to 10rem, section labels and card names step down to Title Small (1.25rem), and the footer becomes "Say hi" over three link tiles. At 400px the tagline and page links shrink again, and the landing nav keeps the width its labels and arrows need: its tiles' side padding eases from 1.5em down to 0.75em at 320px, and the name square gives way instead.
 
 ## Elevation & Depth
 
