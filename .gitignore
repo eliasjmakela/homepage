@@ -33,7 +33,5 @@ dist-ssr
 .impeccable
 cv/
 
-# Claude Code: personal settings, and the Impeccable engine binary (the
-# launcher downloads it when missing)
+# Claude Code personal settings
 .claude/settings.local.json
-.claude/skills/impeccable/scripts/bin/
