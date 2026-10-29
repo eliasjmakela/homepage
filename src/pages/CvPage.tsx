@@ -7,6 +7,8 @@ import CvLanes from "../components/cv/CvLanes";
 import CvPath, { NOW_ID } from "../components/cv/CvPath";
 import CvReadout from "../components/cv/CvReadout";
 import { entries, skills, yearNow } from "../lib/cv";
+import { techLabel } from "../lib/tech";
+import { usePageTitle } from "../lib/usePageTitle";
 
 const PHONE = "(max-width: 700px)";
 
@@ -29,6 +31,7 @@ function latestId(): string | null {
 }
 
 export default function CvPage() {
+  usePageTitle("CV");
   const isPhone = useIsPhone();
   const today = useMemo(() => new Date(), []);
   const now = yearNow(today);
@@ -58,7 +61,7 @@ export default function CvPage() {
   const selected =
     selectedId === NOW_ID
       ? "now"
-      : entries.find((e) => e.id === selectedId) ?? null;
+      : (entries.find((e) => e.id === selectedId) ?? null);
 
   // An entry is never faded and selected at once. Picking a skill the
   // selected entry doesn't use deselects it...
@@ -75,14 +78,17 @@ export default function CvPage() {
     setSelectedId(id);
   };
 
+  // The thread and the fading are visual, so say what a skill matched too
+  const matches = skill ? entries.filter((e) => e.tech.includes(skill)) : [];
+  const traced = skill
+    ? `${techLabel(skill)}: ${matches.length} ${matches.length === 1 ? "entry" : "entries"}, ${matches.map((e) => e.title).join(", ")}`
+    : "";
+
   return (
     <div className="column" id="cv-page-main-container">
-      <div className="row">
+      <header className="row">
         <nav>
-          <NavLink
-            className="block-main hover-accent"
-            to="/"
-          >
+          <NavLink className="block-main hover-accent" to="/">
             <ArrowLeftIcon weight="light" className="ph-light" />
             Back
           </NavLink>
@@ -90,41 +96,46 @@ export default function CvPage() {
         <div className="block-main">
           <h1>CV</h1>
         </div>
-      </div>
+      </header>
 
-      <section className="block-main">
-        <p className="project-description">
-          Where I've worked, studied and built things, from the start up to
-          today. Pick a skill to trace everywhere I've used it.
-        </p>
-        <SkillChips
-          skills={skills}
-          value={skill}
-          onChange={chooseSkill}
-          label="Trace a skill"
-        />
-      </section>
+      <main className="column">
+        <section className="block-main">
+          <p className="project-description">
+            Where I've worked, studied and built things, from the start up to
+            today. Pick a skill to trace everywhere I've used it.
+          </p>
+          <p className="visually-hidden" aria-live="polite">
+            {traced}
+          </p>
+          <SkillChips
+            skills={skills}
+            value={skill}
+            onChange={chooseSkill}
+            label="Trace a skill"
+          />
+        </section>
 
-      {isPhone ? (
-        <CvPath
-          entries={entries}
-          today={today}
-          skill={skill}
-          selectedId={selectedId}
-          onSelect={select}
-        />
-      ) : (
-        <CvLanes
-          entries={entries}
-          now={now}
-          today={today}
-          skill={skill}
-          selectedId={selectedId}
-          onSelect={select}
-        />
-      )}
+        {isPhone ? (
+          <CvPath
+            entries={entries}
+            today={today}
+            skill={skill}
+            selectedId={selectedId}
+            onSelect={select}
+          />
+        ) : (
+          <CvLanes
+            entries={entries}
+            now={now}
+            today={today}
+            skill={skill}
+            selectedId={selectedId}
+            onSelect={select}
+          />
+        )}
 
-      <CvReadout entry={selected} />
+        <CvReadout entry={selected} />
+      </main>
       <Footer />
     </div>
   );

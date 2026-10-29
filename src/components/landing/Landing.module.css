@@ -6,8 +6,8 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 0.5em;
-  border: 1px solid black;
-  background-color: #dffbff;
+  border: 1px solid var(--hairline);
+  background-color: var(--sky);
   font-size: 1rem;
   font-weight: 400;
 }
@@ -56,7 +56,7 @@
   max-width: none;
   object-fit: contain;
   background-color: black;
-  border-right: 1px solid black;
+  border-right: 1px solid var(--hairline);
 }
 
 .cardText {
@@ -100,7 +100,7 @@
     height: auto;
     aspect-ratio: 16 / 9;
     border-right: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--hairline);
   }
 
   /* Card names sit level with the 1.25rem section labels, never above them */

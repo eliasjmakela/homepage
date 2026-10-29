@@ -23,7 +23,7 @@ export default function ProjectPage() {
 
   return (
     <div className="column" id="project-page-main-container">
-      <div className="row">
+      <header className="row">
         <nav>
           <NavLink
             className={`block-main hover-accent ${styles.back}`}
@@ -36,7 +36,7 @@ export default function ProjectPage() {
         <div className="block-main">
           <h1>{project.name}</h1>
         </div>
-      </div>
+      </header>
 
       <main className="column">
         <div className={`row ${styles.top}`}>

@@ -11,7 +11,7 @@ export default function ProjectsPage() {
   usePageTitle("Projects");
   return (
     <div className="column" id="project-page-main-container">
-      <div className="row">
+      <header className="row">
         <nav>
           <NavLink className={`block-main hover-accent ${styles.back}`} to="/">
             <ArrowLeftIcon weight="light" className="ph-light" />
@@ -21,7 +21,7 @@ export default function ProjectsPage() {
         <div className="block-main">
           <h1>Projects</h1>
         </div>
-      </div>
+      </header>
 
       <main className={styles.grid}>
         {projects.map((p, i) => (

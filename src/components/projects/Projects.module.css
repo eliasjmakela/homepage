@@ -21,7 +21,7 @@
   max-width: none;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  border: 1px solid black;
+  border: 1px solid var(--hairline);
 }
 
 /* No screenshot yet: an empty dashed frame, dashed for what's still to come */
@@ -117,7 +117,7 @@
   align-items: center;
   gap: 0.4em;
   padding: 0.75em 1em;
-  border: 1px solid black;
+  border: 1px solid var(--hairline);
 }
 
 /* About 75 characters a line, and the text level with its headings */

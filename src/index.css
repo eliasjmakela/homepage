@@ -1,5 +1,18 @@
 :root {
-  --accent: #0d6b70;
+  /* The palette, named as in DESIGN.md */
+  --accent: #0d6b70; /* Deep Lagoon: only ever a response to hover or a choice */
+  --ink: #010e24;
+  --hairline: #000000;
+  --sky: #dffbff;
+  --board: #c2f5ff;
+  --sky-haze: rgba(132, 235, 255, 0.5);
+  --paper: #ffffff;
+  /* Toasted Butter, for the personal tiles only */
+  --butter: linear-gradient(130deg, #f6e6c1 0%, #e3c172 50%, #f6e6c1 100%);
+
+  --shadow-tile: 3px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-dim: 3px 3px 0 rgba(0, 0, 0, 0.1);
+
   --font-family: "IBM Plex Sans", sans-serif;
   --font-family-h: "Fraunces", serif;
 }
@@ -8,7 +21,8 @@
   box-sizing: border-box;
 }
 
-header {
+/* The landing page's name and nav */
+.main-container > header {
   display: flex;
   flex-direction: row;
   background-color: transparent;
@@ -94,8 +108,26 @@ li {
   list-style: none;
 }
 
+/* Text only screen readers get, such as what a skill filter matched */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* A page's h1 takes focus after navigation (see Root.tsx); it isn't a
+   control, so it needs no ring */
+h1[tabindex="-1"]:focus {
+  outline: none;
+}
+
 :focus-visible {
-  outline: 3px solid #010e24;
+  outline: 3px solid var(--ink);
   outline-offset: 2px;
 }
 
@@ -106,16 +138,16 @@ a.block-main:focus-visible {
 
 .hover-accent:hover {
   background-color: var(--accent);
-  color: white;
+  color: var(--paper);
 }
 
 .accent {
   background-color: var(--accent);
-  color: white;
+  color: var(--paper);
 }
 
 .accent a {
-  color: white;
+  color: var(--paper);
 }
 
 #projects {
@@ -151,12 +183,7 @@ a.block-main:focus-visible {
   justify-content: center;
   width: 12rem;
   aspect-ratio: 1;
-  background: linear-gradient(
-    130deg,
-    rgb(246, 230, 193) 0%,
-    rgb(227, 193, 114) 50%,
-    rgb(246, 230, 193) 100%
-  );
+  background: var(--butter);
 }
 
 #cat-greeter img {
@@ -168,7 +195,7 @@ a.block-main:focus-visible {
   padding: 1.5em;
   display: flex;
   justify-content: center;
-  border: 1px solid black;
+  border: 1px solid var(--hairline);
   flex-direction: row;
 }
 
@@ -193,12 +220,7 @@ footer > a {
   grid-column: span 3;
   flex-direction: row;
   justify-content: flex-start;
-  background: linear-gradient(
-    130deg,
-    rgb(246, 230, 193) 0%,
-    rgb(227, 193, 114) 50%,
-    rgb(246, 230, 193) 100%
-  );
+  background: var(--butter);
 }
 
 .footer-contact:hover {
@@ -221,6 +243,7 @@ footer > a {
 }
 
 .ph-light {
+  flex: none; /* a long label beside it must never squeeze it to nothing */
   font-size: 1em;
 }
 
@@ -231,7 +254,7 @@ a {
   font-style: normal;
   font-size: 1.5rem;
   text-decoration: none;
-  color: black;
+  color: var(--hairline);
 }
 
 nav {
@@ -242,7 +265,7 @@ nav {
 }
 
 /* Beside the name square, the three tiles share its height exactly */
-header > nav > a.block-main {
+.main-container > header > nav > a.block-main {
   flex: 1 1 0;
   padding-block: 1em;
 }
@@ -276,15 +299,15 @@ body {
 body {
   background: linear-gradient(
     180deg,
-    rgba(223, 251, 255, 1) 0%,
-    rgba(132, 235, 255, 0.5) 40%,
-    rgba(132, 235, 255, 0.5) 60%,
-    rgba(223, 251, 255, 1) 100%
+    var(--sky) 0%,
+    var(--sky-haze) 40%,
+    var(--sky-haze) 60%,
+    var(--sky) 100%
   );
 
   font-family: var(--font-family);
   font-size: 16px;
-  color: #010e24;
+  color: var(--ink);
   margin: 0;
   padding: 0;
 }
@@ -297,16 +320,16 @@ body {
 
 .block-main {
   width: 100%;
-  background-color: #dffbff;
-  border-color: #000000;
+  background-color: var(--sky);
+  border-color: var(--hairline);
   border-width: 1px;
   border-style: solid;
   padding: 1.5em;
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-tile);
 }
 
 button {
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-tile);
 }
 
 
@@ -332,7 +355,7 @@ h1 {
   font-weight: 600;
   font-optical-sizing: auto;
   font-style: normal;
-  color: #010e24;
+  color: var(--ink);
 }
 
 h2 {
@@ -449,7 +472,7 @@ h2 {
     justify-content: flex-start;
   }
 
-  header {
+  .main-container > header {
     display: flex;
     flex-direction: row;
     background-color: transparent;
@@ -481,6 +504,16 @@ h2 {
   #headline h2 {
     font-size: 1.4rem;
   }
+
+  /* Beside the name square there's barely room for "Projects" and its
+     arrow: the nav keeps what it needs and the square gives way */
+  .main-container > header > nav {
+    flex: none;
+  }
+
+  .main-container > header > nav > a.block-main {
+    padding-inline: clamp(0.75em, 24vw - 4rem, 1.5em); /* full by ~370px */
+  }
 }
 
 .blog-tags {
@@ -499,7 +532,7 @@ ul.blog-tags {
   font-family: var(--font-family);
   font-size: 1.1rem;
   padding: 0.35em 0.9em;
-  border: 1px solid black;
+  border: 1px solid var(--hairline);
 }
 
 .tag svg {
@@ -522,7 +555,8 @@ ul.blog-tags {
 
 /* Fill the window; a short post floats in the middle, with even space above
    and below, and the footer stays at the bottom */
-#blog-post-main-container {
+#blog-post-main-container,
+#error-page-main-container {
   min-height: 100dvh;
 }
 
@@ -582,8 +616,8 @@ ul.blog-tags {
 }
 
 .blog-content pre {
-  background-color: #010e24;
-  color: #dffbff;
+  background-color: var(--ink);
+  color: var(--sky);
   padding: 1em;
   overflow-x: auto;
 }

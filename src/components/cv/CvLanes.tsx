@@ -455,7 +455,7 @@ export default function CvLanes({
                   key={i}
                   d={legPath(leg)}
                   fill="none"
-                  stroke="#010e24"
+                  stroke="currentColor"
                   strokeWidth={2}
                   strokeLinejoin="miter"
                 />
@@ -467,7 +467,7 @@ export default function CvLanes({
                   y={py - NODE / 2}
                   width={NODE}
                   height={NODE}
-                  fill="#010e24"
+                  fill="currentColor"
                 />
               ))}
             </svg>

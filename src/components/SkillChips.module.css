@@ -17,9 +17,9 @@
   align-items: center;
   gap: 0.4em;
   font: 400 1rem/1.2 var(--font-family);
-  color: #010e24;
-  background-color: #dffbff;
-  border: 1px solid black;
+  color: var(--ink);
+  background-color: var(--sky);
+  border: 1px solid var(--hairline);
   padding: 0.5em 0.9em;
   cursor: pointer;
   box-shadow: none;
@@ -32,5 +32,5 @@
 .chip:hover,
 .chip[aria-pressed="true"] {
   background-color: var(--accent);
-  color: white;
+  color: var(--paper);
 }

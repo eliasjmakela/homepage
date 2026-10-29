@@ -10,9 +10,10 @@ const STRETCH = 1.1;
 const MIN_SCALE = 0.8;
 const WRAP_SCALE = 0.9;
 
-// Must match .laneEntry and .card in Cv.module.css
-const TITLE_PX = 16;
-const SPAN_PX = 14.4;
+// Must match .laneEntry and .card in Cv.module.css. The text is in rem, so
+// it follows the reader's font size; padding and gap are fixed px.
+const TITLE_REM = 1;
+const SPAN_REM = 0.9;
 const LINE = 1.3;
 const PAD_X = 22 + 2; // padding + borders
 const PAD_Y = 16 + 2;
@@ -35,6 +36,11 @@ function family(): string {
   return v || '"IBM Plex Sans", sans-serif';
 }
 
+/** px per rem: 16 unless the reader has picked another default size */
+function rootPx(): number {
+  return parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+}
+
 function measure(text: string, font: string): number {
   ctx ??= document.createElement("canvas").getContext("2d");
   if (!ctx) return text.length * 9; // no canvas: a rough guess
@@ -48,9 +54,12 @@ export function fitTile(
   baseWidth: number,
 ): TileFit {
   const f = family();
+  const TITLE_PX = TITLE_REM * rootPx();
+  const SPAN_PX = SPAN_REM * rootPx();
   const titleW = (s: number, t = title) =>
     measure(t, `700 ${TITLE_PX * s}px ${f}`);
-  const spanW = (s: number) => measure(span, `italic 400 ${SPAN_PX * s}px ${f}`);
+  const spanW = (s: number) =>
+    measure(span, `italic 400 ${SPAN_PX * s}px ${f}`);
   const chrome = PAD_X + SAFETY;
   const need = (s: number, tw: number) =>
     Math.ceil(Math.max(tw, spanW(s)) + chrome);
