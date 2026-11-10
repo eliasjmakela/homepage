@@ -48,6 +48,26 @@ typography:
     fontSize: "0.9rem"
     fontWeight: 400
     lineHeight: 1.3
+  drop-cap:
+    fontFamily: "Fraunces, serif"
+    fontSize: "3.55rem"
+    fontWeight: 600
+    lineHeight: 0.8
+  standfirst:
+    fontFamily: "IBM Plex Sans, sans-serif"
+    fontSize: "1.4rem"
+    fontWeight: 400
+    lineHeight: 1.4
+  pull-quote:
+    fontFamily: "IBM Plex Sans, sans-serif"
+    fontSize: "1.3rem"
+    fontWeight: 600
+    lineHeight: 1.3
+  caps-label:
+    fontFamily: "IBM Plex Sans, sans-serif"
+    fontSize: "0.8rem"
+    fontWeight: 600
+    letterSpacing: "0.1em"
 rounded:
   none: "0px"
 spacing:
@@ -123,6 +143,22 @@ components:
   say-hi-hover:
     backgroundColor: "{colors.deep-lagoon}"
     textColor: "{colors.paper-white}"
+  blog-folio:
+    backgroundColor: "{colors.pale-sky}"
+    textColor: "{colors.ink-navy}"
+    typography: "{typography.caps-label}"
+    rounded: "{rounded.none}"
+    padding: "0.7em 1.5em"
+  pull-quote:
+    backgroundColor: "{colors.paper-white}"
+    textColor: "{colors.ink-navy}"
+    typography: "{typography.pull-quote}"
+    rounded: "{rounded.none}"
+    padding: "1em 1.1em"
+  end-mark:
+    backgroundColor: "{colors.toasted-butter}"
+    rounded: "{rounded.none}"
+    size: "0.65em"
 ---
 
 # Design System: Elias Mäkelä
@@ -155,7 +191,7 @@ Every colour is a custom property on `:root` in `src/index.css`: `--accent` (Dee
 - **Deep Lagoon** (`deep-lagoon`): the only accent. It fills a tile, chip, control or nav link on hover, marks a pressed skill chip, and tints a CV rail on hover. Text on it is always Paper White.
 
 ### Secondary
-- **Toasted Butter** (`toasted-butter`, with `toasted-butter-light`): a 130° gradient (light → butter → light) used only for personal moments: the cat square beside the landing tagline, the "now" square on the CV path, and the footer's "Say hi" tile. Decorative tiles stay put on hover; "Say hi" is a link, so it floods Deep Lagoon like every other link. The cat appears once per page: the "Say hi" tile carries the gold without it.
+- **Toasted Butter** (`toasted-butter`, with `toasted-butter-light`): a 130° gradient (light → butter → light) used only for personal moments: the cat square beside the landing tagline, the "now" square on the CV path, the footer's "Say hi" tile, and the small end mark that closes every blog post. Decorative tiles stay put on hover; "Say hi" is a link, so it floods Deep Lagoon like every other link. The cat appears once per page: the "Say hi" tile carries the gold without it.
 
 ### Neutral
 - **Ink Navy** (`ink-navy`): all body text, headings, the focus ring, CV mini-bars, the now line and flag, connectors, the pawn, and code-block backgrounds.
@@ -163,7 +199,7 @@ Every colour is a custom property on `:root` in `src/index.css`: `--accent` (Dee
 - **Pale Sky** (`pale-sky`): the resting fill of every tile, chip, control and entry, and the text colour on dark (code, now flag).
 - **Board Cyan** (`board-cyan`): the timeline surface tiles sit on, and the fill of anything "not yet": planned entries and future rails. It reads as unfilled but still hides lines behind it.
 - **Sky Haze** (`sky-haze`): the middle band of the page background, a vertical gradient Pale Sky → Sky Haze (40–60%) → Pale Sky.
-- **Paper White** (`paper-white`): text and links on Deep Lagoon.
+- **Paper White** (`paper-white`): text and links on Deep Lagoon, and the fill of a blog pull quote, the one tile that sits brighter than the sheet under it.
 
 ### Named Rules
 **The Response-Only Accent Rule.** Deep Lagoon never sits on a resting element. It appears only as an answer to the pointer (hover) or to a choice (a pressed chip). A screen at rest is cyan, navy and black.
@@ -176,7 +212,7 @@ Every colour is a custom property on `:root` in `src/index.css`: `--accent` (Dee
 **Body Font:** IBM Plex Sans 400/600/700, plus italic 400 (with sans-serif)
 **Label/Mono Font:** the system monospace, only inside blog code
 
-**Character:** Fraunces brings a soft, characterful serif to the name and page titles only. Plex does everything else: neutral, technical, honest.
+**Character:** Fraunces brings a soft, characterful serif to the name, page titles and the blog drop cap only. Plex does everything else: neutral, technical, honest. Blog posts borrow a newspaper's furniture (folio, standfirst, lead-in, pull quote), but all of it is set in Plex.
 
 ### Hierarchy
 - **Display** (Fraunces 600, 4rem, 3rem ≤700px): the page title (name, "CV", project names), centred inside its own tile. Left-aligned only on blog posts.
@@ -185,11 +221,18 @@ Every colour is a custom property on `:root` in `src/index.css`: `--accent` (Dee
 - **Title Small** (Plex 700, 1.25rem): phones only. Section labels and project card names step down to it, so the order stays tagline, then labels and cards, then 1rem text.
 - **Title** (Plex 700, 1.5rem): nav and footer links, project tile names, readout and write-up headings (left-aligned).
 - **Body Large** (Plex 400, 1.5rem, 1rem ≤700px): landing copy, "now" items, project facts. The site's default text size is large.
-- **Body** (Plex 400, 1rem, line-height 1.6): long-form blog and project write-ups in a 45rem column, chips, tags in context, readout text.
+- **Body** (Plex 400, 1rem, line-height 1.6): long-form blog posts (in a 40rem column) and project write-ups, chips, tags in context, readout text.
 - **Label** (Plex 400, 0.9rem, line-height 1.3): CV entry tiles, lane labels (700), ruler years (italic, tabular numbers), hints (italic). The now flag is 0.8rem/700.
+- **Caps Label** (Plex 600, 0.8rem, uppercase, 0.1em tracking): the blog folio. The tag rail's "Under" is the same at 0.75rem.
+
+**Blog furniture:**
+- **Drop cap** (Fraunces 600, 3.55rem, line-height 0.8): the first letter of a post, floated over two lines. It appears only when the post opens with bold words.
+- **Lead-in** (Plex 600, 0.86em, uppercase, 0.07em tracking): those opening bold words, written as `**Last weekend,**` in the MDX.
+- **Standfirst** (Plex 400, 1.4rem, 1.2rem ≤700px, line-height 1.4, max 40rem): the post's frontmatter `description`, under the headline. Upright, because italic is for metadata.
+- **Pull quote** (Plex 600, 1.3rem, line-height 1.3, balanced): a line from the post on a paper tile.
 
 ### Named Rules
-**The One Serif Rule.** Fraunces is only for `h1`. Everything else, including h2 section headers, is Plex.
+**The One Serif Rule.** Fraunces is only for `h1` and the blog drop cap, which hands the headline's voice to the first letter of the text. Everything else, including h2 section headers and pull quotes, is Plex.
 
 **The Italic Is Metadata Rule.** Italic Plex marks secondary information: dates and spans, "Last updated", ruler years and hints. It is never used for emphasis in UI.
 
@@ -198,10 +241,11 @@ Every colour is a custom property on `:root` in `src/index.css`: `--accent` (Dee
 The page is a flex mosaic: tiles stacked in rows and columns, with a universal `0.5em` gap that becomes the visible "grout" between tiles. There is no page-wide grid. Two local grids exist only so edges meet: the landing body's two equal halves, and the footer's six columns that put "Say hi" on the same split. Pages are full-height columns (`100vh`/`100dvh`) with the footer pushed to the bottom.
 
 - **Landing:** a square name tile (`clamp(20em, 25vw, 30em)`, `aspect-ratio: 1`) beside a stacked nav column whose three tiles share its height exactly, with sky to its right. Under it, the tagline tile stops short (55%) beside the 12rem cat square, and the two share a height. Then two equal halves: intro and "Right now" on the left, projects on the right. Each half keeps its own height, so sky shows under the shorter one. The footer's six columns put the "Say hi" edge on that same split.
-- **Reading pages (blog, project write-ups):** a single 45rem column, centred.
+- **Blog posts:** two tiles across the grout, up to 60rem wide and centred: a thin folio tile, then the sheet. On the sheet the headline and standfirst span the width; below them the text runs in a 40rem column (about 75 characters) beside a 12rem tag rail. A post without tags keeps the same column and leaves the rail empty.
+- **Project write-ups:** a single 45rem column, centred.
 - **CV:** a full-width board holding horizontal lanes (desktop) or a vertical path of squares (phones), with a sticky lane-label column and a minimap above.
 
-**Breakpoints:** at 700px every `.row` becomes a column, type steps down (h1 3rem, body 1rem), the cat square shrinks to 10rem, section labels and card names step down to Title Small (1.25rem), and the footer becomes "Say hi" over three link tiles. At 400px the tagline and page links shrink again, and the landing nav keeps the width its labels and arrows need: its tiles' side padding eases from 1.5em down to 0.75em at 320px, and the name square gives way instead.
+**Breakpoints:** at 700px every `.row` becomes a column, type steps down (h1 3rem, body 1rem), the cat square shrinks to 10rem, section labels and card names step down to Title Small (1.25rem), and the footer becomes "Say hi" over three link tiles. On blog posts the folio becomes two rows of two with a short date ("9 Nov 2026"), the tag rail folds into one row above the text, and pull quotes stop floating and sit full width between paragraphs. At 400px the tagline and page links shrink again, and the landing nav keeps the width its labels and arrows need: its tiles' side padding eases from 1.5em down to 0.75em at 320px, and the name square gives way instead.
 
 ## Elevation & Depth
 
@@ -210,10 +254,10 @@ Depth is a single flat step. A standalone tile casts a hard offset shadow with n
 ### Shadow Vocabulary
 - **Tile lift** (`box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3)`): every `block-main` tile, buttons, CV entry cards.
 - **Dimmed tile** (`box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1)`): a CV entry faded out by a skill filter.
-- **Pawn** (`box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3)`): the marker on the selected CV square.
+- **Pawn** (`box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3)`): the marker on the selected CV square, and the blog end mark.
 
 ### Named Rules
-**The One Layer Rule.** Only top-level tiles cast a shadow. Anything sitting on a tile is flat, with no shadow and no lift. That keeps the tiles the only objects with depth.
+**The One Layer Rule.** Only top-level tiles cast a shadow. Anything sitting on a tile is flat, with no shadow and no lift. That keeps the tiles the only objects with depth. Three small things are laid on a tile on purpose, like a scrap of paper on the board, and keep their shadow: the CV pawn, the blog end mark and the blog pull quote. None of them is interactive.
 
 **The No Blur Rule.** Shadows are always hard offsets. A blurred or ambient shadow breaks the mosaic.
 
@@ -253,7 +297,17 @@ Every component is quiet and precise: an outlined rectangle that answers the poi
 - **Style:** inline-flex, 1px black border, padding 0.6em 1em, Plex 1rem, with a trailing light arrow. Used for project and readout links (demo, source, write-up).
 
 ### Navigation
-- **Style:** a column of full tiles, Plex 700 1.5rem, label left and arrow right. "Back" links put the arrow first. The footer starts with the Toasted Butter "Say hi" tile, left-aligned: a 1rem/600 label over the address at 1.5rem/700, as bold as the link titles beside it. Then come GitHub, LeetCode and LinkedIn tiles, each with a 32px light Phosphor icon under its label. At 700px or below, "Say hi" spans the full width above the three links.
+- **Style:** a column of full tiles, Plex 700 1.5rem, label left and arrow right. "Back" links put the arrow first. The footer starts with the Toasted Butter "Say hi" tile, left-aligned: a 1rem/600 label over the address at 1.5rem/700, as bold as the link titles beside it, with a 32px light Phosphor paper plane at the tile's far right edge. Then come GitHub, LeetCode and LinkedIn tiles, each with a 32px light Phosphor icon under its label. At 700px or below, "Say hi" spans the full width above the three links.
+
+### Blog post (newspaper furniture)
+A post reads like a cutting from a paper, built only from tiles, hairlines and caps labels.
+- **Folio:** its own thin `block-main` tile above the sheet, a running line in Caps Label: the section path "Blog › {first tag}" (Blog links to the list), "No. {n}" (the post's place in the archive, oldest first), the long date ("Monday 9 November 2026") and the reading time (word count at 200 a minute, worked out at build time). Every item is derived, so a new post needs no extra frontmatter.
+- **Sheet:** the `block-main` tile holding the left-aligned Display headline, the standfirst, then the tag rail and the text column.
+- **Tag rail:** a hairline across its top, an "Under" caps label, and the post's tags as outlined Tags stacked down the rail.
+- **Lead-in and drop cap:** open a post with bold words and they're set in caps under a Fraunces drop cap. A post that opens without bold text gets neither.
+- **Pull quote:** `<Pull>…</Pull>` in the MDX. A Paper White tile with a hairline and Tile lift, floated right at 40% of the column, Pull quote type. It repeats the text, so it's hidden from screen readers. Optional; most posts won't need one.
+- **End mark:** a 0.65em Toasted Butter square with a hairline and the pawn shadow, inline after the last word of the last paragraph. A post that ends on a list or code block has none.
+- **Not used:** double or dashed rules (they mean ongoing and planned), italic standfirsts, multi-column text.
 
 ### Landing projects
 - **Lead:** the one project with a picture, chosen by `featured: true` in its frontmatter. Its screenshot sits beside the text, whole and uncropped on black, so it reads as a screen.
@@ -283,11 +337,13 @@ Every component is quiet and precise: an outlined rectangle that answers the poi
 - **Do** keep a link card's metadata as one plain line, so the card is the only thing in it that looks clickable.
 - **Do** let edges meet exactly where tiles pair (name and nav, tagline and cat, the body split and "Say hi"), and leave sky where they don't.
 - **Do** respect `prefers-reduced-motion` for any transition you add.
+- **Do** open a blog post with a few **bold words** for the lead-in, and keep newspaper furniture derived from what's already there (tags, date, word count, description).
 
 ### Don't:
 - **Don't** add a border-radius, a blurred shadow or a glow.
 - **Don't** use Deep Lagoon as a resting fill or for decoration.
 - **Don't** add gradients beyond the sky ground and the Toasted Butter personal tiles.
-- **Don't** use Fraunces below `h1`, or for UI text.
+- **Don't** borrow a newspaper's double or dashed rules for decoration; on this site line style means time.
+- **Don't** use Fraunces below `h1`, or for UI text. The blog drop cap is the one exception.
 - **Don't** add texture, paper grain or other skeuomorphic detail. The cut-paper feeling stays abstract.
 - **Don't** put a shadow or hover lift on chips, tags or anything else that sits on a tile.

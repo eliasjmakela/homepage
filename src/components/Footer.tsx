@@ -2,6 +2,7 @@ import {
   BriefcaseIcon,
   FoldersIcon,
   CodeIcon,
+  PaperPlaneTiltIcon,
 } from "@phosphor-icons/react";
 
 export default function Footer() {
@@ -15,6 +16,7 @@ export default function Footer() {
           <span>Say hi</span>
           hello@eliasmakela.fi
         </span>
+        <PaperPlaneTiltIcon size={32} weight="light" />
       </a>
 
       <a

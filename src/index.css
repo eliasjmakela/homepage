@@ -215,11 +215,12 @@ footer > a {
 }
 
 /* Contact is the warm close: Toasted Butter, with the address as the main
-   line, as bold as the link titles beside it */
+   line, as bold as the link titles beside it, and a paper plane at the far
+   edge, the way the nav tiles put their arrow on the far side */
 .footer-contact {
   grid-column: span 3;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   background: var(--butter);
 }
 
