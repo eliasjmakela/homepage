@@ -650,3 +650,19 @@ ul.blog-tags {
   font-size: 0.86em;
   letter-spacing: 0.07em;
 }
+
+/* The end mark: initials on a butter tile after a post's last word, a
+   signature in the same Fraunces as the drop cap that opens the post */
+.blog-content > p:last-child::after {
+  content: "EM";
+  display: inline-block;
+  margin-left: 0.5em;
+  padding: 0.15em 0.35em;
+  font-family: var(--font-family-h);
+  font-weight: 600;
+  font-size: 0.8em;
+  line-height: 1.2;
+  background: var(--butter);
+  border: 1px solid var(--hairline);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
