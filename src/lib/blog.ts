@@ -1,4 +1,4 @@
-import { lazy, type ComponentType } from "react";
+import type { ComponentType } from "react";
 import type { MDXComponents } from "mdx/types";
 import type { Frontmatter } from "./frontmatter";
 
@@ -6,8 +6,12 @@ interface BlogModule {
   default: ComponentType<{ components?: MDXComponents }>;
 }
 
-const postGlob = import.meta.glob<BlogModule>("../content/blog/*.mdx");
-// Only the YAML block, so the posts load with their own page (see vite.config.ts)
+// Posts are bundled eagerly: each is a few kB, far less than the round trip a
+// separate chunk costs when a post opens
+const postGlob = import.meta.glob<BlogModule>("../content/blog/*.mdx", {
+  eager: true,
+});
+// The YAML block plus a reading time worked out at build time (see vite.config.ts)
 const frontmatterGlob = import.meta.glob<Frontmatter & { readingMinutes: number }>("../content/blog/*.mdx", {
   eager: true,
   query: "?frontmatter",
@@ -37,14 +41,9 @@ export function getPostSummary(slug: string): PostSummary | undefined {
   return postSummaries.find((post) => post.slug === slug);
 }
 
-// Built once at module scope, so each post's lazy component keeps a stable
-// identity across renders instead of being re-created per navigation.
-export const lazyPosts: Record<
+export const posts: Record<
   string,
   ComponentType<{ components?: MDXComponents }>
 > = Object.fromEntries(
-  Object.entries(postGlob).map(([path, importPost]) => [
-    slugFromPath(path),
-    lazy(() => importPost()),
-  ]),
+  Object.entries(postGlob).map(([path, mod]) => [slugFromPath(path), mod.default]),
 );

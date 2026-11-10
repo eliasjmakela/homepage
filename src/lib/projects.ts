@@ -1,4 +1,4 @@
-import { lazy, type ComponentType } from "react";
+import type { ComponentType } from "react";
 import type { MDXComponents } from "mdx/types";
 
 /** Frontmatter of a src/content/projects/*.mdx file */
@@ -30,14 +30,16 @@ export interface Project extends Omit<ProjectFrontmatter, "img"> {
   status: "Ongoing" | "Set aside" | "Finished";
 }
 
-// "?frontmatter" loads only the YAML block (see vite.config.ts), so the
-// write-ups stay out of the main bundle until their page opens
+// "?frontmatter" is just the YAML block (see vite.config.ts)
 const frontmatters = import.meta.glob<ProjectFrontmatter>(
   "../content/projects/*.mdx",
   { eager: true, query: "?frontmatter", import: "default" },
 );
+// Write-ups are bundled eagerly: each is a few kB, far less than the round
+// trip a separate chunk costs when a project opens
 const bodies = import.meta.glob<{ default: WriteUp }>(
   "../content/projects/*.mdx",
+  { eager: true },
 );
 const images = import.meta.glob<string>("../assets/*.png", {
   eager: true,
@@ -70,12 +72,8 @@ export const projects: Project[] = Object.entries(frontmatters)
   }))
   .sort((a, b) => (a.start < b.start ? 1 : -1));
 
-// Built once at module scope so each write-up keeps a stable identity
 export const writeUps: Record<string, WriteUp> = Object.fromEntries(
-  Object.entries(bodies).map(([path, load]) => [
-    slugFromPath(path),
-    lazy(load),
-  ]),
+  Object.entries(bodies).map(([path, mod]) => [slugFromPath(path), mod.default]),
 );
 
 export function getProject(slug: string): Project | undefined {

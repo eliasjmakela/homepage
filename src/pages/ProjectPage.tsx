@@ -1,5 +1,4 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
-import { Suspense } from "react";
 import { Navigate, NavLink, useParams } from "react-router";
 
 import Footer from "../components/Footer";
@@ -80,9 +79,7 @@ export default function ProjectPage() {
         </div>
 
         <article className={`block-main blog-content ${styles.writeUp}`}>
-          <Suspense fallback={<p>Loading…</p>}>
-            <WriteUp components={mdxComponents} />
-          </Suspense>
+          <WriteUp components={mdxComponents} />
         </article>
       </main>
       <Footer />

@@ -24,9 +24,7 @@ function readingMinutes(body: string): number {
 }
 
 /** `post.mdx?frontmatter` is just the post's YAML block, as a default export,
- *  plus its reading time.
- *  Listing pages import that instead of the whole module, so each write-up
- *  gets its own chunk and loads only when its page opens. */
+ *  plus its reading time worked out at build time. */
 function mdxFrontmatter(): Plugin {
   return {
     name: 'mdx-frontmatter',

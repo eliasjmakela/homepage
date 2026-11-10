@@ -1,17 +1,16 @@
-import { Suspense } from "react";
 import { Navigate, NavLink, useParams } from "react-router";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 import Footer from "../components/Footer";
 import Tag from "../components/Tag";
 import { mdxComponents } from "../components/mdxComponents";
-import { getPostSummary, lazyPosts } from "../lib/blog";
+import { getPostSummary, posts } from "../lib/blog";
 import { formatIsoDate, formatLongIsoDate } from "../lib/date";
 import { usePageTitle } from "../lib/usePageTitle";
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const summary = slug ? getPostSummary(slug) : undefined;
-  const Post = slug ? lazyPosts[slug] : undefined;
+  const Post = slug ? posts[slug] : undefined;
   usePageTitle(summary?.title);
 
   if (!slug || !summary || !Post) {
@@ -74,9 +73,7 @@ export default function BlogPostPage() {
                 </aside>
               )}
               <div className="blog-content">
-                <Suspense fallback={<p>Loading…</p>}>
-                  <Post components={mdxComponents} />
-                </Suspense>
+                <Post components={mdxComponents} />
               </div>
             </div>
           </div>
