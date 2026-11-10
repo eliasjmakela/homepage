@@ -630,3 +630,23 @@ ul.blog-tags {
 .blog-content a {
   font-size: 1rem;
 }
+
+/* A newspaper lead-in: open a post with **bold words** and they're set in
+   caps, under a Fraunces drop cap. The cap's size is in rem because
+   ::first-letter inherits from the <strong> around it, not from the <p> */
+.blog-content > p:first-child:has(> strong:first-child)::first-letter {
+  float: left;
+  font-family: var(--font-family-h);
+  font-weight: 600;
+  font-size: 3.55rem;
+  line-height: 0.8;
+  letter-spacing: 0;
+  padding: 0.08em 0.08em 0 0;
+}
+
+.blog-content > p:first-child > strong:first-child {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.86em;
+  letter-spacing: 0.07em;
+}
