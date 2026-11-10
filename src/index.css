@@ -815,8 +815,9 @@ ul.blog-tags {
 }
 
 /* The end mark: a small butter tile after a post's last word, the warm
-   sign-off to the drop cap that opens the post */
-.blog-content > p:last-child::after {
+   sign-off to the drop cap that opens the post. Blog posts only: project
+   write-ups share .blog-content but aren't newspaper pieces */
+.blog-body > .blog-content > p:last-child::after {
   content: "";
   display: inline-block;
   width: 0.65em;
