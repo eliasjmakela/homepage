@@ -1,13 +1,15 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import { NavLink } from "react-router";
 import Footer from "../components/Footer";
-import Tag from "../components/Tag";
 import { postSummaries } from "../lib/blog";
-import { formatIsoDate } from "../lib/date";
+import { formatIsoDate, formatLongIsoDate } from "../lib/date";
 import { usePageTitle } from "../lib/usePageTitle";
 
 export default function BlogPage() {
   usePageTitle("Blog");
+  // Newest first: the latest post leads the front page, the rest follow
+  const [lead, ...earlier] = postSummaries;
+
   return (
     <div className="column" id="blog-page-main-container">
       <header className="row">
@@ -26,36 +28,64 @@ export default function BlogPage() {
         </div>
       </header>
 
-      <main>
-        <ol id="blog-list" className="column">
-          {postSummaries.map((post) => (
-            <li key={post.slug}>
-              <NavLink
-                className="block-main hover-accent column blog-list-item"
-                to={`/blog/${post.slug}`}
-              >
-                <div className="row title-and-year">
-                  <h2 className="project-title">{post.title}</h2>
-                  <i>
-                    <time dateTime={post.date}>{formatIsoDate(post.date)}</time>
-                  </i>
-                </div>
-                <p className="project-description">{post.description}</p>
-                {post.tags && post.tags.length > 0 && (
-                  <ul className="row blog-tags">
-                    {post.tags.map((tag) => (
-                      <Tag key={tag} label={tag} />
-                    ))}
-                  </ul>
-                )}
-                <span className="row blog-read-more">
-                  Read
-                  <ArrowRightIcon weight="light" className="ph-light" />
-                </span>
-              </NavLink>
-            </li>
-          ))}
-        </ol>
+      <main id="blog-index">
+        {lead && (
+          <div className="block-main column" id="blog-index-sheet">
+            <NavLink className="hover-accent blog-lead" to={`/blog/${lead.slug}`}>
+              <span className="blog-index-meta">
+                No. {lead.number} ·{" "}
+                <time dateTime={lead.date}>
+                  <span className="blog-folio-long">
+                    {formatLongIsoDate(lead.date)}
+                  </span>
+                  <span className="blog-folio-short">
+                    {formatIsoDate(lead.date)}
+                  </span>
+                </time>{" "}
+                · {lead.readingMinutes} min read
+              </span>
+              <h2 className="blog-lead-title">
+                {lead.title}
+                <ArrowRightIcon weight="light" className="ph-light" />
+              </h2>
+              {lead.description && (
+                <span className="blog-lead-standfirst">{lead.description}</span>
+              )}
+            </NavLink>
+
+            {earlier.length > 0 && (
+              <section className="blog-earlier" aria-labelledby="blog-earlier-label">
+                <h2 id="blog-earlier-label" className="blog-index-label">
+                  Earlier
+                </h2>
+                <ol>
+                  {earlier.map((post) => (
+                    <li key={post.slug}>
+                      <NavLink
+                        className="hover-accent blog-row"
+                        to={`/blog/${post.slug}`}
+                      >
+                        <span className="blog-index-meta">No. {post.number}</span>
+                        <span className="blog-row-text">
+                          <h3 className="blog-row-title">{post.title}</h3>
+                          {post.description && (
+                            <span className="blog-row-standfirst">
+                              {post.description}
+                            </span>
+                          )}
+                        </span>
+                        <span className="blog-index-meta">
+                          <time dateTime={post.date}>{formatIsoDate(post.date)}</time>{" "}
+                          · {post.readingMinutes} min
+                        </span>
+                      </NavLink>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )}
+          </div>
+        )}
       </main>
       <Footer />
     </div>

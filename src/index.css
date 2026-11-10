@@ -541,23 +541,140 @@ ul.blog-tags {
   font-size: 1.2em;
 }
 
-.blog-list-item {
+/* The blog index is a front page on one sheet: the newest post leads, and
+   the rest follow as numbered rows. Lead and rows sit flat on the sheet and
+   flood Deep Lagoon on hover, like the landing's project cards */
+#blog-index {
+  display: flex;
+  justify-content: center;
+  padding-top: 1.5em;
+}
+
+#blog-index-sheet {
+  max-width: 60rem;
+  gap: 0;
+}
+
+#blog-index-sheet span,
+#blog-index-sheet li {
+  padding: 0;
+}
+
+/* The same running line as a post's folio: number, date, reading time */
+.blog-index-meta,
+#blog-index-sheet .blog-index-meta span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.blog-lead {
+  display: flex;
+  flex-direction: column;
   align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+  font-weight: 400;
+}
+
+/* Block, not flex, so the arrow follows the last word when the title wraps */
+.blog-lead-title {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.15;
+  text-align: left;
+  text-wrap: balance;
+}
+
+.blog-lead-title svg {
+  margin-left: 0.3em;
+  vertical-align: -0.12em;
+}
+
+#blog-index-sheet .blog-lead-standfirst {
+  max-width: 40rem;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+
+.blog-earlier {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.blog-index-label {
+  margin: 0.75rem 1.25rem 0.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--hairline);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   text-align: left;
 }
 
-.blog-read-more {
-  align-items: center;
-  margin-top: auto;
+.blog-earlier ol {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-#blog-list {
-  gap: 1.5em;
+.blog-row {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  font-weight: 400;
+}
+
+.blog-row-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.blog-row-title {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+#blog-index-sheet .blog-row-standfirst {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  #blog-index-sheet {
+    padding: 0.75em;
+  }
+
+  .blog-lead-title {
+    font-size: 1.5rem;
+  }
+
+  #blog-index-sheet .blog-lead-standfirst {
+    font-size: 1.2rem;
+  }
+
+  .blog-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.4em;
+  }
+
+  .blog-row-title {
+    font-size: 1.25rem;
+  }
 }
 
 /* Fill the window; a short post floats in the middle, with even space above
    and below, and the footer stays at the bottom */
 #blog-post-main-container,
+#blog-page-main-container,
 #error-page-main-container {
   min-height: 100dvh;
 }

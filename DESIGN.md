@@ -242,6 +242,7 @@ The page is a flex mosaic: tiles stacked in rows and columns, with a universal `
 
 - **Landing:** a square name tile (`clamp(20em, 25vw, 30em)`, `aspect-ratio: 1`) beside a stacked nav column whose three tiles share its height exactly, with sky to its right. Under it, the tagline tile stops short (55%) beside the 12rem cat square, and the two share a height. Then two equal halves: intro and "Right now" on the left, projects on the right. Each half keeps its own height, so sky shows under the shorter one. The footer's six columns put the "Say hi" edge on that same split.
 - **Blog posts:** two tiles across the grout, up to 60rem wide and centred: a thin folio tile, then the sheet. On the sheet the headline and standfirst span the width; below them the text runs in a 40rem column (about 75 characters) beside a 12rem tag rail. A post without tags keeps the same column and leaves the rail empty.
+- **Blog index:** the Back and "Blog" header row, then one sheet up to 60rem wide and centred, holding the lead and the archive rows.
 - **Project write-ups:** a single 45rem column, centred.
 - **CV:** a full-width board holding horizontal lanes (desktop) or a vertical path of squares (phones), with a sticky lane-label column and a minimap above.
 
@@ -308,6 +309,13 @@ A post reads like a cutting from a paper, built only from tiles, hairlines and c
 - **Pull quote:** `<Pull>…</Pull>` in the MDX. A Paper White tile with a hairline and Tile lift, floated right at 40% of the column, Pull quote type. It repeats the text, so it's hidden from screen readers. Optional; most posts won't need one.
 - **End mark:** a 0.65em Toasted Butter square with a hairline and the pawn shadow, inline after the last word of the last paragraph. A post that ends on a list or code block has none.
 - **Not used:** double or dashed rules (they mean ongoing and planned), italic standfirsts, multi-column text.
+
+### Blog index (front page)
+The index is a front page on one sheet, built from the same derived facts as the post folio.
+- **Lead:** the newest post, flat on the sheet: a Caps Label line ("No. 2 · Monday 9 November 2026 · 3 min read", short date on phones), the title in Plex 700 at 2rem (1.5rem on phones) with a trailing light arrow, and the post's `description` as a standfirst.
+- **Earlier:** under a hairline and an "Earlier" Caps Label, every other post as a row: "No. n", then the title (Title) over its description (Body), then the short date and reading time in Caps Label at the far right. On phones the three stack. The section is left out while there's only one post.
+- Lead and rows are flat and flood Deep Lagoon on hover; the whole block is the link. No tags and no "Read" label: tags live on the post's rail.
+- **Not used:** the butter end mark, the drop cap and Fraunces below "Blog"; those belong to a post.
 
 ### Landing projects
 - **Lead:** the one project with a picture, chosen by `featured: true` in its frontmatter. Its screenshot sits beside the text, whole and uncropped on black, so it reads as a screen.
