@@ -12,7 +12,19 @@ import { cloudflare } from "@cloudflare/vite-plugin";
 const FRONTMATTER = /\.mdx\?frontmatter$/
 const PREFIX = '\0mdx-frontmatter:'
 
-/** `post.mdx?frontmatter` is just the post's YAML block, as a default export.
+/** Minutes to read an MDX body at 200 words a minute, ignoring imports,
+ *  exports and JSX tags; never less than one */
+function readingMinutes(body: string): number {
+  const words = body
+    .replace(/^(import|export)\s.*$/gm, '')
+    .replace(/<[^>]*>/g, ' ')
+    .split(/\s+/)
+    .filter((word) => /[\p{L}\p{N}]/u.test(word)).length
+  return Math.max(1, Math.round(words / 200))
+}
+
+/** `post.mdx?frontmatter` is just the post's YAML block, as a default export,
+ *  plus its reading time.
  *  Listing pages import that instead of the whole module, so each write-up
  *  gets its own chunk and loads only when its page opens. */
 function mdxFrontmatter(): Plugin {
@@ -28,8 +40,10 @@ function mdxFrontmatter(): Plugin {
       if (!id.startsWith(PREFIX)) return null
       const file = id.slice(PREFIX.length)
       this.addWatchFile(file)
-      const yaml = (await readFile(file, 'utf8')).match(/^---\r?\n([\s\S]*?)\r?\n---/)
-      return `export default ${JSON.stringify(yaml ? parseYaml(yaml[1]) : {})}`
+      const source = await readFile(file, 'utf8')
+      const yaml = source.match(/^---\r?\n([\s\S]*?)\r?\n---/)
+      const data = { ...(yaml ? parseYaml(yaml[1]) : {}), readingMinutes: readingMinutes(source.slice(yaml?.[0].length ?? 0)) }
+      return `export default ${JSON.stringify(data)}`
     },
   }
 }

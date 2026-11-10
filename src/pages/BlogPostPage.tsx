@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Tag from "../components/Tag";
 import { mdxComponents } from "../components/mdxComponents";
 import { getPostSummary, lazyPosts } from "../lib/blog";
-import { formatIsoDate } from "../lib/date";
+import { formatIsoDate, formatLongIsoDate } from "../lib/date";
 import { usePageTitle } from "../lib/usePageTitle";
 
 export default function BlogPostPage() {
@@ -18,6 +18,8 @@ export default function BlogPostPage() {
     return <Navigate to="/blog" replace />;
   }
 
+  const tags = summary.tags ?? [];
+
   return (
     <div className="column" id="blog-post-main-container">
       <nav>
@@ -26,29 +28,57 @@ export default function BlogPostPage() {
           Back
         </NavLink>
       </nav>
-      <main className="block-main column" id="blog-post">
+      <main className="column" id="blog-post">
         <article className="column">
-          <header className="column" id="blog-post-header">
-            <h1>{summary.title}</h1>
-            <div className="row" id="blog-post-meta">
-              <i>
-                <time dateTime={summary.date}>
-                  {formatIsoDate(summary.date)}
-                </time>
-              </i>
-              {summary.tags && summary.tags.length > 0 && (
-                <ul className="row blog-tags">
-                  {summary.tags.map((tag) => (
-                    <Tag key={tag} label={tag} />
-                  ))}
-                </ul>
+          {/* The folio: a newspaper's running line, as its own thin tile.
+              The first tag is the section, like a kicker */}
+          <div className="block-main blog-folio">
+            <span className="blog-folio-section">
+              <NavLink className="hover-accent" to="/blog">
+                Blog
+              </NavLink>
+              {tags[0] && (
+                <>
+                  <span aria-hidden="true">›</span>
+                  <span>{tags[0]}</span>
+                </>
               )}
+            </span>
+            <span>No. {summary.number}</span>
+            <time dateTime={summary.date}>
+              <span className="blog-folio-long">
+                {formatLongIsoDate(summary.date)}
+              </span>
+              <span className="blog-folio-short">
+                {formatIsoDate(summary.date)}
+              </span>
+            </time>
+            <span>{summary.readingMinutes} min read</span>
+          </div>
+          <div className="block-main column" id="blog-post-sheet">
+            <header className="column" id="blog-post-header">
+              <h1>{summary.title}</h1>
+              {summary.description && (
+                <p className="blog-standfirst">{summary.description}</p>
+              )}
+            </header>
+            <div className="blog-body">
+              {tags.length > 0 && (
+                <aside className="blog-rail" aria-label="Tags">
+                  <span className="blog-rail-label">Under</span>
+                  <ul className="blog-tags">
+                    {tags.map((tag) => (
+                      <Tag key={tag} label={tag} />
+                    ))}
+                  </ul>
+                </aside>
+              )}
+              <div className="blog-content">
+                <Suspense fallback={<p>Loading…</p>}>
+                  <Post components={mdxComponents} />
+                </Suspense>
+              </div>
             </div>
-          </header>
-          <div className="blog-content">
-            <Suspense fallback={<p>Loading…</p>}>
-              <Post components={mdxComponents} />
-            </Suspense>
           </div>
         </article>
       </main>
