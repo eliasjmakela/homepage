@@ -120,9 +120,8 @@
   border: 1px solid var(--hairline);
 }
 
-/* About 75 characters a line, and the text level with its headings */
 .writeUp {
-  max-width: 38rem;
+  max-width: 60rem;
   width: 100%;
   align-self: center;
 }
