@@ -65,6 +65,24 @@
     },
     {
       "kind": "project",
+      "title": "Since AI 2026",
+      "org": "Hackathon, Turku",
+      "start": "2026-11",
+      "end": "2026-11",
+      "tech": [],
+      "desc": "My first hackathon, with a couple of friends. Worked with challenge partners to break down their problem, then built a solution as a team using an agentic workflow."
+    },
+    {
+      "kind": "project",
+      "title": "Junction 2026",
+      "org": "Hackathon, Espoo",
+      "start": "2026-11",
+      "end": "2026-11",
+      "tech": [],
+      "desc": "Took part in the main event of Junction, Europe's leading hackathon."
+    },
+    {
+      "kind": "project",
       "project": "Chip26",
       "start": "2021-05",
       "end": "2021-06"
