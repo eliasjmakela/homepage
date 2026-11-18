@@ -1,0 +1,33 @@
+---
+name: "Chip26"
+start: "2021-01"
+end: "2021-06"
+img: "chip26.png"
+img_alt: "The Chip26 emulator running a CHIP-8 program"
+repo: "https://github.com/eliasjmakela/chip26"
+tech: ["csharp"]
+featured: true
+summary: "An emulator for CHIP-8, a virtual computer from the 1970s."
+---
+
+## What it is
+
+An emulator for CHIP-8, a virtual computer released in the 1970s. It reads
+programs compiled for CHIP-8 and runs them in real time, so old CHIP-8 games
+and programs can be played again.
+
+## Why I built it
+
+To learn how emulators actually work, one instruction at a time. I've always been fascinated with how computers work under the hood,
+and this seemed like a pretty decent place to start. It was the first hobby project that I did that ended up getting me attention from companies, and eventually my very first job!
+
+## How it's built
+
+C# and MonoGame. A fetch-decode-execute loop reads each instruction from
+memory and runs it, while MonoGame handles the window, the display and input.
+
+## What was hard
+
+- Getting instruction timing right so games don't run too fast.
+- Learning a completely new way of thinking about a system from scratch
+- Debugging all the individual instructions

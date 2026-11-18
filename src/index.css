@@ -1,5 +1,18 @@
 :root {
-  --accent: #0d6b70;
+  /* The palette, named as in DESIGN.md */
+  --accent: #0d6b70; /* Deep Lagoon: only ever a response to hover or a choice */
+  --ink: #010e24;
+  --hairline: #000000;
+  --sky: #dffbff;
+  --board: #c2f5ff;
+  --sky-haze: rgba(132, 235, 255, 0.5);
+  --paper: #ffffff;
+  /* Toasted Butter, for the personal tiles only */
+  --butter: linear-gradient(130deg, #f6e6c1 0%, #e3c172 50%, #f6e6c1 100%);
+
+  --shadow-tile: 3px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-dim: 3px 3px 0 rgba(0, 0, 0, 0.1);
+
   --font-family: "IBM Plex Sans", sans-serif;
   --font-family-h: "Fraunces", serif;
 }
@@ -8,7 +21,8 @@
   box-sizing: border-box;
 }
 
-header {
+/* The landing page's name and nav */
+.main-container > header {
   display: flex;
   flex-direction: row;
   background-color: transparent;
@@ -24,44 +38,35 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-self: stretch;
+  align-self: flex-start; /* stretching to the nav's height would break the square */
   width: clamp(20em, 25vw, 30em);
+  aspect-ratio: 1;
 }
 
 .main-container {
-  height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-#language-selector {
-  margin-left: auto;
-  display: flex;
-  flex-direction: column;
-}
-
 #headline {
   display: flex;
   align-items: center;
+  width: auto;
   max-width: 55%;
+  min-height: 12rem; /* the cat square's height, so the two pair up */
 }
 
+/* Bigger than the section labels but lighter, so it reads as a statement,
+   not another heading; left-set like everything else under the name */
 #headline h2 {
-  font-size: 2.2rem;
-}
-
-#projects-list {
-  margin: auto;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  min-width: 0;
-  padding-top: 4em;
-  padding-bottom: 4em;
-  text-align: center;
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+  text-wrap: balance;
 }
 
 ol {
@@ -72,91 +77,174 @@ ol {
 #now-list {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 2rem;
-  margin-left: 0;
+  margin: 1rem 0;
+  padding: 0;
 }
 
 #now-block {
-  flex: 1;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
-.now-item,
 i {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
 }
 
+/* The asterisk sits on an item's first line, even when the item wraps */
+.now-item {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding-left: 0;
+}
+
 .now-item svg {
   flex-shrink: 0;
+  margin-top: 0.15em;
 }
 
 li {
   list-style: none;
 }
 
+/* Text only screen readers get, such as what a skill filter matched */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* A page's h1 takes focus after navigation (see Root.tsx); it isn't a
+   control, so it needs no ring */
+h1[tabindex="-1"]:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* Tiles touch the window edge, so their ring goes inside the border */
+a.block-main:focus-visible {
+  outline-offset: -7px;
+}
+
 .hover-accent:hover {
   background-color: var(--accent);
-  color: white;
+  color: var(--paper);
 }
 
 .accent {
   background-color: var(--accent);
-  color: white;
+  color: var(--paper);
 }
 
 .accent a {
-  color: white;
+  color: var(--paper);
 }
 
 #projects {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin-bottom: auto;
-  min-width: 50%;
 }
 
-#projects-title-block {
-  width: 100%;
+/* Intro and Right now on the left, projects on the right, in equal halves
+   so the split lines up with the footer's "Say hi" tile below */
+@media (min-width: 701px) {
+  #body-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start; /* the shorter side leaves sky below it */
+  }
+}
+
+#intro p {
+  padding-inline: 0; /* level with the tile labels */
+}
+
+/* A section's title sits inside its tile, top left */
+.tile-label {
+  margin: 0;
+  text-align: left;
+}
+
+/* The cat greets you, right beside the headline */
+#cat-greeter {
+  flex: none;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12rem;
+  aspect-ratio: 1;
+  background: var(--butter);
+}
+
+#cat-greeter img {
+  display: block;
 }
 
 #all-projects {
+  margin-top: auto;
   padding: 1.5em;
   display: flex;
   justify-content: center;
-  border: 1px solid black;
-  justify-content: center;
+  border: 1px solid var(--hairline);
   flex-direction: row;
 }
 
+/* Six columns: "Say hi" spans the left half, so its edge lines up with the
+   split between the intro column and the projects above it */
 footer {
-  padding: 2em;
-  justify-content: space-around;
-  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.5em;
+  width: 100%;
+  padding-top: 2em;
   margin-top: auto;
 }
 
-/*tabletti landscape view responsiivisuus*/
-@media (max-width: 1200px) {
-  footer {
-    width: 100%;
-    padding: 2em 0;
-  }
+footer > a {
+  justify-content: center;
+}
 
-  #projects-list {
-    flex-direction: column;
-  }
+/* Contact is the warm close: Toasted Butter, with the address as the main
+   line, as bold as the link titles beside it, and a paper plane at the far
+   edge, the way the nav tiles put their arrow on the far side */
+.footer-contact {
+  grid-column: span 3;
+  flex-direction: row;
+  justify-content: space-between;
+  background: var(--butter);
+}
 
-  #now-block {
-    justify-content: flex-start;
-    flex-grow: 0;
-  }
+.footer-contact:hover {
+  background: var(--accent);
+}
+
+.footer-contact-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25em;
+  padding: 0;
+  font-weight: 700;
+}
+
+.footer-contact-text span {
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0;
 }
 
 .ph-light {
+  flex: none; /* a long label beside it must never squeeze it to nothing */
   font-size: 1em;
 }
 
@@ -167,7 +255,7 @@ a {
   font-style: normal;
   font-size: 1.5rem;
   text-decoration: none;
-  color: black;
+  color: var(--hairline);
 }
 
 nav {
@@ -175,6 +263,12 @@ nav {
   align-self: stretch;
   flex-direction: column;
   justify-content: space-between;
+}
+
+/* Beside the name square, the three tiles share its height exactly */
+.main-container > header > nav > a.block-main {
+  flex: 1 1 0;
+  padding-block: 1em;
 }
 
 a.block-main {
@@ -206,15 +300,15 @@ body {
 body {
   background: linear-gradient(
     180deg,
-    rgba(223, 251, 255, 1) 0%,
-    rgba(132, 235, 255, 0.5) 40%,
-    rgba(132, 235, 255, 0.5) 60%,
-    rgba(223, 251, 255, 1) 100%
+    var(--sky) 0%,
+    var(--sky-haze) 40%,
+    var(--sky-haze) 60%,
+    var(--sky) 100%
   );
 
   font-family: var(--font-family);
   font-size: 16px;
-  color: #010e24;
+  color: var(--ink);
   margin: 0;
   padding: 0;
 }
@@ -225,52 +319,21 @@ body {
   align-items: center;
 }
 
-#cat-container-desktop {
-  width: auto;
-  background: linear-gradient(
-    130deg,
-    rgb(246, 230, 193) 0%,
-    rgb(227, 193, 114) 50%,
-    rgb(246, 230, 193) 100%
-  );
-}
-
 .block-main {
   width: 100%;
-  background-color: #dffbff;
-  border-color: #000000;
+  background-color: var(--sky);
+  border-color: var(--hairline);
   border-width: 1px;
   border-style: solid;
   padding: 1.5em;
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-tile);
 }
 
 button {
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-tile);
 }
 
-.block-main:hover {
-  transform: translate(-2px, -2px);
-}
 
-.project-button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  border: 1px solid black;
-  padding: 1em;
-  align-items: center;
-}
-
-#projects-page-backbutton {
-  height: 100%;
-  width: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-}
-
-#projects-page-backbutton:hover,
 button:hover {
   transform: translate(-2px, -2px);
 }
@@ -279,30 +342,11 @@ button:hover {
   gap: 0.5em;
 }
 
+/* height: auto, so width/height attributes only set the shape to keep free */
 img {
   width: 100%;
+  height: auto;
   max-width: 800px;
-}
-
-#catimg-desktop {
-  display: block;
-  max-width: 150px;
-  min-width: 100px;
-}
-
-#cat-container-mobile {
-  display: none;
-  width: 10rem;
-}
-
-#now {
-  flex-grow: 1;
-  justify-content: stretch;
-}
-
-#now h2 {
-  margin-bottom: 0;
-  margin-top: 0;
 }
 
 h1 {
@@ -312,7 +356,7 @@ h1 {
   font-weight: 600;
   font-optical-sizing: auto;
   font-style: normal;
-  color: #010e24;
+  color: var(--ink);
 }
 
 h2 {
@@ -324,27 +368,8 @@ h2 {
   font-style: normal;
 }
 
-.page-link {
-  text-align: center;
-  margin: 0em;
-  font-family: var(--font-family);
-  font-weight: 600;
-  font-style: normal;
-}
-
 .footer-link {
   align-items: center;
-}
-
-.project-preview {
-  height: auto;
-  width: 100%;
-  display: block;
-  max-height: 140px;
-}
-
-#blackbox {
-  background-color: black;
 }
 
 .column {
@@ -352,66 +377,17 @@ h2 {
   flex-direction: column;
 }
 
-.project-year {
-  text-align: center;
-}
-
 .project-title {
   padding: 0.5rem;
-}
-
-#projects-hero {
-  width: 50%;
-}
-
-.project-info {
-  margin-top: auto;
-  align-items: center;
-  font-size: 2.5em;
 }
 
 #project-page-main-container {
   height: 100%;
 }
 
-.gh-link {
-  padding: 1em;
-  border: black 1px solid;
-}
-
-#raised-card .row .column {
-  margin-right: 0.5em;
-}
-
-#contact-button-container {
-  justify-content: center;
-  margin-top: 5em;
-}
-
-#contact-button {
-  min-width: 40vw;
-  min-height: 3em;
-}
-
 .project-description {
   margin-top: 0;
   font-size: 1rem;
-}
-
-.project-block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.small {
-  max-width: 50%;
-  margin: 0;
-}
-
-#small-project-row {
-  justify-content: flex-start;
 }
 
 @media (max-width: 700px) {
@@ -432,55 +408,12 @@ h2 {
     font-size: 1rem;
   }
 
-  #cat-container-desktop {
-    display: none;
-  }
-
-  #cat-container-mobile {
-    display: block;
-    background: linear-gradient(
-      130deg,
-      rgb(246, 230, 193) 0%,
-      rgb(227, 193, 114) 50%,
-      rgb(246, 230, 193) 100%
-    );
-  }
-
-  #catimg-mobile {
-    display: block;
-  }
-
-  .small {
-    max-width: 100%;
-  }
-
-  .project-block {
-    max-width: 100%;
-  }
-
-  #projects-list {
-    flex-direction: column;
-    height: auto;
-    width: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
-    justify-content: space-around;
-  }
-
-  #projects-content-block {
-    flex-grow: 2;
-  }
-
   h1 {
     font-size: 3rem;
   }
 
   button {
     margin: 0.5rem;
-  }
-
-  #projects-hero {
-    width: 100%;
   }
 
   html,
@@ -497,21 +430,18 @@ h2 {
     align-items: center;
   }
 
-  #hero #hero > h1 {
-    font-size: 4rem;
-  }
-
   #headline {
     max-width: 23rem;
     width: auto;
+    min-height: 10rem;
+  }
+
+  #cat-greeter {
+    width: 10rem;
   }
 
   p {
     font-size: 1rem;
-  }
-
-  .project-image {
-    margin: auto;
   }
 
   .title-and-year {
@@ -523,35 +453,17 @@ h2 {
     max-width: none;
   }
 */
-  .row,
-  footer {
+  .row {
     flex-direction: column;
   }
 
-  .project-info {
-    flex-direction: row;
-  }
-
   footer {
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 0;
-    padding: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding-top: 1rem;
   }
 
   footer > a {
-    margin: 0.5rem;
-    font-size: 1.5rem;
-  }
-
-  #contact-button-container {
-    margin: auto;
-    margin-bottom: 1rem;
-    margin-top: 5rem;
-  }
-
-  #project-page-header {
-    margin-bottom: 3rem;
+    font-size: 1rem;
   }
 
   #headline-row {
@@ -561,33 +473,474 @@ h2 {
     justify-content: flex-start;
   }
 
-  header {
+  .main-container > header {
     display: flex;
     flex-direction: row;
     background-color: transparent;
     align-items: flex-start;
   }
 
+  /* On phones too the tagline stays above the labels, and the labels above
+     the 1rem text */
   #headline h2 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+  }
+
+  .tile-label {
+    font-size: 1.25rem;
+  }
+
+  #all-projects {
+    font-size: 1rem;
+    padding: 1em;
   }
 }
 
 @media (max-width: 400px) {
-  .project-button {
-    width: auto;
-  }
-
   #headline {
     width: auto;
     padding: 1em;
   }
 
-  .page-link {
-    font-size: 1rem;
+  #headline h2 {
+    font-size: 1.4rem;
   }
 
-  #headline h2 {
+  /* Beside the name square there's barely room for "Projects" and its
+     arrow: the nav keeps what it needs and the square gives way */
+  .main-container > header > nav {
+    flex: none;
+  }
+
+  .main-container > header > nav > a.block-main {
+    padding-inline: clamp(0.75em, 24vw - 4rem, 1.5em); /* full by ~370px */
+  }
+}
+
+.blog-tags {
+  flex-wrap: wrap;
+  margin: 0.5em 0;
+}
+
+ul.blog-tags {
+  margin-left:0.5em;
+  padding-left:0;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-family);
+  font-size: 1.1rem;
+  padding: 0.35em 0.9em;
+  border: 1px solid var(--hairline);
+}
+
+.tag svg {
+  font-size: 1.2em;
+}
+
+/* The blog index is a front page on one sheet: the newest post leads, and
+   the rest follow as numbered rows. Lead and rows sit flat on the sheet and
+   flood Deep Lagoon on hover, like the landing's project cards */
+#blog-index {
+  display: flex;
+  justify-content: center;
+  padding-top: 1.5em;
+}
+
+#blog-index-sheet {
+  max-width: 60rem;
+  gap: 0;
+}
+
+#blog-index-sheet span,
+#blog-index-sheet li {
+  padding: 0;
+}
+
+/* The same running line as a post's folio: number, date, reading time */
+.blog-index-meta,
+#blog-index-sheet .blog-index-meta span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.blog-lead {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+  font-weight: 400;
+}
+
+/* Block, not flex, so the arrow follows the last word when the title wraps */
+.blog-lead-title {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.15;
+  text-align: left;
+  text-wrap: balance;
+}
+
+.blog-lead-title svg {
+  margin-left: 0.3em;
+  vertical-align: -0.12em;
+}
+
+#blog-index-sheet .blog-lead-standfirst {
+  max-width: 40rem;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+
+.blog-earlier {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.blog-index-label {
+  margin: 0.75rem 1.25rem 0.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--hairline);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: left;
+}
+
+.blog-earlier ol {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.blog-row {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  font-weight: 400;
+}
+
+.blog-row-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.blog-row-title {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+#blog-index-sheet .blog-row-standfirst {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  #blog-index-sheet {
+    padding: 0.75em;
+  }
+
+  .blog-lead-title {
+    font-size: 1.5rem;
+  }
+
+  #blog-index-sheet .blog-lead-standfirst {
     font-size: 1.2rem;
   }
+
+  .blog-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.4em;
+  }
+
+  .blog-row-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* Fill the window; a short post floats in the middle, with even space above
+   and below, and the footer stays at the bottom */
+#blog-post-main-container,
+#blog-page-main-container,
+#error-page-main-container {
+  min-height: 100dvh;
+}
+
+#blog-post-main-container > nav {
+  align-self: flex-start;
+}
+
+#blog-post-main-container > footer {
+  margin-top: 0;
+}
+
+/* The post is two tiles across the grout: the thin folio, then the sheet */
+#blog-post {
+  width: 100%;
+  max-width: 60rem;
+  margin: auto;
+  align-self: center;
+}
+
+#blog-post-header {
+  align-items: flex-start;
+}
+
+#blog-post-header h1 {
+  text-align: left;
+  margin: 0.4em 0 0.15em; /* the standfirst belongs to it */
+}
+
+
+.blog-content {
+  line-height: 1.6;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3 {
+  text-align: left;
+  margin-top: 1.5em;
+}
+
+.blog-content p,
+.blog-content li {
+  font-size: 1rem;
+}
+
+.blog-content ul,
+.blog-content ol {
+  padding-left: 1.5em;
+}
+
+.blog-content li {
+  list-style: disc;
+}
+
+.blog-content ol li {
+  list-style: decimal;
+}
+
+.blog-content pre {
+  background-color: var(--ink);
+  color: var(--sky);
+  padding: 1em;
+  overflow-x: auto;
+}
+
+.blog-content code {
+  font-family: monospace;
+}
+
+.blog-content a {
+  font-size: 1rem;
+}
+
+/* The folio: a newspaper's running line of section, issue, date and
+   reading time, in small tracked caps */
+.blog-folio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25em 1.5em;
+  padding: 0.7em 1.5em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.blog-folio span,
+.blog-folio time,
+.blog-folio a {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  padding: 0;
+}
+
+.blog-folio-section {
+  display: inline-flex;
+  gap: 0.6em;
+}
+
+.blog-folio-short {
+  display: none;
+}
+
+/* Under the headline, the post's description as a standfirst; upright,
+   since italic is for metadata */
+.blog-standfirst {
+  font-size: 1.4rem;
+  line-height: 1.4;
+  max-width: 40rem;
+  margin: 0 0 0.5em;
+  padding: 0;
+  text-wrap: pretty;
+}
+
+/* The text runs in a newspaper-width column, with the tags in a narrow
+   rail beside it; a post without tags keeps the same column */
+.blog-body {
+  display: grid;
+  grid-template-columns: 12rem minmax(0, 40rem);
+  gap: 2em;
+  align-items: start;
+}
+
+.blog-body > .blog-content {
+  grid-column: 2;
+}
+
+.blog-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: 1px solid var(--hairline);
+}
+
+.blog-rail-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0;
+}
+
+.blog-rail ul.blog-tags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+}
+
+.blog-rail .tag {
+  font-size: 0.95rem;
+}
+
+/* <Pull> in a post: a line lifted onto a paper tile beside the text */
+.pull-quote {
+  float: right;
+  width: 40%;
+  margin: 0.4em 0 1em 1.75em;
+  padding: 1em 1.1em;
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-tile);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.blog-content .pull-quote p {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* On phones the folio is two rows of two with a short date, the rail folds
+   into one row above the text and a pull quote sits between paragraphs */
+@media (max-width: 700px) {
+  .blog-folio {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 0.7em 1em;
+  }
+
+  .blog-folio > :nth-child(even) {
+    text-align: right;
+  }
+
+  .blog-folio-long {
+    display: none;
+  }
+
+  .blog-folio-short {
+    display: inline;
+  }
+
+  .blog-standfirst {
+    font-size: 1.2rem;
+  }
+
+  .blog-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .blog-body > .blog-content {
+    grid-column: auto;
+  }
+
+  .blog-rail {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .blog-rail-label {
+    display: none;
+  }
+
+  .blog-rail ul.blog-tags {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .pull-quote {
+    float: none;
+    width: auto;
+    margin: 1em 0;
+  }
+}
+
+/* A newspaper lead-in: open a post with **bold words** and they're set in
+   caps, under a Fraunces drop cap. The cap's size is in rem because
+   ::first-letter inherits from the <strong> around it, not from the <p> */
+.blog-content > p:first-child:has(> strong:first-child)::first-letter {
+  float: left;
+  font-family: var(--font-family-h);
+  font-weight: 600;
+  font-size: 3.55rem;
+  line-height: 0.8;
+  letter-spacing: 0;
+  padding: 0.08em 0.08em 0 0;
+}
+
+.blog-content > p:first-child > strong:first-child {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.86em;
+  letter-spacing: 0.07em;
+}
+
+/* The end mark: a small butter tile after a post's last word, the warm
+   sign-off to the drop cap that opens the post. Blog posts only: project
+   write-ups share .blog-content but aren't newspaper pieces */
+.blog-body > .blog-content > p:last-child::after {
+  content: "";
+  display: inline-block;
+  width: 0.65em;
+  height: 0.65em;
+  margin-left: 0.45em;
+  background: var(--butter);
+  border: 1px solid var(--hairline);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
 }

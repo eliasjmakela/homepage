@@ -1,164 +1,146 @@
 import { ArrowRightIcon, AsteriskIcon } from "@phosphor-icons/react";
-import chat26 from "../assets/chat26.png";
-import intel26 from "../assets/intel26.png";
-import chip26 from "../assets/chip26.png";
 import lechat from "../assets/lechat.png";
 import { NavLink } from "react-router";
 import Footer from "../components/Footer";
+import ProjectWhen from "../components/ProjectWhen";
+import styles from "../components/landing/Landing.module.css";
+import now from "../content/now.json";
+import { formatIsoDate } from "../lib/date";
+import {
+  projects,
+  SHOT_HEIGHT,
+  SHOT_WIDTH,
+  type Project,
+} from "../lib/projects";
+import { techLabel } from "../lib/tech";
+
+/** The featured project leads with its screenshot; the rest, newest first, are text rows */
+const lead =
+  projects.find((p) => p.featured && p.img) ?? projects.find((p) => p.img);
+const others = projects.filter((p) => p !== lead);
+
+/** One plain line: the tech, when it ran and, unless it's finished, where it's at */
+function ProjectMeta({ project }: { project: Project }) {
+  return (
+    <span className={styles.cardMeta}>
+      {project.tech.map(techLabel).join(", ")} ·{" "}
+      <ProjectWhen project={project} />
+    </span>
+  );
+}
 
 export default function LandingPage() {
   return (
-    <>
-      <div id="main-container-desktop" className="main-container">
-        <header>
-          <div className="block-main" id="hero">
-            <h1>
-              Elias <br /> Mäkelä
-            </h1>
-          </div>
-          <nav>
-            <NavLink className="block-main hover-accent" to="/projects">
-              Projektit
-              <ArrowRightIcon weight="light" className="ph-light" />
-            </NavLink>
-            <NavLink className="block-main hover-accent" to="/blog">
-              Blogi
-              <ArrowRightIcon weight="light" className="ph-light" />
-            </NavLink>
-            <NavLink className="block-main hover-accent" to="/cv">
-              CV
-              <ArrowRightIcon weight="light" className="ph-light" />
-            </NavLink>
-          </nav>
-        </header>
-        <div className="column">
-          <div id="headline-row" className="row">
-            <section id="headline" className="block-main">
-              <h2>Opiskelija ja ohjelmistokehittäjä</h2>
-            </section>
-            <div className="block-main" id="cat-container-mobile">
-              <img
-                id="catimg-mobile"
-                alt="Kissa, jolla on baretti päässä ja patonki tassussa"
-                src={lechat}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="column">
-              <section id="loremipsum" className="block-main">
-                <p>
-                  Hei vain! Olen Aalto-yliopiston opiskelija ja ammattidevaaja
-                  jo lukiovuosilta lähtien. Tältä sivulta löytyy tietoa siitä
-                  kuka olen, mitä osaan ja mitä puuhailen tällä hetkellä.
-                </p>
-              </section>
-
-              <section id="now" className="column">
-                <div className="block-main">
-                  <h2>Juuri nyt</h2>
-                </div>
-                <div id="now-block" className="block-main column">
-                  <ul id="now-list">
-                    <li className="now-item">
-                      <AsteriskIcon weight="light" className="ph-light" />
-                      Valmistaudun Ignite-sprinttiin
-                    </li>
-                    <li className="now-item">
-                      <AsteriskIcon weight="light" className="ph-light" />
-                      Opiskelen koneoppimisen perusteita
-                    </li>
-                    <li className="now-item">
-                      <AsteriskIcon weight="light" className="ph-light" />
-                      Koodailen näitä sivuja
-                    </li>
-                  </ul>
-                  <i>Viimeksi päivitetty: 30.5.2026</i>
-                </div>
-              </section>
-            </div>
-
-            <section id="projects">
-              <div id="projects-title-block" className="row">
-                <div className="block-main" id="cat-container-desktop">
-                  <img
-                    id="catimg-desktop"
-                    alt="Kissa, jolla on baretti päässä ja patonki tassussa"
-                    src={lechat}
-                  />
-                </div>
-                <div className="block-main column">
-                  <h2> Projektit</h2>
-                </div>
-              </div>
-              <div id="projects-content-block" className="block-main">
-                <ol id="projects-list">
-                  <li>
-                    <article>
-                      <img
-                        alt="Kuva Chip26-emulaattorista"
-                        className="project-preview"
-                        src={chip26}
-                      />
-
-                      <NavLink
-                        className="project-button hover-accent light-gradient"
-                        to="projects/chip"
-                      >
-                        Chip26
-                        <ArrowRightIcon weight="light" className="ph-light" />
-                      </NavLink>
-                    </article>
-                  </li>
-                  <li>
-                    <article>
-                      <img
-                        alt="Kuva Chat26-sovelluksesta"
-                        className="project-preview"
-                        src={chat26}
-                      />
-                      <NavLink
-                        className="project-button hover-accent"
-                        to="projects/chat"
-                      >
-                        Chat26
-                        <ArrowRightIcon weight="light" className="ph-light" />
-                      </NavLink>
-                    </article>
-                  </li>
-                  <li>
-                    <article>
-                      <img
-                        alt="Kuva Intel 8080 -mikroprosessorista"
-                        className="project-preview"
-                        src={intel26}
-                      />
-                      <NavLink
-                        className="project-button hover-accent project-preview"
-                        to="projects/intel"
-                      >
-                        Intel26
-                        <ArrowRightIcon weight="light" className="ph-light" />
-                      </NavLink>
-                    </article>
-                  </li>
-                </ol>
-                <NavLink
-                  className="hover-accent"
-                  id="all-projects"
-                  to="/projects"
-                >
-                  Projektisivulle
-                  <ArrowRightIcon weight="light" className="ph-light" />
-                </NavLink>
-              </div>
-            </section>
-            <div></div>
-            <div className="column"></div>
+    <div id="main-container-desktop" className="main-container">
+      <header>
+        <div className="block-main" id="hero">
+          <h1>
+            Elias <br />
+            Mäkelä
+          </h1>
+        </div>
+        <nav>
+          <NavLink className="block-main hover-accent" to="/projects">
+            Projects
+            <ArrowRightIcon weight="light" className="ph-light" />
+          </NavLink>
+          <NavLink className="block-main hover-accent" to="/blog">
+            Blog
+            <ArrowRightIcon weight="light" className="ph-light" />
+          </NavLink>
+          <NavLink className="block-main hover-accent" to="/cv">
+            CV
+            <ArrowRightIcon weight="light" className="ph-light" />
+          </NavLink>
+        </nav>
+      </header>
+      <main className="column">
+        <div id="headline-row" className="row">
+          <section id="headline" className="block-main">
+            <h2>Developer and student.</h2>
+          </section>
+          <div className="block-main" id="cat-greeter">
+            <img
+              alt="A cat wearing a beret with a baguette in its paw"
+              src={lechat}
+            />
           </div>
         </div>
-        <Footer />
-      </div>
-    </>
+        <div id="body-row" className="row">
+          <div className="column">
+            <section id="intro" className="block-main">
+              <p>
+                Hi there! I'm Elias. I've always been fascinated by how
+                computers work under the hood, and the best way I know to find
+                out is to build one. I wrote my first emulator at 15, and I've
+                been taking things apart to see how they tick ever since.
+              </p>
+            </section>
+
+            {now.items.length > 0 && (
+              <section id="now-block" className="block-main column">
+                <h2 className="tile-label">Right now</h2>
+                <ul id="now-list">
+                  {now.items.map((item) => (
+                    <li key={item} className="now-item">
+                      <AsteriskIcon weight="light" className="ph-light" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <i>Last updated: {formatIsoDate(now.updatedAt)}</i>
+              </section>
+            )}
+          </div>
+
+          <section id="projects" className="block-main column">
+            <h2 className="tile-label">Projects</h2>
+            {lead && (
+              <NavLink
+                className={`hover-accent ${styles.card} ${styles.lead}`}
+                to={`/projects/${lead.slug}`}
+              >
+                <img
+                  alt={lead.img_alt ?? ""}
+                  src={lead.img}
+                  width={SHOT_WIDTH}
+                  height={SHOT_HEIGHT}
+                />
+                <span className={styles.cardText}>
+                  <span className={styles.cardName}>
+                    {lead.name}
+                    <ArrowRightIcon weight="light" className="ph-light" />
+                  </span>
+                  <span className={styles.cardSummary}>{lead.summary}</span>
+                  <ProjectMeta project={lead} />
+                </span>
+              </NavLink>
+            )}
+            <ol className={styles.rows}>
+              {others.map((p) => (
+                <li key={p.slug}>
+                  <NavLink
+                    className={`hover-accent ${styles.card} ${styles.row}`}
+                    to={`/projects/${p.slug}`}
+                  >
+                    <span className={styles.cardName}>
+                      {p.name}
+                      <ArrowRightIcon weight="light" className="ph-light" />
+                    </span>
+                    <span className={styles.cardSummary}>{p.summary}</span>
+                    <ProjectMeta project={p} />
+                  </NavLink>
+                </li>
+              ))}
+            </ol>
+            <NavLink className="hover-accent" id="all-projects" to="/projects">
+              To the projects page
+              <ArrowRightIcon weight="light" className="ph-light" />
+            </NavLink>
+          </section>
+        </div>
+      </main>
+      <Footer />
+    </div>
   );
 }
